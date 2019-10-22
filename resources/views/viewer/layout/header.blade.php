@@ -20,7 +20,7 @@
                         <li class="nav-item dropdown text-right">
                             <a href="" class="nav-link dropdown-toggle text-muted waves-effect waves-dark"
                                 data-toggle="dropdown">
-                                <img src="images/4.jpg" class="img-circle" width="30" alt="">
+                                <img src="pmhdv/images/4.jpg" class="img-circle" width="30" alt="">
                                 <span>
                                     <i class="fas fa-caret-down"></i>
                                 </span>

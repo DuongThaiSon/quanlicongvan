@@ -51,7 +51,6 @@ $(document).ready(function () {
         $('.master').toggleClass('is-collapsed');
     });
 
-
     ClassicEditor
         .create(document.querySelector('#editor'))
         .catch(error => {

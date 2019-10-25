@@ -36,6 +36,7 @@
 
 
     <section class="master">
+       
         @yield('content')
         
     </section>

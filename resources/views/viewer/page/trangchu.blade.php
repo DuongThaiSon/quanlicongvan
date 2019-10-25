@@ -135,10 +135,7 @@
                                 <span>{{ $congvanden->documentary_send['updated_at']->format('H:i') }} </span>
                                 <span> - </span>
                                 <span>{{ $congvanden->documentary_send['updated_at']->format('d/m/Y') }}</span>
-                                <span style="margin-left: 8px">
-                                    <i class="fas fa-eye"></i>
-                                </span>
-                                <span>{{$congvanden->documentary_send->number_read}}</span>
+                                
                             </div>
                             <div class="clear"></div>
                         </div>

@@ -26,9 +26,14 @@
     <div class="news">
         <div class="row pb-4 pl-3 pr-3">
             @foreach($congvandens as $congvanden)
-            <div class="col-lg-2">
+            <div class="col-lg-2 col-md-3">
                 <div class="news-item">
                     <div class="news-item--img position-relative">
+                        @if($congvanden->check_read==1)
+                        <div class="check-seen">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        @endif
                         <a href="">
                             <img class="img-fluid" src="pmhdv/images/thongbao.png" alt="">
                         </a>
@@ -62,15 +67,39 @@
                     </div>
                     <div class="news-item-text">
                         <div class="news-type">
-                            <ul class="pagination">
-                                <!-- <li>
-                                            <div class="ban-hanh">Đã ban hành</div>
-                                        </li> -->
-                                <li>
-                                    <div class="ban-hanh loai-congvan">
-                                        {{$congvanden->documentary_send->type_documentary->name}}</div>
-                                </li>
-                            </ul>
+                            <div class="row pl-0 mb-3">
+                            <div class="col-lg-8">
+                                <div class="ban-hanh loai-congvan">
+                                    {{$congvanden->documentary_send->type_documentary->name}}
+                                </div>
+                            </div>
+                            <div class="col-lg-4 text-right">
+                                <div class="news-info">
+                                    <?php
+                                        $check_file = explode(".",trim($congvanden->documentary_send->file));
+                                    ?>
+                                    @if($check_file[1] == "pdf")
+
+                                    <span class="pdf">
+                                        <i class="far fa-file-pdf"></i>
+                                    </span>
+                                    @else
+                                    @if($check_file[1] == "doc" || $check_file[1] == "docx")
+                                    <span class="word">
+                                        <i class="fas fa-file-word"></i>
+                                    </span>
+                                    @else
+                                    @if($check_file[1] == "xlsx" || $check_file[1] == "xlsm")
+                                    <span class="excel">
+                                        <i class="fas fa-file-excel"></i>
+                                    </span>
+                                    @endif
+                                    @endif
+
+                                    @endif
+                                </div>
+                            </div>
+                            </div>
                         </div>
                         <div class="news-avatar">
                             <div class="dropdown">
@@ -116,7 +145,7 @@
                                 </h4>
                             </a>
                         </div>
-                        <div class="news-info">
+                        <!-- <div class="news-info">
                             <p>Thể loại:
                                 <?php
                                         $check_file = explode(".",trim($congvanden->documentary_send->file));
@@ -141,7 +170,7 @@
 
                                 @endif
                             </p>
-                        </div>
+                        </div> -->
                         <div class="text-center mt-4">
                             <a href="chitiet.html" class="chitiet">
                                 <i class="fas fa-eye"></i>

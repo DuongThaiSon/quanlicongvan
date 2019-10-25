@@ -46,7 +46,7 @@ class CongVanController extends Controller
 
     public function getDanhSach(){
         $id = Auth::user()->id;
-        $congvans = documentary::where('id_user',$id)->get(); 
+        $congvans = documentary::orderBy('created_at', 'DESC')->where('id_user',$id)->get(); 
         return view('viewer.congvan.danhsach',['congvans'=>$congvans]);
     }
     public function getTimCongVan(Request $request){

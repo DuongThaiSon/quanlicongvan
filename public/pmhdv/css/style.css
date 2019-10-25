@@ -1235,4 +1235,13 @@ input[name="pass"]:-webkit-autofill:focus {
     .news .col-lg-2{
         max-width: 24.666667%;
     }
+    .storage{
+        font-size: 12px;
+        margin-top: 4px;
+        margin-left: 6px;
+        color: #6b6a6a;
+    }
+    .file-fix i{
+        margin-left: 9px;
+    }
 }

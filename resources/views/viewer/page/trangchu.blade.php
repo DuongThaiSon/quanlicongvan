@@ -68,35 +68,38 @@
                     <div class="news-item-text">
                         <div class="news-type">
                             <div class="row pl-0 mb-3">
-                            <div class="col-lg-8">
+                            <div class="col-lg-7">
                                 <div class="ban-hanh loai-congvan">
                                     {{$congvanden->documentary_send->type_documentary->name}}
                                 </div>
                             </div>
-                            <div class="col-lg-4 text-right">
-                                <div class="news-info">
+                            <div class="col-lg-5">
+                                <div class="news-info d-flex">
                                     <?php
                                         $check_file = explode(".",trim($congvanden->documentary_send->file));
                                     ?>
                                     @if($check_file[1] == "pdf")
 
-                                    <span class="pdf">
+                                    <div class="pdf file-fix">
                                         <i class="far fa-file-pdf"></i>
-                                    </span>
+                                    </div>
                                     @else
                                     @if($check_file[1] == "doc" || $check_file[1] == "docx")
-                                    <span class="word">
+                                    <div class="word file-fix">
                                         <i class="fas fa-file-word"></i>
-                                    </span>
+                                    </div>
                                     @else
                                     @if($check_file[1] == "xlsx" || $check_file[1] == "xlsm")
-                                    <span class="excel">
+                                    <div class="excel file-fix">
                                         <i class="fas fa-file-excel"></i>
-                                    </span>
+                                    </div>
                                     @endif
                                     @endif
 
                                     @endif
+                                    <div class="storage">
+                                    {{number_format($congvanden->documentary_send->storage/1048576,2)}}KB
+                                    </div>
                                 </div>
                             </div>
                             </div>

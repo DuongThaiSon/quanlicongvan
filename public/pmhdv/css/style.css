@@ -1231,3 +1231,8 @@ input[name="pass"]:-webkit-autofill:focus {
     padding: 3px 6px;
     color: #fff;
 }
+@media(max-width:1366px){
+    .news .col-lg-2{
+        max-width: 24.666667%;
+    }
+}

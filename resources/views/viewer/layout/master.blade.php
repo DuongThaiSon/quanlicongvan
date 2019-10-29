@@ -34,13 +34,13 @@
 <body>
     @include('viewer.layout.header')
 
-
+    
     <section class="master">
-       
+    
         @yield('content')
         
     </section>
-    
-</body>
     @yield('script')
+</body>
+    
 </html>

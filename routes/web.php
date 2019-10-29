@@ -66,3 +66,9 @@ Route::group(['prefix'=>'viewer'],function(){
 Route::get('luutru',function(){
 	return view('viewer.luutru.luutru');
 });	
+Route::get('luutru-detail',function(){
+	return view('viewer.luutru.luutru-detail');
+});	
+Route::get('thongke',function(){
+	return view('viewer.thongke.thongke');
+});	

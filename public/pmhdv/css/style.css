@@ -593,7 +593,7 @@ textarea:focus {
     margin-bottom: 10px;
 }
 
-.create-section {
+/* .create-section {
     background-color: #fff;
     -moz-border-radius: 4px;
     -webkit-border-radius: 4px;
@@ -612,7 +612,7 @@ textarea:focus {
     -o-transition-duration: 0.2s;
     transition-duration: 0.2s;
     position: relative;
-}
+} */
 
 .create-section .title {
     text-transform: uppercase;
@@ -719,11 +719,6 @@ textarea:focus {
     color: #fff;
 }
 
-.form-themcv {
-    display: none;
-    padding: 30px 0;
-}
-
 .back {
     margin-left: 40px;
     font-size: 20px;
@@ -736,9 +731,9 @@ textarea {
     width: 100%;
 }
 
-.main-form {
+/* .main-form {
     padding: 0 8%;
-}
+} */
 
 .box-create-left {
     padding: 15px 45px;
@@ -764,7 +759,7 @@ select:focus {
 }
 
 .ck.ck-editor__editable_inline>:last-child {
-    height: 300px;
+    height: 167px;
 }
 
 .box-create-left input[type="file"] {
@@ -797,7 +792,9 @@ textarea {
 }
 
 .btn-add {
-    margin-left: 230px;
+    margin: 0 auto;
+    display: block;
+    padding: 13px 80px;
 }
 
 .mentiony-container,
@@ -1109,6 +1106,7 @@ input[name="pass"]:-webkit-autofill:focus {
 }
 .main-body{
     margin-left: 255px;
+    height: 100vh;
 }
 .menu-content li:nth-child(1){
     padding: 0 0 35px 6px;
@@ -1244,4 +1242,36 @@ input[name="pass"]:-webkit-autofill:focus {
     .file-fix i{
         margin-left: 9px;
     }
+}
+.file-fix i{
+    margin-left: 0;
+}
+.storage{
+    margin-top: 2px;
+    margin-left: 10px;
+    color: #6b6a6a;
+}
+.save-box{
+    border: 1px solid #dadce0;
+    border-radius: 6px;
+    box-shadow: none;
+}
+.save-box--icon,.save-box--text{
+    padding: 12px 16px;
+}
+.save-box--text{
+    padding: 15px 16px;
+}
+.save-box--icon i{
+    font-size: 24px;
+    color: #8f8f8f;
+}
+.luutru-body a:hover{
+    color: #000;
+}
+.save-box:hover{
+    background-color: #e8f0fe;
+}
+.luutru-body{
+    height: 100vh;
 }

@@ -145,32 +145,6 @@
                                 </h4>
                             </a>
                         </div>
-                        <!-- <div class="news-info">
-                            <p>Thể loại:
-                                <?php
-                                        $check_file = explode(".",trim($congvanden->documentary_send->file));
-                                        ?>
-                                @if($check_file[1] == "pdf")
-
-                                <span class="pdf">
-                                    <i class="far fa-file-pdf"></i>
-                                </span>
-                                @else
-                                @if($check_file[1] == "doc" || $check_file[1] == "docx")
-                                <span class="word">
-                                    <i class="fas fa-file-word"></i>
-                                </span>
-                                @else
-                                @if($check_file[1] == "xlsx" || $check_file[1] == "xlsm")
-                                <span class="excel">
-                                    <i class="fas fa-file-excel"></i>
-                                </span>
-                                @endif
-                                @endif
-
-                                @endif
-                            </p>
-                        </div> -->
                         <div class="text-center mt-4">
                             <a href="chitiet.html" class="chitiet">
                                 <i class="fas fa-eye"></i>

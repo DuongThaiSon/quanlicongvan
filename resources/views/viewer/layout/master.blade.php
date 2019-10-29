@@ -36,7 +36,7 @@
 
 
     <section class="master">
-       
+        @include('viewer.layout.menu')
         @yield('content')
         
     </section>

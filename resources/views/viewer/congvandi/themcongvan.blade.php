@@ -23,21 +23,21 @@
     {{ session('thongbao') }}
 </div>
 @endif
-<section class="form-themcv d-block">
+<section class="main-body">
     <div class="container-fluid">
         <div class="back back-js d-none">
             <i class="fas fa-chevron-left"></i>
             <span>Quay lại</span>
         </div>
-        <div class="main-form mt-5">
+        <div class="main-form">
+            <h3 class="form-create-title pt-4 mb-4">
+                Tạo mới công văn
+            </h3>
             <form action="{{route('them-cv')}}" method="POST" enctype="multipart/form-data">
                 @CSRF
                 <div class="row">
-                    <div class="col-lg-9">
+                    <div class="col-lg-6">
                         <div class="box-create-left create-section">
-                            <h3 class="form-create-title mt-4 mb-4">
-                                Tạo mới công văn
-                            </h3>
                             <div class="form-group">
                                 <label for="">Tiêu đề công văn<sup>*</sup></label>
                                 <input type="text" placeholder="Tiêu đề" name="tieude">
@@ -66,6 +66,10 @@
                                     @endforeach
                                 </select>
                             </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="box-create-left create-section">
                             <div class="form-group">
                                 <label for="">Nội dung văn bản<sup>*</sup></label>
                                 <textarea cols="30" rows="10" name="noidung" id="editor"></textarea>
@@ -73,25 +77,6 @@
                             <div class="form-group">
                                 <label for="">Tệp đính kèm<sup>*</sup></label>
                                 <input type="file" name="teptin">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="box-create-right create-section mt-5">
-                            <div class="box-approve">
-                                <h3 class="form-create-title mb-4">Thông tin thêm</h3>
-                                <div class="form-group">
-                                    <label for="">Ngày ban hành</label>
-                                    <input type="date" name="ngaybanhanh" id="">
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Ngày hiệu lực</label>
-                                    <input type="date" name="ngayhieuluc" id="">
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Ngày hết hạn</label>
-                                    <input type="date" name="ngayhethan" id="">
-                                </div>
                             </div>
                         </div>
                     </div>

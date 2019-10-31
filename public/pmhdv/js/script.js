@@ -78,6 +78,10 @@ $(document).ready(function () {
         $('.choose-avatar').addClass('d-none');
     }
 
+    $('.btn-fix-info').click(function () {
+        $('.list').toggleClass('d-block');
+    })
+
     ClassicEditor
         .create(document.querySelector('#editor'))
         .catch(error => {

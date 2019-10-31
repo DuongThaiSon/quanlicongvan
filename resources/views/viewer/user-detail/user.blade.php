@@ -17,13 +17,13 @@
                     <input class="file-upload" type="file" accept="image/*" />
                 </div>
             </div>
-            <div class="col-lg-9">
+            <div class="col-lg-7">
                 <div class="ava-text">
                     <div class="title">
                         Dương Thái Sơn
                     </div>  
                     <div class="sub-title">
-                        Giáo viên
+                        Giáo viên/CNTT
                     </div>  
                     <div class="info">
                         <b>Email</b>
@@ -35,8 +35,11 @@
                     </div>
                 </div>
             </div>
+            <div class="col-lg-2">
+                <button type="button" class="btn btn-primary btn-fix-info mt-5">Chỉnh sửa</button>
+            </div>
         </div>
-        <div class="list">
+        <div class="list d-none">
             <div class="title form-group">
                 <h2>Thông tin chi tiết</h2>
             </div>
@@ -79,8 +82,8 @@
                     </div>
                 </div>
             </div>
+            <button type="submit" class="btn btn-success">Lưu</button>
         </div>
-        <button type="submit" class="btn btn-success">Lưu</button>
     </div>
 </div>
 

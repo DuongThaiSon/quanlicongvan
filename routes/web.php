@@ -72,3 +72,6 @@ Route::get('luutru-detail',function(){
 Route::get('thongke',function(){
 	return view('viewer.thongke.thongke');
 });	
+Route::get('user',function(){
+	return view('viewer.user-detail.user');
+});	

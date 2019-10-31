@@ -26,7 +26,7 @@
                                 </span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right">
-                                <a href="" class="dropdown-item">Thông tin cá nhân</a>
+                                <a href="user" class="dropdown-item">Thông tin cá nhân</a>
                                 <div class="line"></div>
                                 <a href="" class="dropdown-item">Sign Out</a>
                             </div>

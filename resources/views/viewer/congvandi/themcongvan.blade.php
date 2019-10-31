@@ -61,9 +61,6 @@
                             <div class="form-group">
                                 <label for="">Người nhận<sup>*</sup></label>
                                 <select name="nguoinhan[]" id="nguoinhan" multiple>
-                                    @foreach($users as $user)
-                                    <option value="{{$user->id}}">{{$user->name}}</option>
-                                    @endforeach
                                 </select>
                             </div>
                         </div>
@@ -90,13 +87,47 @@
 @section('script')
 <script>
     $(document).ready(function () {
+        var idbophannhan = $("#bophannhan").val();
+        var $j = jQuery.noConflict();
+        $.get("viewer/ajax/user/" + idbophannhan, function (data) {
+            var optSelected = " ";
+            $.each(data,function(i,item){
+                    optSelected += "<option value="+item.id+"> "+item.name+" </option>"
+                    
+                });
+                $("#nguoinhan").html(optSelected);
+        });
         $("#bophannhan").change(function () {
             var idbophannhan = $(this).val();
             var $j = jQuery.noConflict();
             $.get("viewer/ajax/user/" + idbophannhan, function (data) {
-                $('#nguoinhan').html(data);
+                var optSelected = " ";
+                $("#nguoinhan :selected").map(function(i,item){
+                    optSelected += "<option selected value="+item+"> "+item.text+"</option>";
+                    // $("#nguoinhan option[value='" + item + "']").prop("selected", true);
+                });
+                // $.each(data,function(items){
+                //   $("#nguoinhan").append(items);
+                // });
+                var currentData = $('#nguoinhan').val();
+            
+              
+
+                $.each(data,function(i,item){
+                    optSelected += "<option value="+item.id+"> "+item.name+" </option>"
+                    
+                });
+                $("#nguoinhan").html(optSelected);
+                console.log(data);
+                // $("#nguoinhan").append(data+currentData);
+
+                
+            
+
             });
+            
         });
+        
     });
 
     $("#nguoinhan").select2({

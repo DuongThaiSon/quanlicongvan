@@ -10,20 +10,21 @@
 
 </style>
 
-@if(count($errors) > 0)
-<div class="alert alert-danger">
-    @foreach($errors->all() as $err)
-    {{ $err }}<br>
-    @endforeach
-</div>
-@endif
 
-@if(session('thongbao'))
-<div class="alert alert-success">
-    {{ session('thongbao') }}
-</div>
-@endif
 <section class="main-body">
+    @if(count($errors) > 0)
+    <div class="alert alert-danger">
+        @foreach($errors->all() as $err)
+        {{ $err }}<br>
+        @endforeach
+    </div>
+    @endif
+
+    @if(session('thongbao'))
+    <div class="alert alert-success">
+        {{ session('thongbao') }}
+    </div>
+    @endif
     <div class="container-fluid">
         <div class="back back-js d-none">
             <i class="fas fa-chevron-left"></i>
@@ -103,7 +104,7 @@
             $.get("viewer/ajax/user/" + idbophannhan, function (data) {
                 var optSelected = " ";
                 $("#nguoinhan :selected").map(function(i,item){
-                    optSelected += "<option selected value="+item+"> "+item.text+"</option>";
+                    optSelected += "<option selected value="+item.id+"> "+item.text+"</option>";
                     // $("#nguoinhan option[value='" + item + "']").prop("selected", true);
                 });
                 // $.each(data,function(items){

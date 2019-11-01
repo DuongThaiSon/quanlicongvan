@@ -7,10 +7,37 @@ use Illuminate\Support\Facades\Auth;
 use App\documentary;
 use App\type_documentary;
 use App\User;
+use PDF;
+use PhpOffice\PhpWord\IOFactory;
+use PhpOffice\PhpWord\Settings;
+
 
 class CongVanController extends Controller
 {
     //
+    public function getLuuTru(){
+        $types = type_documentary::all();
+        return view('viewer.luutru.luutru',['types'=>$types]);
+    }
+
+    public function getChiTiet($t){
+        $id = auth()->user()->id;
+        $congvans = documentary::orderBy('id', 'DESC')->where('id_user',$id)->where('id_type',$t)->get();
+        return view('viewer.luutru.chitiet',['congvans'=>$congvans]);
+    }
+    public function getXem($cv){
+        $congvan = documentary::find($cv);
+        $phpWord = new \PhpOffice\PhpWord\PhpWord();
+        $objReader = \PhpOffice\PhpWord\IOFactory::createReader("Word2007");
+        $phpWord = $objReader->load('download/'.$congvan->file);
+        $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'HTML');
+        try {
+        $objWriter->save(storage_path('helloWorld.html'));
+        }catch(Exception $e)
+        {}
+        return PDF::loadFile(storage_path('helloWorld.html'))->save(storage_path('helloWorldPdf.html'))->stream('download.pdf');
+
+    }
     public function getTaoMoi(){
         $id = Auth::user()->id;
         $type_documentarys = type_documentary::all();

@@ -25,11 +25,13 @@
                                     <i class="fas fa-caret-down"></i>
                                 </span>
                             </a>
-                            <div class="dropdown-menu dropdown-menu-right">
-                                <a href="user" class="dropdown-item">Thông tin cá nhân</a>
+                            @if(Auth::check())
+                            <div class="dropdown-menu dropdown-menu-right">                         
+                                <a href="viewer/user/thongtincanhan" class="dropdown-item">Thông tin cá nhân</a>
                                 <div class="line"></div>
-                                <a href="" class="dropdown-item">Sign Out</a>
+                                <a href="" class="dropdown-item">Đăng xuất</a>
                             </div>
+                            @endif
                         </li>
                     </ul>
                 </div>

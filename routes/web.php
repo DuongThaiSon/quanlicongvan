@@ -61,6 +61,13 @@ Route::group(['prefix'=>'viewer'],function(){
 	Route::group(['prefix'=>'ajax'],function(){
 		Route::get('user/{idbophannhan}','AjaxController@getUser');
 	});
+	Route::group(['prefix'=>'user'],function(){
+
+		Route::get('thongtincanhan','UserController@getThongTin');
+
+		Route::post('thongtincanhan','UserController@postThongTin')->name('post-tt');
+
+	});
 });
 
 Route::get('luutru',function(){

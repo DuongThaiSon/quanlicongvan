@@ -56,6 +56,12 @@ Route::group(['prefix'=>'viewer'],function(){
 		Route::post('taomoi','CongVanController@postTaoMoi')->name('post-taocv');
 
 		Route::get('timcongvan','CongVanController@getTimCongVan')->name('get-timcv');
+
+		Route::get('luutru','CongVanController@getLuuTru');
+
+		Route::get('luutru/{t}','CongVanController@getChiTiet');
+
+		Route::get('xem/{cv}','CongVanController@getXem');
 	});
 
 	Route::group(['prefix'=>'ajax'],function(){

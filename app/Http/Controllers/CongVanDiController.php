@@ -49,7 +49,7 @@ class CongVanDiController extends Controller
 			
 				$file = $request->file('teptin');
 				$tep = $file->getClientOriginalName();
-				// $file->move('images/ha',$tep);
+				// $file->move('download',$tep);
 				$congvandi->file = $tep;
 			
 			
@@ -57,8 +57,9 @@ class CongVanDiController extends Controller
 			$congvandi->promulgate_date = $request->ngaybanhanh;
 			$congvandi->validity_date = $request->ngayhieuluc;
 			$congvandi->expired_date = $request->ngayhethan;
-			$congvandi->save();
+			// $congvandi->save();
 			$users = $request->nguoinhan;
+			dd($users);
 			foreach($users as $key => $value)
 			{
 				$congvanden = new documentary_receive;

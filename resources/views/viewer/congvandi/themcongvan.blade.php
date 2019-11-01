@@ -44,16 +44,16 @@
                                 <input type="text" placeholder="Tiêu đề" name="tieude">
                             </div>
                             <div class="form-group">
-                                <label for="">Loại công văn<sup>*</sup></label>
-                                <select name="loaicongvan" id="">
+                                <label for="" style="display:block;">Loại công văn<sup>*</sup></label>
+                                <select name="loaicongvan" id="" style="width:40%;">
                                     @foreach($type_documentarys as $type_documentary)
                                     <option value="{{$type_documentary->id}}">{{$type_documentary->name}}</option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="">Bộ phận nhận<sup>*</sup></label>
-                                <select name="bophannhan" id="bophannhan">
+                                <label for="" style="display:block;">Bộ phận nhận<sup>*</sup></label>
+                                <select name="bophannhan" id="bophannhan" style="width:40%;">
                                     @foreach($majors as $major)
                                     <option value="{{$major->id}}">{{$major->name}}</option>
                                     @endforeach
@@ -104,7 +104,7 @@
             $.get("viewer/ajax/user/" + idbophannhan, function (data) {
                 var optSelected = " ";
                 $("#nguoinhan :selected").map(function(i,item){
-                    optSelected += "<option selected value="+item.id+"> "+item.text+"</option>";
+                    optSelected += "<option selected value="+item+"> "+item.text+"</option>";
                     // $("#nguoinhan option[value='" + item + "']").prop("selected", true);
                 });
                 // $.each(data,function(items){

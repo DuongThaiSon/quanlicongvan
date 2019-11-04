@@ -11,7 +11,7 @@
                 <div class="col-lg-3">
                     <div class="avatar-wrapper">
                         <div class="choose-avatar">
-                            <img class="avatar-pic" src="{{ asset('pmhdv') }}/images/{{$user->avatar}}" alt="">
+                            <img class="avatar-pic" src="{{ asset('pmhdv') }}/images/{{$user->avatar_code}}" alt="">
                             <p class="text-center">Chọn ảnh avatar</p>
                         </div>
                         <img class="profile-pic" src="" />

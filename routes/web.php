@@ -88,3 +88,5 @@ Route::get('thongke',function(){
 Route::get('user',function(){
 	return view('viewer.user-detail.user');
 });	
+
+

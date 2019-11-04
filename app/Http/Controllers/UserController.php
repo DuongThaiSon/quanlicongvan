@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
@@ -59,16 +60,23 @@ class UserController extends Controller
 		$user->name = $request->hoten;
 		$user->phone =$request->sdt;
 		$user->address = $request->diachi;
+	
 		if($request->hasFile('hinhanh'))
         {
             $file = $request->file('hinhanh');
-            $hinh = $file->getClientOriginalName();
-            $file->move('pmhdv/images',$hinh);
-            $user->avatar = $hinh;
+			$hinh = $file->getClientOriginalName();
+			$name = str_random(8)."_". $hinh;;	
+			while(file_exists("pmhdv/images".$name)){
+				$name =Str::random(8)."_". $hinh;
+			}
+            $file->move('pmhdv/images',$name);
+			$user->avatar = $hinh;
+			$user->avatar_code = $name;
         }
         
 
-        $user->save();
+		$user->save();
+		return redirect()->back();
 
 	}
 }

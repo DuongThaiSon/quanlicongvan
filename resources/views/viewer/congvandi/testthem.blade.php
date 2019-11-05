@@ -25,11 +25,8 @@
         {{ session('thongbao') }}
     </div>
     @endif
-    <div class="container-fluid">
-        <div class="back back-js d-none">
-            <i class="fas fa-chevron-left"></i>
-            <span>Quay lại</span>
-        </div>
+
+        
         <div class="main-form">
             <h3 class="form-create-title pt-4 mb-4">
                 Tạo mới công văn
@@ -82,7 +79,7 @@
                 <button type="submit" class="btn-add continue">Gửi</button>
             </form>
         </div>
-    </div>
+
 </section>
 @endsection
 @section('script')

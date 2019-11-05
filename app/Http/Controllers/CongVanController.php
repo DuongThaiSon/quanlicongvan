@@ -27,15 +27,16 @@ class CongVanController extends Controller
     }
     public function getXem($cv){
         $congvan = documentary::find($cv);
-        $phpWord = new \PhpOffice\PhpWord\PhpWord();
-        $objReader = \PhpOffice\PhpWord\IOFactory::createReader("Word2007");
-        $phpWord = $objReader->load('download/'.$congvan->file);
-        $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'HTML');
-        try {
-        $objWriter->save(storage_path('helloWorld.html'));
-        }catch(Exception $e)
-        {}
-        return PDF::loadFile(storage_path('helloWorld.html'))->save(storage_path('helloWorldPdf.html'))->stream('download.pdf');
+        $name = explode(".",$congvan->file_code);
+        if($name[1] == "docx"){
+            return response()->file(storage_path($congvan->file_pdf));
+        }
+        if($name[1] == "pdf"){
+            return response()->file(public_path('pmhdv/images/'.$congvan->file_code));
+        }
+        if($name[1] == "jpg" ||$name[1] =="png"){
+            return response()->file(public_path('pmhdv/images/'.$congvan->file_pdf));
+        }
 
     }
     public function getTaoMoi(){
@@ -45,6 +46,7 @@ class CongVanController extends Controller
     }
 
     public function postTaoMoi(Request $request){
+
         $this->validate($request,
         [
 			'tieude'=>'required|min:2|max:200',
@@ -61,11 +63,58 @@ class CongVanController extends Controller
         $congvan->content = $request->noidung;
         $congvan->id_type = $request->loaicongvan;
         $congvan->id_user = $id;
-        $file = $request->file('teptin');
-		$tep = $file->getClientOriginalName();
-		// $file->move('images/ha',$tep);
-        $congvan->file = $tep;
-        $congvan->storage = $request->file('teptin')->getSize();
+        if($request->hasFile('teptin'))
+        {
+            $file = $request->file('teptin');
+			$hinh = $file->getClientOriginalName();
+            $name = str_random(8)."_". $hinh;
+            $congvan->storage = $file->getSize();
+			while(file_exists("pmhdv/images".$name)){
+				$name =Str::random(8)."_". $hinh;
+			}
+            $file->move('pmhdv/images',$name);
+            $congvan->file = $hinh;
+            $name_pdf = explode(".",$name);
+            $duoi = $file->getClientOriginalExtension('teptin');
+            if($duoi == "docx"){
+                
+                
+                $phpWord = new \PhpOffice\PhpWord\PhpWord();
+                $objReader = \PhpOffice\PhpWord\IOFactory::createReader("Word2007");
+                $phpWord = $objReader->load('pmhdv/images/'.$name);
+                
+                $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'HTML');
+                try {
+                $objWriter->save(storage_path($name_pdf[0].'.html'));
+                }catch(Exception $e)
+                {}
+                PDF::loadFile(storage_path($name_pdf[0].'.html'))->save(storage_path($name_pdf[0].".pdf"))->stream('download.pdf');
+                    $pdf = new \Spatie\PdfToImage\Pdf(storage_path($name_pdf[0].".pdf"));
+                    $pdf->setPage(1)->saveImage(public_path('\pmhdv\images'));
+                
+                rename(public_path('/pmhdv/images/1.jpg'), public_path('/pmhdv/images/'.$name_pdf[0].".jpg"));
+                $congvan->file_pdf = $name_pdf[0].".pdf";
+                $congvan->file_jpg = $name_pdf[0].".jpg";
+            }
+            if($duoi == "pdf"){
+                $pdf = new \Spatie\PdfToImage\Pdf(public_path('pmhdv/images/'.$name_pdf[0].".pdf"));
+                $pdf->setPage(1)->saveImage(public_path('\pmhdv\images'));
+                rename(public_path('/pmhdv/images/1.jpg'), public_path('/pmhdv/images/'.$name_pdf[0].".jpg"));
+                $congvan->file_jpg = $name_pdf[0].".jpg";
+            }
+            if($duoi == "jpg" ){
+                
+                $img = new \Imagick(public_path('pmhdv/images/'.$name));
+                $img->setImageFormat('pdf');
+         
+                $success = $img->writeImage('pmhdv/images/'.$name_pdf[0].".pdf");
+                $congvan->file_pdf = $name_pdf[0].".pdf";
+            }
+                
+            $congvan->file_code = $name;         
+           
+        }
+        
         $congvan->save();
         return redirect('viewer/congvan/taomoi')->with('thongbao','Tạo mới thành công');
 

@@ -29,9 +29,26 @@
             <div class="col-lg-2">
                 <div class="news-item">
                     <div class="news-item--img position-relative">
-                        <a href="">
-                            <img class="img-fluid" src="pmhdv/images/thongbao.png" alt="">
-                        </a>
+                    <?php
+                                            $name = explode(".",$congvan->file);
+                                            ?>
+                        @if($name[1] == "jpg" || $name[1] == "png")
+                            <a href="viewer/congvan/xem/{{$congvan->id}}">
+                                <img class="img-fluid" src="pmhdv/images/{{$congvan->file_code}}" alt="">
+                            </a>
+                        @else   
+                            @if($name[1] == "docx"  || $name[1] == "pdf")
+                            <a href="viewer/congvan/xem/{{$congvan->id}}">
+                                <img class="img-fluid" src="pmhdv/images/{{$congvan->file_jpg}}" alt="">
+                            </a>
+                            @else
+                                @if($name[1] == "zip"||$name[1] == "jar")
+                                <a href="viewer/congvan/xem/{{$congvan->id}}">
+                                    <img class="img-fluid" src="pmhdv/images/winrar.jpg" alt="">
+                                </a>
+                                @endif
+                            @endif
+                        @endif
                         <div class="news-icon d-none">
                             <div class="news-caret">
                                 <div class="dropdown">
@@ -45,8 +62,8 @@
                                             </a>
                                         </div>
                                         <div class="news-icon-item">
-                                            <a href="download/{{$congvan->file}}" title="Tải xuống"
-                                                download="{{$congvan->file}}">
+                                            <a href="pmhdv/images/{{$congvan->file_code}}" title="Tải xuống"
+                                                download="{{$congvan->file_code}}">
                                                 <i class="fas fa-file-download"></i>
                                             </a>
                                         </div>
@@ -60,7 +77,7 @@
                             <div class="dropdown">
                                 <div class="author-figure dropdown-toggle float-left mb-0 mr-3" data-toggle="dropdown">
                                     <a href="">
-                                        <img src="pmhdv/images/4.jpg">
+                                        <img src="pmhdv/images/{{$congvan->User->avatar_code}}">
                                     </a>
                                 </div>
                                 <div class="box-user-info mt-1 dropdown-menu">
@@ -100,16 +117,23 @@
                                         <i class="far fa-file-pdf"></i>
                                     </span>
                                     @else
-                                    @if($check_file[1] == "doc" || $check_file[1] == "docx")
-                                    <span class="word">
-                                        <i class="fas fa-file-word"></i>
-                                    </span>
-                                    @else
-                                    @if($check_file[1] == "xlsx" || $check_file[1] == "xlsm")
-                                    <span class="excel">
-                                        <i class="fas fa-file-excel"></i>
-                                    </span>
-                                    @endif
+                                        @if($check_file[1] == "docx")
+                                        <span class="word">
+                                            <i class="fas fa-file-word"></i>
+                                        </span>
+                                        @else
+                                            @if($check_file[1] == "xlsx" || $check_file[1] == "xlsm")
+                                            <span class="excel">
+                                                <i class="fas fa-file-excel"></i>
+                                            </span>
+                                            @else($check_file[1] =="jpg" || $check_file[1] =="png")
+                                                <span>
+                                                    <i class="fas fa-file-image"></i>
+                                                </span>
+                                                @if($check_file[1] =="zip")
+                                                    <span>Zip</span>
+                                                @endif
+                                            @endif
                                     @endif
 
                                     @endif

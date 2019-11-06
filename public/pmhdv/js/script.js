@@ -82,6 +82,14 @@ $(document).ready(function () {
         $('.list').toggleClass('d-block');
     })
 
+    $('.input-search').click(function () {
+        $('.advance').toggleClass('d-block');
+    })
+
+    $('.btn-discard').click(function () {
+        $('.advance').removeClass('d-block');
+    })
+
     ClassicEditor
         .create(document.querySelector('#editor'))
         .catch(error => {

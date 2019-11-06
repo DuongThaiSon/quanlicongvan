@@ -89,4 +89,7 @@ Route::get('user',function(){
 	return view('viewer.user-detail.user');
 });	
 
+Route::get('testthem','CongVanDiController@getTestThem');
+
+
 

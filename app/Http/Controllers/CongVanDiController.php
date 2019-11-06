@@ -72,4 +72,12 @@ class CongVanDiController extends Controller
 			
 			return redirect('viewer/congvandi/themmoi')->with('thongbao','Gửi thành công');
 	}
+
+	public function getTestThem(){
+		$id = Auth::user()->id;
+		$majors = major::all();
+		$type_documentarys = type_documentary::all();
+		$users = User::all();
+		return view('viewer.congvandi.testthem',['majors'=>$majors,'type_documentarys'=>$type_documentarys,'users'=>$users]);
+	}
 }

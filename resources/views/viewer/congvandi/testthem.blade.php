@@ -1,137 +1,197 @@
-@extends('viewer.layout.master')
-@section('title')
-<title>Thêm công văn</title>
-@endsection
-@section('content')
-<style type="text/css">
-    .select2-results__option[aria-selected=true] {
-        display: none;
-    }
+<!DOCTYPE html>
+<html lang="en">
 
-</style>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="pmhdv/css/style.css">
+    <script src="pmhdv/js/jquery.min.js"></script>
+    <script src="pmhdv/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/540cf737fa.js" crossorigin="anonymous"></script>
+</head>
 
-
-<section class="main-body">
-    @if(count($errors) > 0)
-    <div class="alert alert-danger">
-        @foreach($errors->all() as $err)
-        {{ $err }}<br>
-        @endforeach
-    </div>
-    @endif
-
-    @if(session('thongbao'))
-    <div class="alert alert-success">
-        {{ session('thongbao') }}
-    </div>
-    @endif
-
-        
-        <div class="main-form">
-            <h3 class="form-create-title pt-4 mb-4">
-                Tạo mới công văn
-            </h3>
-            <form action="{{route('them-cv')}}" method="POST" enctype="multipart/form-data">
-                @CSRF
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="box-create-left create-section">
-                            <div class="form-group">
-                                <label for="">Tiêu đề công văn<sup>*</sup></label>
-                                <input type="text" placeholder="Tiêu đề" name="tieude">
-                            </div>
-                            <div class="form-group">
-                                <label for="" style="display:block;">Loại công văn<sup>*</sup></label>
-                                <select name="loaicongvan" id="" style="width:40%;">
-                                    @foreach($type_documentarys as $type_documentary)
-                                    <option value="{{$type_documentary->id}}">{{$type_documentary->name}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="" style="display:block;">Bộ phận nhận<sup>*</sup></label>
-                                <select name="bophannhan" id="bophannhan" style="width:40%;">
-                                    @foreach($majors as $major)
-                                    <option value="{{$major->id}}">{{$major->name}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="">Người nhận<sup>*</sup></label>
-                                <select name="nguoinhan[]" id="nguoinhan" multiple>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="box-create-left create-section">
-                            <div class="form-group">
-                                <label for="">Nội dung văn bản<sup>*</sup></label>
-                                <textarea cols="30" rows="10" name="noidung" id="editor"></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label for="">Tệp đính kèm<sup>*</sup></label>
-                                <input type="file" name="teptin">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <button type="submit" class="btn-add continue">Gửi</button>
-            </form>
+<body>
+    <div class="container">
+        <div class="form-group">
+            <label for="" style="display:block;">Bộ phận nhận<sup>*</sup></label>
+            <select name="bophannhan" id="bophannhan" style="width:40%;">           
+                @foreach($majors as $major)
+                    <option value="{{$major->id}}">{{$major->name}}</option>
+                @endforeach  
+            </select>
         </div>
-
-</section>
-@endsection
-@section('script')
-<script>
-    $(document).ready(function () {
-        var idbophannhan = $("#bophannhan").val();
-        var $j = jQuery.noConflict();
-        $.get("viewer/ajax/user/" + idbophannhan, function (data) {
-            var optSelected = " ";
-            $.each(data,function(i,item){
-                    optSelected += "<option value="+item.id+"> "+item.name+" </option>"
-                    
-                });
-                $("#nguoinhan").html(optSelected);
-        });
-        $("#bophannhan").change(function () {
-            var idbophannhan = $(this).val();
-            var $j = jQuery.noConflict();
-            $.get("viewer/ajax/user/" + idbophannhan, function (data) {
-                var optSelected = " ";
-                $("#nguoinhan :selected").map(function(i,item){
-                    optSelected += "<option selected value="+item+"> "+item.text+"</option>";
-                    // $("#nguoinhan option[value='" + item + "']").prop("selected", true);
-                });
-                // $.each(data,function(items){
-                //   $("#nguoinhan").append(items);
-                // });
-                var currentData = $('#nguoinhan').val();
-            
-              
-
-                $.each(data,function(i,item){
-                    optSelected += "<option value="+item.id+"> "+item.name+" </option>"
-                    
-                });
-                $("#nguoinhan").html(optSelected);
-                console.log(data);
-                // $("#nguoinhan").append(data+currentData);
-
-                
-            
-
-            });
-            
-        });
+        <div id="select" ng-model=""></div>
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            "use strict";
+            var pluginName = "selectionator";
+            var defaults = {
+                propertyName: "selectionator",
+                src: null,
+                orgElement: null,
+                checkedItems: [],
+                // custom callback events
+                onError: function (error) {}
+            };
         
-    });
+            function Plugin(element, options) {
+                this.element = element;
+                this.selector = null;
+                this.options = $.extend({}, defaults, options);
+                this._defaults = defaults;
+                this._name = pluginName;
+                this.init();
+            }
+            Plugin.prototype = {
+                init: function () {
+                    console.log("options: ", this.options);
+                    var that = this;
+                    var self = $(that.element);
+                    that.options.src = that.element.getAttribute('data-src');
+                    that.selector = that.createFromJson(that.options.data);
+                    that.options.orgElement = that.element.parentNode.replaceChild(that.selector, that.element);
+                    $(that.selector).addClass(that._name);
+                },
+                createFromJson: function (options) {
+                    var that = this;
+                    var select = document.createElement('select');
+                    var popup = document.createElement('div');
+                    var header = document.createElement('div');
+                    var search = document.createElement('span');
+                    var overlay = document.createElement('span');
+                    overlay.className = 'overlay';
+                    var shadow = document.createElement('span');
+                    shadow.className = 'shadow';
+                    var placeholder = document.createTextNode('Options');
+                    search.className = 'search';
+                    search.appendChild(shadow);
+                    search.appendChild(overlay);
+                    search.appendChild(placeholder);
+                    popup.appendChild(search);
+                    var menu = document.createElement('ul');
+                    select.style.display = 'none';
+                    menu.className = 'list';
+                    var box = document.createElement('div');
+                    box.className = 'menu';
+                    box.appendChild(menu);
+                    popup.appendChild(box);
+                    console.log("optgroup", options.optgroups);
+                    options.optgroups.forEach(function (optgroup, index) {
+        
+        
+                        var menuItem = document.createElement('li');
+                        //menuItem.className('header');
+                        var header = document.createElement('span');
+                        header.className = 'header';
+                        var caption = document.createTextNode(optgroup.label);
+                        header.appendChild(caption);
+                        menuItem.appendChild(header);
+                        var menuItems = document.createElement('ul');
+                        menuItems.className = 'optgroup';
+                        menuItem.appendChild(menuItems);
+                        menu.appendChild(menuItem);
+        
+                        optgroup.options.forEach(function (option, index) {
+                            var opt = new Option(option.text, option.value, option.defaultSelected, option.selected);
+                            select.options.add(opt);
+                            var item = document.createElement('li');
+                            var label = document.createElement('label');
+                            label.setAttribute("for", option.value);
+                            var checkbox = document.createElement('input');
+                            $(checkbox).data(option);
+                            checkbox.setAttribute('type', 'checkbox');
+        
+                            checkbox.addEventListener('change', function (event) {
+                                var checkbox = event.target;
+                                var $el = $(event.srcElement);
+                                if (checkbox.checked) {
+                                    that.options.checkedItems.push(event.srcElement);
+                                    placeholder.nodeValue = "Đã chọn: " + that.options.checkedItems.length + " trên " + $(that.selector).find('input[type="checkbox"]').length;
+        
+                                } else {
+                                    that.options.checkedItems.pop();
+                                    that.options.checkedItems = that.options.checkedItems.filter(function (items, index) {
+                                        return items.value != $el.data().value;
+                                    });
+                                    placeholder.nodeValue = "Đã chọn: " + that.options.checkedItems.length + " trên" + $(that.selector).find('input[type="checkbox"]').length;
+                                }
+                                console.log("data: ", that.options.checkedItems);
+                            });
+                            checkbox.id = option.value;
+                            var caption = document.createTextNode(option.text);
+                            label.appendChild(caption);
+                            item.appendChild(checkbox);
+                            item.appendChild(label);
+                            menuItems.appendChild(item);
+                        });
+                    });
+                    return popup;
+                },
+                onAddFriend: function (data) {
+                    var that = this;
+                    return that.options.onAddFriend(that, data);
+                },
+                onRemoveFriend: function (data) {
+                    var that = this;
+                    var self = $(that.element);
+                    return that.options.onRemoveFriend(data);
+                },
+                destroy: function () {
+                    var that = this;
+                    $(that.element).unbind("destroyed", that.teardown);
+                    that.teardown();
+                },
+                teardown: function () {
+                    var that = this;
+                    $(that.element).removeClass(that._name);
+                    $(that.selector).replaceWith(that.options.orgElement);
+                    $(that.element).removeData(that._name);
+                    that.unbind();
+                    that.element = null;
+                },
+                bind: function () {},
+                unbind: function () {}
+            };
+            $.fn[pluginName] = function (options) {
+                return this.each(function () {
+                    if (!$.data(this, pluginName)) {
+                        $.data(this, pluginName, new Plugin(this, options));
+                    }
+                });
+            };
+        });
+        //Attach plugin to all matching element
+        $(document).ready(function () {
+            $('#select').selectionator({
+                data: {
+                    optgroups: [{
+                        label: 'CNTT',
+                        options: [
+                            {
+                            value: 1,
+                            text: 'Nông Việt Anh',
+                            defaultSelected: false,
+                            selected: false
+                        }, {
+                            value: 2,
+                            text: 'Nguyễn Đức Anh',
+                            defaultSelected: false,
+                            selected: false
+                        }]
+                }]
+                }
+            });
+            setTimeout(function () {
+                $(".selectionator").addClass('opened');
+            }, 500);
+            setTimeout(function () {
+                $(".selectionator").removeClass('opened');
+            }, 1250);
+        });
+    </script>
+</body>
 
-    $("#nguoinhan").select2({
-        placeholder: 'Người nhận',
-        allowClear: true
-    });
-
-</script>
-@endsection
+</html>

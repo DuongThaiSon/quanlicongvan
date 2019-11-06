@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 class CongVanDenController extends Controller
 {
      public function getDSCVDen(){
-          $id = Auth::user()->id;
+     $id = Auth::user()->id;
       $congvandens = documentary_receive::orderBy('created_at', 'DESC')->where('id_user',$id)->get();
       return view('viewer.page.trangchu',['congvandens'=>$congvandens]);
  }

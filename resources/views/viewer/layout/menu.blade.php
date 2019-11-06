@@ -27,7 +27,7 @@
                     </a>
                 </li>
                 <li class="nav-item {{ Request::is('luutru') ? 'active' : '' }}">
-                    <a href="luutru" class="nav-link">
+                    <a href="viewer/congvan/luutru" class="nav-link">
                         <span class="icon-holder c-yellow">
                             <i class="fas fa-bookmark"></i>
                         </span>

@@ -10,7 +10,8 @@ class AjaxController extends Controller
 {
     
     public function getUser($idbophannhan){
-        $users = User::where('id_major',$idbophannhan)->get();
+        $id = auth()->user()->id;
+        $users = User::where('id_major',$idbophannhan)->where('id','<>',$id)->get();
         $usersJson = json_encode($users);
         return Response::json($users);
 

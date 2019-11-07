@@ -91,7 +91,7 @@
         var idbophannhan = $("#bophannhan").val();
         var $j = jQuery.noConflict();
         $.get("viewer/ajax/user/" + idbophannhan, function (data) {
-            var optSelected = " ";
+            var optSelected = "";
             $.each(data,function(i,item){
                     optSelected += "<option value="+item.id+"> "+item.name+" </option>"
                     
@@ -102,9 +102,9 @@
             var idbophannhan = $(this).val();
             var $j = jQuery.noConflict();
             $.get("viewer/ajax/user/" + idbophannhan, function (data) {
-                var optSelected = " ";
+                var optSelected = "";
                 $("#nguoinhan :selected").map(function(i,item){
-                    optSelected += "<option selected value="+item+"> "+item.text+"</option>";
+                    optSelected += "<option selected value="+item.value+"> "+item.text+"</option>";
                 });
                 var currentData = $('#nguoinhan').val();
                 $.each(data,function(i,item){

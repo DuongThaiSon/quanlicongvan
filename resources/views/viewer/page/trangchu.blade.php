@@ -14,7 +14,7 @@
             <div class="col-lg-6">
                 <div class="search text-right position-relative">
                     <form action="{{route('get-timcvden')}}" method="get">
-                        <input type="text" placeholder="Nhập tên văn bản" name="timcongvanden" class="input-search">
+                        <input type="text" placeholder="Nhập tên văn bản" name="timcongvanden" class="input-search" autocomplete="off">
                         <button type="submit" class="btn-search btn-info">
                             <i class="fa fa-search"></i>
                         </button>
@@ -25,14 +25,16 @@
                             </div>
                             <div class="form-group">
                                 <label for="">Loại công văn</label>
-                                <select name="" id="" class="form-control">
-                                    <option value="">Thông báo</option>
-                                    <option value="">Quyết định</option>
+                                <select name="loaicongvan" id="" class="form-control">
+                                    <option value="" selected>Tất cả</option>
+                                    @foreach($loaicongvans as $loaicongvan)
+                                        <option value="{{$loaicongvan->id}}">{{$loaicongvan->name}}</option>
+                                    @endforeach
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="">Thời gian</label>
-                                <input type="date" name="" id="" class="form-control">
+                                <input type="date" name="thoigian" id="" class="form-control">
                             </div>
                             <div>
                                 <button type="submit" class="btn btn-info mt-2 btn-search-advance">Tìm kiếm</button>
@@ -71,7 +73,7 @@
                                             </a>
                                         </div>
                                         <div class="news-icon-item">
-                                            <a href="download/{{$congvanden->documentary_send->file}}" title="Tải xuống"
+                                            <a href="pmhdv/images/{{$congvanden->documentary_send->file}}" title="Tải xuống"
                                                 download="{{$congvanden->documentary_send->file}}">
                                                 <i class="fas fa-file-download"></i>
                                             </a>

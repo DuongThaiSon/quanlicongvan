@@ -10,6 +10,7 @@ use App\User;
 use PDF;
 use PhpOffice\PhpWord\IOFactory;
 use PhpOffice\PhpWord\Settings;
+use Carbon\Carbon;
 
 
 class CongVanController extends Controller
@@ -22,7 +23,7 @@ class CongVanController extends Controller
 
     public function getChiTiet($t){
         $id = auth()->user()->id;
-        $congvans = documentary::orderBy('id', 'DESC')->where('id_user',$id)->where('id_type',$t)->get();
+        $congvans = documentary::orderBy('id', 'DESC')->where('id_user',$id)->where('id_type',$t)->paginate(8,['*'], 'page'); 
         return view('viewer.luutru.chitiet',['congvans'=>$congvans]);
     }
     public function getXem($cv){
@@ -71,17 +72,22 @@ class CongVanController extends Controller
             $congvan->storage = $file->getSize();
 			while(file_exists("pmhdv/images".$name)){
 				$name =Str::random(8)."_". $hinh;
-			}
+            }
+            
             $file->move('pmhdv/images',$name);
+            
             $congvan->file = $hinh;
             $name_pdf = explode(".",$name);
             $duoi = $file->getClientOriginalExtension('teptin');
+            
             if($duoi == "docx"){
                 
                 
                 $phpWord = new \PhpOffice\PhpWord\PhpWord();
+                
                 $objReader = \PhpOffice\PhpWord\IOFactory::createReader("Word2007");
-                $phpWord = $objReader->load('pmhdv/images/'.$name);
+              
+                $phpWord = $objReader->load(public_path('/pmhdv/images/'.$name));
                 
                 $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'HTML');
                 try {
@@ -95,6 +101,7 @@ class CongVanController extends Controller
                 rename(public_path('/pmhdv/images/1.jpg'), public_path('/pmhdv/images/'.$name_pdf[0].".jpg"));
                 $congvan->file_pdf = $name_pdf[0].".pdf";
                 $congvan->file_jpg = $name_pdf[0].".jpg";
+               
             }
             if($duoi == "pdf"){
                 $pdf = new \Spatie\PdfToImage\Pdf(public_path('pmhdv/images/'.$name_pdf[0].".pdf"));
@@ -122,12 +129,26 @@ class CongVanController extends Controller
 
     public function getDanhSach(){
         $id = Auth::user()->id;
-        $congvans = documentary::orderBy('created_at', 'DESC')->where('id_user',$id)->get(); 
+        $congvans = documentary::orderBy('id', 'DESC')->where('id_user',$id)->get(); 
         return view('viewer.congvan.danhsach',['congvans'=>$congvans]);
     }
     public function getTimCongVan(Request $request){
         $id = Auth::user()->id;
-        $congvantimkiems = documentary::where('name','like','%'.$request->timcongvan.'%')->get();
+        $tg = $request->thoigian;
+        $tcv = $request->timcongvan;
+        
+        if($tg == "" && $tcv == "")
+            $congvantimkiems = documentary::orderBy('id', 'DESC')->where('id_user',$id)->get();
+        
+        else if($tg == "" && $tcv != "")
+            $congvantimkiems = documentary::orderBy('id', 'DESC')->where('name','like','%'.$tcv.'%')->where('id_user',$id)->get();
+        
+        else if($tg != "" && $tcv == "")
+            $congvantimkiems = documentary::orderBy('id', 'DESC')->whereDate('create_date',$tg)->where('id_user',$id)->get();
+        
+        else
+            $congvantimkiems = documentary::orderBy('id', 'DESC')->whereDate('create_date',$tg)->where('name','like','%'.$tcv.'%')->where('id_user',$id)->get();
+       
 
         return view('viewer.congvan.timkiemcongvan',['congvantimkiems'=>$congvantimkiems]);
    }

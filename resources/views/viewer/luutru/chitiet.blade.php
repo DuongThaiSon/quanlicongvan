@@ -14,10 +14,24 @@
             <div class="col-lg-6">
                 <div class="search text-right position-relative">
                     <form action="{{route('get-timcv')}}" method="get">
-                        <input type="text" placeholder="Tìm kiếm" name="timcongvan">
-                        <button type="submit" class="btn-search btn-info">
-                            <i class="fa fa-search"></i>
-                        </button>
+                            <input type="text" placeholder="Nhập tên văn bản" name="timcongvan" class="input-search" autocomplete="off">
+                            <button type="submit" class="btn-search btn-info">
+                                <i class="fa fa-search"></i>
+                            </button>
+                            <div class="clear"></div>
+                            <div class="advance d-none">
+                                <div class="title position-relative">
+                                    <span class="text-uppercase">Bộ lọc nâng cao</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="">Thời gian</label>
+                                    <input type="date" name="thoigian" id="" class="form-control">
+                                </div>
+                                <div>
+                                    <button type="submit" class="btn btn-info mt-2 btn-search-advance">Tìm kiếm</button>
+                                    <button type="button" class="btn btn-discard mt-2">Hủy bỏ</button>
+                                </div>
+                            </div>
                     </form>
                 </div>
             </div>

@@ -58,25 +58,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-3">
-                            <div class="box-create-right create-section mt-5">
-                                <div class="box-approve">
-                                    <h3 class="form-create-title mb-4">Thông tin thêm</h3>
-                                    <div class="form-group">
-                                        <label for="">Ngày ban hành</label>
-                                        <input type="date" name="ngaybanhanh" id="">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="">Ngày hiệu lực</label>
-                                        <input type="date" name="ngayhieuluc" id="">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="">Ngày hết hạn</label>
-                                        <input type="date" name="ngayhethan" id="">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        
                     </div>
                     <button type="submit" class="btn-add continue">Tạo mới</button>
                 </form>

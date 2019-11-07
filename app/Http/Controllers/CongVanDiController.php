@@ -54,12 +54,9 @@ class CongVanDiController extends Controller
 			
 			
 			$congvandi->storage = $request->file('teptin')->getSize();
-			$congvandi->promulgate_date = $request->ngaybanhanh;
-			$congvandi->validity_date = $request->ngayhieuluc;
-			$congvandi->expired_date = $request->ngayhethan;
-			// $congvandi->save();
+			$congvandi->save();
 			$users = $request->nguoinhan;
-			dd($users);
+			
 			foreach($users as $key => $value)
 			{
 				$congvanden = new documentary_receive;

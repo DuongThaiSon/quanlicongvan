@@ -1,11 +1,4 @@
 $(document).ready(function () {
-    $("#tra-loi1").click(function () {
-        $("#rep1").toggle();
-    });
-    $("#tra-loi2").click(function () {
-        $("#rep2").toggle();
-    });
-
     $(".continue-js").click(function () {
         $("#create-cv").addClass("d-none");
         $(".form-themcv").addClass("d-block");
@@ -89,6 +82,12 @@ $(document).ready(function () {
     $('.btn-discard').click(function () {
         $('.advance').removeClass('d-block');
     })
+
+    $("#checkAll").click(function () {
+        $('input:checkbox').not(this).prop('checked', this.checked);
+    });
+
+
 
     ClassicEditor
         .create(document.querySelector('#editor'))

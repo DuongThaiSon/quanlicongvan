@@ -91,7 +91,7 @@
                     <div class="news-item-text">
                         <div class="news-type">
                             <div class="row pl-0 mb-3">
-                            <div class="col-lg-7">
+                            <div class="col-lg-7 text-left">
                                 <div class="ban-hanh loai-congvan">
                                     {{$congvanden->documentary_send->type_documentary->name}}
                                 </div>

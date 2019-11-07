@@ -38,9 +38,7 @@
                                     <input type="text" placeholder="Tiêu đề" name="tieude">
                                 </div>
                                 <div class="form-group">
-                                    
                                     <label for="">Loại công văn<sup>*</sup></label>
-                                    
                                     <select name="loaicongvan" id="">
                                         @foreach($type_documentarys as $type_documentary)
                                         <option value="{{$type_documentary->id}}">{{$type_documentary->name}}</option>

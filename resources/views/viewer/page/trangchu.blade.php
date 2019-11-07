@@ -14,7 +14,7 @@
             <div class="col-lg-6">
                 <div class="search text-right position-relative">
                     <form action="{{route('get-timcvden')}}" method="get">
-                        <input type="text" placeholder="Nhập tên văn bản" name="timcongvanden" class="input-search">
+                        <input type="text" placeholder="Nhập tên văn bản" name="timcongvanden" class="input-search" autocomplete="off">
                         <button type="submit" class="btn-search btn-info">
                             <i class="fa fa-search"></i>
                         </button>
@@ -89,7 +89,7 @@
                     <div class="news-item-text">
                         <div class="news-type">
                             <div class="row pl-0 mb-3">
-                            <div class="col-lg-7">
+                            <div class="col-lg-7 text-left">
                                 <div class="ban-hanh loai-congvan">
                                     {{$congvanden->documentary_send->type_documentary->name}}
                                 </div>

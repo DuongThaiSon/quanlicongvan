@@ -19,6 +19,7 @@
     <script src="pmhdv/js/bootstrap.min.js"></script>
     <script src="pmhdv/js/owl.carousel.js"></script>
     <script src="pmhdv/js/ckeditor.js"></script>
+    <script src="pmhdv/js/Chart.bundle.min.js"></script>
     <script src="pmhdv/js/script.js"></script>
     @yield('title')
 </head>

@@ -32,7 +32,7 @@
         </div>
         <div class="main-form">
             <h3 class="form-create-title pt-4 mb-4">
-                Tạo mới công văn
+                Gửi công văn
             </h3>
             <form action="{{route('them-cv')}}" method="POST" enctype="multipart/form-data">
                 @CSRF

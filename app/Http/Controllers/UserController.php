@@ -79,4 +79,9 @@ class UserController extends Controller
 		return redirect()->back();
 
 	}
+
+	public function getDangXuat(){
+		Auth::logout();
+		return redirect('login');
+	}
 }

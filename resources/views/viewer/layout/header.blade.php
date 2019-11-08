@@ -20,7 +20,7 @@
                         <li class="nav-item dropdown text-right">
                             <a href="" class="nav-link dropdown-toggle text-muted waves-effect waves-dark"
                                 data-toggle="dropdown">
-                                <img src="pmhdv/images/4.jpg" class="img-circle" width="30" alt="">
+                                <img src="pmhdv/images/{{Auth::user()->avatar_code}}" class="img-circle" width="30" alt="">
                                 <span>
                                     <i class="fas fa-caret-down"></i>
                                 </span>
@@ -29,7 +29,7 @@
                             <div class="dropdown-menu dropdown-menu-right">                         
                                 <a href="viewer/user/thongtincanhan" class="dropdown-item">Thông tin cá nhân</a>
                                 <div class="line"></div>
-                                <a href="" class="dropdown-item">Đăng xuất</a>
+                                <a href="logout" class="dropdown-item">Đăng xuất</a>
                             </div>
                             @endif
                         </li>

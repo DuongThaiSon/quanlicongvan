@@ -71,7 +71,7 @@
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-left">
                                         <div class="news-icon-item">
-                                            <a href="" title="Xóa">
+                                            <a href="{{route('get-xoacv',$congvan->id)}}" title="Xóa">
                                                 <i class="fas fa-trash"></i>
                                             </a>
                                         </div>
@@ -115,9 +115,9 @@
                                 </div>
                             </div>
                             <div class="c-light">
-                                <span>{{ $congvan['updated_at']->format('H:i') }} </span>
+                                <span>{{ $congvan['created_at']->format('H:i') }} </span>
                                 <span> - </span>
-                                <span>{{ $congvan['updated_at']->format('d/m/Y') }}</span>
+                                <span>{{ $congvan['created_at']->format('d/m/Y') }}</span>
                             </div>
                             <div class="clear"></div>
                             <div class="news-info">
@@ -141,7 +141,7 @@
                                                 <i class="fas fa-file-excel"></i>
                                             </span>
                                             @else($check_file[1] =="jpg" || $check_file[1] =="png")
-                                                <span>
+                                                <span class="jpg">
                                                     <i class="fas fa-file-image"></i>
                                                 </span>
                                                 @if($check_file[1] =="zip")
@@ -151,7 +151,7 @@
                                     @endif
 
                                     @endif
-                                    <span>{{number_format($congvan->storage/1048576,2)}}KB</span>
+                                    <span>{{number_format($congvan->storage/1048576,2)}}MB</span>
                                 </p>
                             </div>
                         </div>
@@ -165,6 +165,7 @@
                 </div>
             </div>
             @endforeach
+            <div class="row" style="margin-left:500px;">{{$congvans->links()}}</div>
         </div>
     </div>
 </div>

@@ -18,15 +18,21 @@
 Route::get('login',function(){
 	return view('login');
 });	
+
+Route::get('logout','UserController@getDangXuat');
 Route::post('login','UserController@postDangNhap')->name('post-login');
 
 Route::group(['prefix'=>'viewer'],function(){
 	Route::group(['prefix'=>'congvandi'],function(){
-		// Route::get('danhsach','CongVanDiController@getDSCVDi');
+		Route::get("danhsach",'CongVanDiController@getDSCVDi');
 
 		Route::get('themmoi','CongVanDiController@getThemCongVan');
 
 		Route::post('themmoi','CongVanDiController@postThemCongVan')->name('them-cv');
+
+		Route::get('xemcongvandi/{cvd}','CongVanDiController@getXemCongVanDi')->name('get-xemcvdi');
+
+		Route::get('timcongvandi','CongVanDiController@getTimCongVanDi')->name('get-timcvdi');
 
 	});
 	Route::group(['prefix'=>'congvanden'],function(){
@@ -35,21 +41,16 @@ Route::group(['prefix'=>'viewer'],function(){
 		Route::get('chitiet/{id}','CongVanDenController@getChiTiet');
 
 		Route::get('timcongvanden','CongVanDenController@getTimCongVanDen')->name('get-timcvden');
-		// Route::get('them','TheLoaiController@getThem');
 
-		// Route::post('them','TheLoaiController@postThem');
+		Route::get('xemcongvanden/{cvd}','CongVanDenController@getXemCongVanDen')->name('get-xemcvden');
+		
 
-		// Route::get('sua/{id}','TheLoaiController@getSua');
-
-		// Route::post('sua/{id}','TheLoaiController@postSua');
-
-		// Route::get('xoa/{id}','TheLoaiController@getXoa');
+		Route::get('xoa/{id}','CongVanDenController@getXoa')->name('get-xoacvden');
 	
 	});
 
 	Route::group(['prefix'=>'congvan'],function(){
 
-		Route::get('danhsach','CongVanController@getDanhSach');
 
 		Route::get('taomoi','CongVanController@getTaoMoi');
 
@@ -62,6 +63,8 @@ Route::group(['prefix'=>'viewer'],function(){
 		Route::get('luutru/{t}','CongVanController@getChiTiet');
 
 		Route::get('xem/{cv}','CongVanController@getXem');
+
+		Route::get('xoa/{id}','CongVanController@getXoa')->name('get-xoacv');
 	});
 
 	Route::group(['prefix'=>'ajax'],function(){

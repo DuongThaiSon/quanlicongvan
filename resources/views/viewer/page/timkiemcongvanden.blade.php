@@ -60,9 +60,24 @@
                                     <i class="fas fa-check"></i>
                                 </div>
                                 @endif
-                                <a href="">
-                                    <img class="img-fluid" src="pmhdv/images/thongbao.png" alt="">
-                                </a>
+                                <?php
+                                            $name = explode(".",$congvantimkiem->file);
+                                            
+                                            ?>
+                        
+                            <a href="{{route('get-xemcvden',$congvantimkiem->id_send)}}">
+                                @if($name[1] == "jpg" || $name[1] == "png")
+                                    <img class="img-fluid" src="pmhdv/images/{{$congvantimkiem->file_code}}" alt="">
+                                @else 
+                                    @if($name[1] == "docx"  || $name[1] == "pdf")                           
+                                        <img class="img-fluid" src="pmhdv/images/{{$congvantimkiem->file_jpg}}" alt="">                       
+                                    @else
+                                        @if($name[1] == "zip"||$name[1] == "jar")                           
+                                            <img class="img-fluid" src="pmhdv/images/winrar.jpg" alt="">                           
+                                        @endif
+                                    @endif
+                                @endif
+                            </a>
                                 <div class="news-icon d-none">
                                     <div class="news-caret">
                                         <div class="dropdown">
@@ -71,13 +86,13 @@
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-left">
                                                 <div class="news-icon-item">
-                                                    <a href="" title="Xóa">
+                                                    <a href="{{route('get-xoacvden',$congvantimkiem->id)}}" title="Xóa">
                                                         <i class="fas fa-trash"></i>
                                                     </a>
                                                 </div>
                                                 <div class="news-icon-item">
-                                                    <a href="pmhdv/images/{{$congvantimkiem->file}}" title="Tải xuống"
-                                                        download="{{$congvantimkiem->file}}">
+                                                    <a href="pmhdv/images/{{$congvantimkiem->file_code}}" title="Tải xuống"
+                                                        download="{{$congvantimkiem->file_code}}">
                                                         <i class="fas fa-file-download"></i>
                                                     </a>
                                                 </div>
@@ -124,7 +139,7 @@
 
                                             @endif
                                             <div class="storage">
-                                            {{number_format($congvantimkiem->storage/1048576,2)}}KB
+                                            {{number_format($congvantimkiem->storage/1048576,2)}}MB
                                             </div>
                                         </div>
                                     </div>
@@ -134,7 +149,7 @@
                                     <div class="dropdown">
                                         <div class="author-figure dropdown-toggle float-left mb-0 mr-3" data-toggle="dropdown">
                                             <a href="">
-                                                <img src="pmhdv/images/4.jpg">
+                                                <img src="pmhdv/images/{{$congvantimkiem->User->avatar_code}}">
                                             </a>
                                         </div>
                                         <div class="box-user-info mt-1 dropdown-menu">
@@ -158,9 +173,9 @@
                                         </div>
                                     </div>
                                     <div class="c-light">
-                                        <span>{{ $congvantimkiem['updated_at']->format('H:i') }} </span>
+                                        <span>{{ $congvantimkiem['created_at']->format('H:i') }} </span>
                                         <span> - </span>
-                                        <span>{{ $congvantimkiem['updated_at']->format('d/m/Y') }}</span>
+                                        <span>{{ $congvantimkiem['created_at']->format('d/m/Y') }}</span>
                                         
                                     </div>
                                     <div class="clear"></div>
@@ -172,7 +187,7 @@
                                     </a>
                                 </div>
                                 <div class="text-center mt-4">
-                                    <a href="chitiet.html" class="chitiet">
+                                    <a href="{{route('get-xemcvden',$congvantimkiem->id_send)}}" class="chitiet">
                                         <i class="fas fa-eye"></i>
                                     </a>
                                 </div>

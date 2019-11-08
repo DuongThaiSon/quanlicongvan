@@ -19,7 +19,7 @@
                     </a>
                 </li>
                 <li class="nav-item {{ Request::is('/') ? 'active' : '' }}">
-                    <a href="" class="nav-link">
+                    <a href="viewer/congvandi/danhsach" class="nav-link">
                         <span class="icon-holder c-brown">
                             <i class="fas fa-paper-plane"></i>
                         </span>

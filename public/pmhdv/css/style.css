@@ -906,6 +906,11 @@ pre.prettyprint {
     font-size: 24px;
     margin-left: 35px;
 }
+.jpg i {
+    color: #6e1701;
+    font-size: 24px;
+
+}
 
 .macv {
     color: #0b9a9b;

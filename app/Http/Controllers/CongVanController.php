@@ -23,7 +23,7 @@ class CongVanController extends Controller
 
     public function getChiTiet($t){
         $id = auth()->user()->id;
-        $congvans = documentary::orderBy('id', 'DESC')->where('id_user',$id)->where('id_type',$t)->paginate(8,['*'], 'page'); 
+        $congvans = documentary::orderBy('id', 'DESC')->where('id_user',$id)->where('id_type',$t)->where('status',1)->paginate(8,['*'], 'page'); 
         return view('viewer.luutru.chitiet',['congvans'=>$congvans]);
     }
     public function getXem($cv){
@@ -86,8 +86,8 @@ class CongVanController extends Controller
                 $phpWord = new \PhpOffice\PhpWord\PhpWord();
                 
                 $objReader = \PhpOffice\PhpWord\IOFactory::createReader("Word2007");
-              
-                $phpWord = $objReader->load(public_path('/pmhdv/images/'.$name));
+                
+                $phpWord = $objReader->load(public_path('pmhdv/images/'.$name));
                 
                 $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'HTML');
                 try {
@@ -96,17 +96,18 @@ class CongVanController extends Controller
                 {}
                 PDF::loadFile(storage_path($name_pdf[0].'.html'))->save(storage_path($name_pdf[0].".pdf"))->stream('download.pdf');
                     $pdf = new \Spatie\PdfToImage\Pdf(storage_path($name_pdf[0].".pdf"));
-                    $pdf->setPage(1)->saveImage(public_path('\pmhdv\images'));
+                    $pdf->setPage(1)->saveImage(public_path('pmhdv/images'));
                 
-                rename(public_path('/pmhdv/images/1.jpg'), public_path('/pmhdv/images/'.$name_pdf[0].".jpg"));
+                rename(public_path('pmhdv/images/1.jpg'), public_path('pmhdv/images/'.$name_pdf[0].".jpg"));
                 $congvan->file_pdf = $name_pdf[0].".pdf";
                 $congvan->file_jpg = $name_pdf[0].".jpg";
+             
                
             }
             if($duoi == "pdf"){
                 $pdf = new \Spatie\PdfToImage\Pdf(public_path('pmhdv/images/'.$name_pdf[0].".pdf"));
-                $pdf->setPage(1)->saveImage(public_path('\pmhdv\images'));
-                rename(public_path('/pmhdv/images/1.jpg'), public_path('/pmhdv/images/'.$name_pdf[0].".jpg"));
+                $pdf->setPage(1)->saveImage(public_path('pmhdv/images'));
+                rename(public_path('pmhdv/images/1.jpg'), public_path('pmhdv/images/'.$name_pdf[0].".jpg"));
                 $congvan->file_jpg = $name_pdf[0].".jpg";
             }
             if($duoi == "jpg" ){
@@ -121,33 +122,29 @@ class CongVanController extends Controller
             $congvan->file_code = $name;         
            
         }
-        
+       
         $congvan->save();
         return redirect('viewer/congvan/taomoi')->with('thongbao','Tạo mới thành công');
 
     }
 
-    public function getDanhSach(){
-        $id = Auth::user()->id;
-        $congvans = documentary::orderBy('id', 'DESC')->where('id_user',$id)->get(); 
-        return view('viewer.congvan.danhsach',['congvans'=>$congvans]);
-    }
+    
     public function getTimCongVan(Request $request){
         $id = Auth::user()->id;
         $tg = $request->thoigian;
         $tcv = $request->timcongvan;
         
         if($tg == "" && $tcv == "")
-            $congvantimkiems = documentary::orderBy('id', 'DESC')->where('id_user',$id)->get();
+            $congvantimkiems = documentary::orderBy('id', 'DESC')->where('id_user',$id)->where('status',1)->get();
         
         else if($tg == "" && $tcv != "")
-            $congvantimkiems = documentary::orderBy('id', 'DESC')->where('name','like','%'.$tcv.'%')->where('id_user',$id)->get();
+            $congvantimkiems = documentary::orderBy('id', 'DESC')->where('name','like','%'.$tcv.'%')->where('id_user',$id)->where('status',1)->get();
         
         else if($tg != "" && $tcv == "")
-            $congvantimkiems = documentary::orderBy('id', 'DESC')->whereDate('create_date',$tg)->where('id_user',$id)->get();
+            $congvantimkiems = documentary::orderBy('id', 'DESC')->whereDate('create_date',$tg)->where('id_user',$id)->where('status',1)->get();
         
         else
-            $congvantimkiems = documentary::orderBy('id', 'DESC')->whereDate('create_date',$tg)->where('name','like','%'.$tcv.'%')->where('id_user',$id)->get();
+            $congvantimkiems = documentary::orderBy('id', 'DESC')->whereDate('create_date',$tg)->where('name','like','%'.$tcv.'%')->where('id_user',$id)->where('status',1)->get();
        
 
         return view('viewer.congvan.timkiemcongvan',['congvantimkiems'=>$congvantimkiems]);

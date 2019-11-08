@@ -57,9 +57,27 @@
                             <i class="fas fa-check"></i>
                         </div>
                         @endif
-                        <a href="">
-                            <img class="img-fluid" src="pmhdv/images/thongbao.png" alt="">
-                        </a>
+                        <?php
+                                            $name = explode(".",$congvanden->documentary_send->file);
+                                            
+                                            ?>
+                        
+                            <a href="{{route('get-xemcvden',$congvanden->id_send)}}">
+                                @if($name[1] == "jpg" || $name[1] == "png")
+                                    <img class="img-fluid" src="pmhdv/images/{{$congvanden->documentary_send->file_code}}" alt="">
+                                @else 
+                                    @if($name[1] == "docx"  || $name[1] == "pdf")                           
+                                        <img class="img-fluid" src="pmhdv/images/{{$congvanden->documentary_send->file_jpg}}" alt="">                       
+                                    @else
+                                        @if($name[1] == "zip"||$name[1] == "jar")                           
+                                            <img class="img-fluid" src="pmhdv/images/winrar.jpg" alt="">                           
+                                        @endif
+                                    @endif
+                                @endif
+                            </a>
+                          
+                            
+                        
                         <div class="news-icon d-none">
                             <div class="news-caret">
                                 <div class="dropdown">
@@ -68,13 +86,13 @@
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-left">
                                         <div class="news-icon-item">
-                                            <a href="" title="Xóa">
+                                            <a href="{{route('get-xoacvden',$congvanden->id)}}" title="Xóa">
                                                 <i class="fas fa-trash"></i>
                                             </a>
                                         </div>
                                         <div class="news-icon-item">
-                                            <a href="pmhdv/images/{{$congvanden->documentary_send->file}}" title="Tải xuống"
-                                                download="{{$congvanden->documentary_send->file}}">
+                                            <a href="pmhdv/images/{{$congvanden->documentary_send->file_code}}" title="Tải xuống"
+                                                download="{{$congvanden->documentary_send->file_code}}">
                                                 <i class="fas fa-file-download"></i>
                                             </a>
                                         </div>
@@ -107,21 +125,28 @@
                                         <i class="far fa-file-pdf"></i>
                                     </div>
                                     @else
-                                    @if($check_file[1] == "doc" || $check_file[1] == "docx")
-                                    <div class="word file-fix">
-                                        <i class="fas fa-file-word"></i>
-                                    </div>
-                                    @else
-                                    @if($check_file[1] == "xlsx" || $check_file[1] == "xlsm")
-                                    <div class="excel file-fix">
-                                        <i class="fas fa-file-excel"></i>
-                                    </div>
-                                    @endif
-                                    @endif
+                                        @if($check_file[1] == "doc" || $check_file[1] == "docx")
+                                        <div class="word file-fix">
+                                            <i class="fas fa-file-word"></i>
+                                        </div>
+                                        @else
+                                            @if($check_file[1] == "xlsx" || $check_file[1] == "xlsm")
+                                            <div class="excel file-fix">
+                                                <i class="fas fa-file-excel"></i>
+                                            </div>
+                                                @else($check_file[1] =="jpg" || $check_file[1] =="png")
+                                                    <span class="jpg">
+                                                        <i class="fas fa-file-image"></i>
+                                                    </span>
+                                                    @if($check_file[1] =="zip")
+                                                        <span>Zip</span>
+                                                    @endif
+                                            @endif
+                                        @endif
 
                                     @endif
                                     <div class="storage">
-                                    {{number_format($congvanden->documentary_send->storage/1048576,2)}}KB
+                                    {{number_format($congvanden->documentary_send->storage/1048576,2)}}MB
                                     </div>
                                 </div>
                             </div>
@@ -131,7 +156,7 @@
                             <div class="dropdown">
                                 <div class="author-figure dropdown-toggle float-left mb-0 mr-3" data-toggle="dropdown">
                                     <a href="">
-                                        <img src="pmhdv/images/4.jpg">
+                                        <img src="pmhdv/images/{{$congvanden->documentary_send->User->avatar_code}}">
                                     </a>
                                 </div>
                                 <div class="box-user-info mt-1 dropdown-menu">
@@ -155,9 +180,9 @@
                                 </div>
                             </div>
                             <div class="c-light">
-                                <span>{{ $congvanden->documentary_send['updated_at']->format('H:i') }} </span>
+                                <span>{{ $congvanden->documentary_send['created_at']->format('H:i') }} </span>
                                 <span> - </span>
-                                <span>{{ $congvanden->documentary_send['updated_at']->format('d/m/Y') }}</span>
+                                <span>{{ $congvanden->documentary_send['created_at']->format('d/m/Y') }}</span>
                                 
                             </div>
                             <div class="clear"></div>
@@ -169,7 +194,7 @@
                             </a>
                         </div>
                         <div class="text-center mt-4">
-                            <a href="chitiet.html" class="chitiet">
+                            <a href="{{route('get-xemcvden',$congvanden->id_send)}}" class="chitiet">
                                 <i class="fas fa-eye"></i>
                             </a>
                         </div>

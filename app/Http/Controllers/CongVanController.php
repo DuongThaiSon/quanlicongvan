@@ -23,7 +23,7 @@ class CongVanController extends Controller
 
     public function getChiTiet($t){
         $id = auth()->user()->id;
-        $congvans = documentary::orderBy('id', 'DESC')->where('id_user',$id)->where('id_type',$t)->where('status',1)->paginate(8,['*'], 'page'); 
+        $congvans = documentary::orderBy('id', 'DESC')->where('id_user',$id)->where('id_type',$t)->where('status',1)->paginate(12,['*'], 'page'); 
         return view('viewer.luutru.chitiet',['congvans'=>$congvans]);
     }
     public function getXem($cv){
@@ -135,16 +135,16 @@ class CongVanController extends Controller
         $tcv = $request->timcongvan;
         
         if($tg == "" && $tcv == "")
-            $congvantimkiems = documentary::orderBy('id', 'DESC')->where('id_user',$id)->where('status',1)->get();
+            $congvantimkiems = documentary::orderBy('id', 'DESC')->where('id_user',$id)->where('status',1)->paginate(12,['*'], 'page');
         
         else if($tg == "" && $tcv != "")
-            $congvantimkiems = documentary::orderBy('id', 'DESC')->where('name','like','%'.$tcv.'%')->where('id_user',$id)->where('status',1)->get();
+            $congvantimkiems = documentary::orderBy('id', 'DESC')->where('name','like','%'.$tcv.'%')->where('id_user',$id)->where('status',1)->paginate(12,['*'], 'page');
         
         else if($tg != "" && $tcv == "")
-            $congvantimkiems = documentary::orderBy('id', 'DESC')->whereDate('create_date',$tg)->where('id_user',$id)->where('status',1)->get();
+            $congvantimkiems = documentary::orderBy('id', 'DESC')->whereDate('create_date',$tg)->where('id_user',$id)->where('status',1)->paginate(12,['*'], 'page');
         
         else
-            $congvantimkiems = documentary::orderBy('id', 'DESC')->whereDate('create_date',$tg)->where('name','like','%'.$tcv.'%')->where('id_user',$id)->where('status',1)->get();
+            $congvantimkiems = documentary::orderBy('id', 'DESC')->whereDate('create_date',$tg)->where('name','like','%'.$tcv.'%')->where('id_user',$id)->where('status',1)->paginate(12,['*'], 'page');
        
 
         return view('viewer.congvan.timkiemcongvan',['congvantimkiems'=>$congvantimkiems]);

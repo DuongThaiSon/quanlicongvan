@@ -202,6 +202,7 @@
                 </div>
             </div>
             @endforeach
+            <div class="row" style="margin-left:500px;">{{$congvandens->links()}}</div>
         </div>
     </div>
 </div>

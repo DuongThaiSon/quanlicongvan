@@ -195,6 +195,7 @@
                         </div>
                     </div>
                     @endforeach
+                    <div class="row" style="margin-left:500px;">{{$congvantimkiems->links()}}</div>
                 </div>
             </div>
         </div>

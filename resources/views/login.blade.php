@@ -60,38 +60,10 @@
                             Đăng nhập
                         </button>
                     </div>
-                    <p class="login-signup text-center mt-4">
-                        Don't have an account ?
-                        <a href="#" class="login-message">Sign up</a>
-                    </p>
+                    
                 </div>
             </form>
-            <form action="" class="register-form">
-                <div class="form-group">
-                    <input type="text" placeholder="Full name">
-                </div>
-                <div class="form-group">
-                    <input type="text" placeholder="User name">
-                </div>
-                <div class="form-group">
-                    <input type="password" placeholder="Password">
-                </div>
-                <div class="form-group">
-                    <input type="password" placeholder="Type your password again">
-                </div>
-                <div class="form-group">
-                    <input type="email" placeholder="Email">
-                </div>
-                <div class="login-submit">
-                    <button type="submit" class="btn-login">
-                        <a href="index.html">Sign up</a>
-                    </button>
-                </div>
-                <p class="login-signup text-center mt-4">
-                    Already have an account ?
-                    <a href="#" class="login-message">Sign in</a>
-                </p>
-            </form>
+            
         </div>
     </div>
 </body>

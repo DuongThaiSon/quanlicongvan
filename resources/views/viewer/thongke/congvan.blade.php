@@ -5,19 +5,7 @@
 @section('content')
 <section class="thongke">
     <div class="main-body">
-    @if(count($errors) > 0)
-    <div class="alert alert-danger">
-        @foreach($errors->all() as $err)
-        {{ $err }}<br>
-        @endforeach
-    </div>
-    @endif
-
-    @if(session('thongbao'))
-    <div class="alert alert-danger">
-        {{ session('thongbao') }}
-    </div>
-    @endif
+    
         <div class="sub-header">
             <div class="row">
                 <div class="col-lg-3">

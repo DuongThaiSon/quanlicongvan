@@ -47,23 +47,26 @@
         </div>
     </div>
     <div class="news">
+        @if(count($congvantimkiems) ==0)
+            <p style="text-align:center; font-size:22px;">Không có dữ liệu phù hợp</p>
+        @endif
         <div class="row pb-4 pl-3 pr-3">
-            @foreach($congvandis as $congvandi)
+            @foreach($congvantimkiems as $congvantimkiem)
             <div class="col-lg-2 col-md-3">
                 <div class="news-item">
                     <div class="news-item--img position-relative">
                         
                         <?php
-                                            $name = explode(".",$congvandi->file);
+                                            $name = explode(".",$congvantimkiem->file);
                                             
                                             ?>
                         
-                            <a href="{{route('get-xemcvdi',$congvandi->id)}}">
+                            <a href="{{route('get-xemcvdi',$congvantimkiem->id)}}">
                                 @if($name[1] == "jpg" || $name[1] == "png")
-                                    <img class="img-fluid" src="pmhdv/images/{{$congvandi->file_code}}" alt="">
+                                    <img class="img-fluid" src="pmhdv/images/{{$congvantimkiem->file_code}}" alt="">
                                 @else 
                                     @if($name[1] == "docx"  || $name[1] == "pdf")                           
-                                        <img class="img-fluid" src="pmhdv/images/{{$congvandi->file_jpg}}" alt="">                       
+                                        <img class="img-fluid" src="pmhdv/images/{{$congvantimkiem->file_jpg}}" alt="">                       
                                     @else
                                         @if($name[1] == "zip"||$name[1] == "jar")                           
                                             <img class="img-fluid" src="pmhdv/images/winrar.jpg" alt="">                           
@@ -87,8 +90,8 @@
                                             </a>
                                         </div>
                                         <div class="news-icon-item">
-                                            <a href="pmhdv/images/{{$congvandi->file_code}}" title="Tải xuống"
-                                                download="{{$congvandi->file_code}}">
+                                            <a href="pmhdv/images/{{$congvantimkiem->file_code}}" title="Tải xuống"
+                                                download="{{$congvantimkiem->file_code}}">
                                                 <i class="fas fa-file-download"></i>
                                             </a>
                                         </div>
@@ -107,13 +110,13 @@
                             <div class="row pl-0 mb-3">
                             <div class="col-lg-7 text-left">
                                 <div class="ban-hanh loai-congvan">
-                                    {{$congvandi->type_documentary->name}}
+                                    {{$congvantimkiem->type_documentary->name}}
                                 </div>
                             </div>
                             <div class="col-lg-5">
                                 <div class="news-info d-flex">
                                     <?php
-                                        $check_file = explode(".",trim($congvandi->file));
+                                        $check_file = explode(".",trim($congvantimkiem->file));
                                     ?>
                                     @if($check_file[1] == "pdf")
 
@@ -142,7 +145,7 @@
 
                                     @endif
                                     <div class="storage">
-                                    {{number_format($congvandi->storage/1048576,2)}}MB
+                                    {{number_format($congvantimkiem->storage/1048576,2)}}MB
                                     </div>
                                 </div>
                             </div>
@@ -152,14 +155,14 @@
                             <div class="dropdown">
                                 <div class="author-figure dropdown-toggle float-left mb-0 mr-3" data-toggle="dropdown">
                                     <a href="">
-                                        <img src="pmhdv/images/{{$congvandi->User->avatar_code}}">
+                                        <img src="pmhdv/images/{{$congvantimkiem->User->avatar_code}}">
                                     </a>
                                 </div>
                                 <div class="box-user-info mt-1 dropdown-menu">
                                     <div class="box-user-info--name">
-                                        <p>{{$congvandi->User->name}}</p>
+                                        <p>{{$congvantimkiem->User->name}}</p>
                                         <p class="m-0">
-                                            <span>{{$congvandi->User->email}}</span>
+                                            <span>{{$congvantimkiem->User->email}}</span>
                                             <span> · </span>
                                             <span>Hiệu trưởng</span>
                                         </p>
@@ -176,21 +179,21 @@
                                 </div>
                             </div>
                             <div class="c-light">
-                                <span>{{ $congvandi['created_at']->format('H:i') }} </span>
+                                <span>{{ $congvantimkiem['created_at']->format('H:i') }} </span>
                                 <span> - </span>
-                                <span>{{ $congvandi['created_at']->format('d/m/Y') }}</span>
+                                <span>{{ $congvantimkiem['created_at']->format('d/m/Y') }}</span>
                                 
                             </div>
                             <div class="clear"></div>
                         </div>
                         <div class="news-name">
-                            <a href="viewer/congvandi/chitiet/{{$congvandi->id}}">
-                                <h4>{{$congvandi->name}}
+                            <a href="viewer/congvantimkiem/chitiet/{{$congvantimkiem->id}}">
+                                <h4>{{$congvantimkiem->name}}
                                 </h4>
                             </a>
                         </div>
                         <div class="text-center mt-4">
-                            <a href="{{route('get-xemcvdi',$congvandi->id)}}" class="chitiet">
+                            <a href="{{route('get-xemcvdi',$congvantimkiem->id)}}" class="chitiet">
                                 <i class="fas fa-eye"></i>
                             </a>
                         </div>
@@ -198,7 +201,7 @@
                 </div>
             </div>
             @endforeach
-            <div class="row" style="margin-left:500px;">{{$congvandis->links()}}</div>
+            <div class="row" style="margin-left:500px;">{{$congvantimkiems->links()}}</div>
         </div>
     </div>
 </div>

@@ -35,7 +35,7 @@
                     </a>
                 </li>
                 <li class="nav-item {{ Request::is('thongke') ? 'active' : '' }}">
-                    <a href="thongke" class="nav-link">
+                    <a href="viewer/thongke/" class="nav-link">
                         <span class="icon-holder c-indigo">
                             <i class="fas fa-chart-line"></i>
                         </span>

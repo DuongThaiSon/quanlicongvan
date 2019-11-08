@@ -39,23 +39,38 @@ class CongVanDiController extends Controller
 		
 	}
 
-	public function getTimCongVanDi(){
+	public function getTimCongVanDi(Request $request){
 		$id = Auth::user()->id;
         $loaicongvans = type_documentary::all();
         $lcv = $request->loaicongvan;
         $tg = $request->thoigian;
-        $tcvd = $request->timcongvanden;
-        if($lcv == "" && $tg == "" && $tcvd == ""){
-            $congvantimkiems = documentary_send::join('documentary_receive','documentary_send.id', '=', 'documentary_receive.id_send')->orderBy('documentary_send.id', 'DESC')->where('documentary_receive.id_user',$id)->where('documentary_receive.status',1)->get();
-        }
+        $tcvd = $request->timcongvandi;
+        if($lcv == "" && $tg == "" && $tcvd == "")
+            $congvantimkiems = documentary_send::orderBy('id', 'DESC')->where('id_usersend',$id)->where('status',1)->paginate(12,['*'], 'page');
+		else if($tcvd== "" && $tg == "" && $lcv != "")
+			$congvantimkiems = documentary_send::orderBy('id', 'DESC')->where('id_usersend',$id)->where('status',1)->where('id_type',$lcv)->paginate(12,['*'], 'page');
+		
+		else if($tcvd== "" && $tg != "" && $lcv == "")
+			$congvantimkiems = documentary_send::orderBy('id', 'DESC')->where('id_usersend',$id)->where('status',1)->whereDate('send_date',$tg)->paginate(12,['*'], 'page');
+		
+		else if($tcvd!= "" && $tg == "" && $lcv == "")
+			$congvantimkiems = documentary_send::orderBy('id', 'DESC')->where('id_usersend',$id)->where('status',1)->where('name','like','%'.$tcvd.'%')->paginate(12,['*'], 'page');
+		
+		else if($tcvd!= "" && $tg == "" && $lcv != "")
+			$congvantimkiems = documentary_send::orderBy('id', 'DESC')->where('id_usersend',$id)->where('status',1)->where('name','like','%'.$tcvd.'%')->where('id_type',$lcv)->paginate(12,['*'], 'page');
+		
+		else if($tcvd!= "" && $tg != "" && $lcv == "")
+			$congvantimkiems = documentary_send::orderBy('id', 'DESC')->where('id_usersend',$id)->where('status',1)->where('name','like','%'.$tcvd.'%')->whereDate('send_date',$tg)->paginate(12,['*'], 'page');
+		
+		else if($tcvd== "" && $tg != "" && $lcv != "")
+			$congvantimkiems = documentary_send::orderBy('id', 'DESC')->where('id_usersend',$id)->where('status',1)->where('id_type',$lcv)->whereDate('send_date',$tg)->paginate(12,['*'], 'page');
+		
+		else
+			$congvantimkiems = documentary_send::orderBy('id', 'DESC')->where('id_usersend',$id)->where('status',1)->where('name','like','%'.$tcvd.'%')->where('id_type',$lcv)->whereDate('send_date',$tg)->paginate(12,['*'], 'page');
+		
         
-          
-        
-        
-      
-      
 
-        return view('viewer.page.timkiemcongvanden',['congvantimkiems'=>$congvantimkiems,'loaicongvans'=>$loaicongvans]);
+        return view('viewer.congvandi.timkiemcongvandi',['congvantimkiems'=>$congvantimkiems,'loaicongvans'=>$loaicongvans]);
 	}
 	public function getThemCongVan(){
 		$id = Auth::user()->id;
@@ -154,7 +169,6 @@ class CongVanDiController extends Controller
 				     
 			   
 			}
-			// dd($congvandi);
 			$congvandi->save();
 			
 			$users = $request->nguoinhan;
@@ -170,13 +184,5 @@ class CongVanDiController extends Controller
 			}
 			
 			return redirect('viewer/congvandi/themmoi')->with('thongbao','Gửi thành công');
-	}
-
-	public function getTestThem(){
-		$id = Auth::user()->id;
-		$majors = major::all();
-		$type_documentarys = type_documentary::all();
-		$users = User::all();
-		return view('viewer.congvandi.testthem',['majors'=>$majors,'type_documentarys'=>$type_documentarys,'users'=>$users]);
 	}
 }

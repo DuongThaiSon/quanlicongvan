@@ -22,7 +22,7 @@ Route::get('login',function(){
 Route::get('logout','UserController@getDangXuat');
 Route::post('login','UserController@postDangNhap')->name('post-login');
 
-Route::group(['prefix'=>'viewer'],function(){
+Route::group(['prefix'=>'viewer','middleware'=>'userLogin'],function(){
 	Route::group(['prefix'=>'congvandi'],function(){
 		Route::get("danhsach",'CongVanDiController@getDSCVDi');
 
@@ -77,22 +77,19 @@ Route::group(['prefix'=>'viewer'],function(){
 		Route::post('thongtincanhan','UserController@postThongTin')->name('post-tt');
 
 	});
+	
+	Route::group(['prefix'=>'thongke'],function(){
+		
+		Route::get('/','ThongKeController@getThongKe');
+
+		Route::get('congvan','ThongKeController@getThongKeCongVan')->name('get-tkcv');
+	});
 });
 
-Route::get('luutru',function(){
-	return view('viewer.luutru.luutru');
-});	
-Route::get('luutru-detail',function(){
-	return view('viewer.luutru.luutru-detail');
-});	
-Route::get('thongke',function(){
-	return view('viewer.thongke.thongke');
-});	
-Route::get('user',function(){
-	return view('viewer.user-detail.user');
-});	
 
-Route::get('testthem','CongVanDiController@getTestThem');
+
+
+
 
 
 

@@ -101,7 +101,7 @@ class CongVanDiController extends Controller
 			$congvandi->content = $request->noidung;
 			$congvandi->id_type = $request->loaicongvan;
 			$congvandi->id_category = 2;
-			$congvandi->id_user=$id;
+			$congvandi->id_usersend=$id;
 			$congvandi->status = 1;
 			$congvandi->number_read = 0;
 			$congvandi->approve = 0;
@@ -122,6 +122,7 @@ class CongVanDiController extends Controller
 				$congvandi->file = $hinh;
 				$name_pdf = explode(".",$name);
 				$duoi = $file->getClientOriginalExtension('teptin');
+				
 			
 				if($duoi == "docx"){
 					
@@ -148,6 +149,7 @@ class CongVanDiController extends Controller
 					$congvandi->file_pdf = $name_pdf[0].".pdf";
 					$congvandi->file_jpg = $name_pdf[0].".jpg";
 					
+					
 				}
 				if($duoi == "pdf"){
 					$pdf = new \Spatie\PdfToImage\Pdf(public_path('pmhdv/images/'.$name_pdf[0].".pdf"));
@@ -156,27 +158,32 @@ class CongVanDiController extends Controller
 					$congvandi->file_jpg = $name_pdf[0].".jpg";
 					
 				}
-				if($duoi == "jpg" ){
+				if($duoi == "jpg" ||$duoi == "PNG"){
+					
 					
 					$img = new \Imagick(public_path('pmhdv/images/'.$name));
 					$img->setImageFormat('pdf');
 			 
 					$success = $img->writeImage('pmhdv/images/'.$name_pdf[0].".pdf");
 					$congvandi->file_pdf = $name_pdf[0].".pdf";
-				}
 					
+				}
+				
 				$congvandi->file_code = $name;   
 				     
 			   
 			}
+			$congvandi->send_date = date('y-m-d');
+			
 			$congvandi->save();
 			
 			$users = $request->nguoinhan;
 			
 			foreach($users as $key => $value)
 			{
+				
 				$congvanden = new documentary_receive;
-
+				
 				$congvanden->id_user= $value;
 				$congvanden->id_send = $congvandi->id;
 				

@@ -63,7 +63,7 @@
                                             ?>
                         
                             <a href="{{route('get-xemcvden',$congvanden->id_send)}}">
-                                @if($name[1] == "jpg" || $name[1] == "png")
+                                @if($name[1] == "jpg" || $name[1] == "PNG")
                                     <img class="img-fluid" src="pmhdv/images/{{$congvanden->documentary_send->file_code}}" alt="">
                                 @else 
                                     @if($name[1] == "docx"  || $name[1] == "pdf")                           
@@ -165,18 +165,11 @@
                                         <p class="m-0">
                                             <span>{{$congvanden->documentary_send->User->email}}</span>
                                             <span> · </span>
-                                            <span>Hiệu trưởng</span>
+                                            <span>{{$congvanden->documentary_send->User->role->name}}</span>
+                                            <span>{{$congvanden->documentary_send->User->major->name}}</span>
                                         </p>
                                     </div>
-                                    <div class="line"></div>
-                                    <div class="item">
-                                        <a href="">
-                                            <span>
-                                                <i class="fas fa-share"></i>
-                                            </span>
-                                            <span>Xem profile</span>
-                                        </a>
-                                    </div>
+                                    
                                 </div>
                             </div>
                             <div class="c-light">
@@ -202,8 +195,9 @@
                 </div>
             </div>
             @endforeach
-            <div class="row" style="margin-left:500px;">{{$congvandens->links()}}</div>
+            
         </div>
+        <div class="row" style="margin-left:500px;">{{$congvandens->links()}}</div>
     </div>
 </div>
 @endsection

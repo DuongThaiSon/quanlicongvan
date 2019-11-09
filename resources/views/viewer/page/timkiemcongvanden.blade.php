@@ -157,19 +157,11 @@
                                                 <p>{{$congvantimkiem->User->name}}</p>
                                                 <p class="m-0">
                                                     <span>{{$congvantimkiem->User->email}}</span>
-                                                    <span> · </span>
-                                                    <span>Hiệu trưởng</span>
+                                                    <span>{{$congvantimkiem->documentary_send->User->role->name}}</span>
+                                                    <span>{{$congvantimkiem->documentary_send->User->major->name}}</span>
                                                 </p>
                                             </div>
-                                            <div class="line"></div>
-                                            <div class="item">
-                                                <a href="">
-                                                    <span>
-                                                        <i class="fas fa-share"></i>
-                                                    </span>
-                                                    <span>Xem profile</span>
-                                                </a>
-                                            </div>
+                                            
                                         </div>
                                     </div>
                                     <div class="c-light">
@@ -195,8 +187,9 @@
                         </div>
                     </div>
                     @endforeach
-                    <div class="row" style="margin-left:500px;">{{$congvantimkiems->links()}}</div>
+                    
                 </div>
+                <div class="row" style="margin-left:500px;">{{$congvantimkiems->links()}}</div>
             </div>
         </div>
 @endsection

@@ -40,4 +40,8 @@ class User extends Authenticatable
     public function role(){
         return $this->belongsTo('App\role','id_role','id');
     }
+
+    public function major(){
+        return $this->belongsTo('App\major','id_major','id');
+    }
 }

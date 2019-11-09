@@ -18,7 +18,7 @@
                         <span class="sidebar-text">Công văn đến</span>
                     </a>
                 </li>
-                <li class="nav-item {{ Request::is('/viewer/congvandi/danhsach') ? 'active' : '' }}">
+                <li class="nav-item {{ Request::is('viewer/congvandi/danhsach') ? 'active' : '' }}">
                     <a href="viewer/congvandi/danhsach" class="nav-link">
                         <span class="icon-holder c-brown">
                             <i class="fas fa-paper-plane"></i>
@@ -26,7 +26,7 @@
                         <span class="sidebar-text">Công văn đi</span>
                     </a>
                 </li>
-                <li class="nav-item {{ Request::is('/viewer/congvan/luutru') ? 'active' : '' }}">
+                <li class="nav-item {{ Request::is('viewer/congvan/luutru') ? 'active' : '' }}">
                     <a href="viewer/congvan/luutru" class="nav-link">
                         <span class="icon-holder c-yellow">
                             <i class="fas fa-bookmark"></i>
@@ -34,7 +34,7 @@
                         <span class="sidebar-text">Lưu trữ</span>
                     </a>
                 </li>
-                <li class="nav-item {{ Request::is('/viewer/thongke') ? 'active' : '' }}">
+                <li class="nav-item {{ Request::is('viewer/thongke') ? 'active' : '' }}">
                     <a href="viewer/thongke/" class="nav-link">
                         <span class="icon-holder c-indigo">
                             <i class="fas fa-chart-line"></i>

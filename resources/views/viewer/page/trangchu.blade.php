@@ -48,7 +48,7 @@
         </div>
     </div>
     <div class="news">
-        <div class="row pb-4 pl-3 pr-3">
+        <div class="row pl-3 pr-3">
             @foreach($congvandens as $congvanden)
             <div class="col-lg-2 col-md-3">
                 <div class="news-item">
@@ -199,8 +199,8 @@
             </div>
             @endforeach
 
-        <div class="row m0-auto">{{$congvandens->links()}}</div>
         </div>
+        <div class="pag-link">{{$congvandens->links()}}</div>
     </div>
 </div>
 @endsection

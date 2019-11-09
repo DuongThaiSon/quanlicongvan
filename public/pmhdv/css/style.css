@@ -1478,3 +1478,6 @@ input[name="pass"]:-webkit-autofill:focus {
     background: #fff;
     z-index: 99999;
 }
+.pag-link .pagination{
+    justify-content: center;
+}

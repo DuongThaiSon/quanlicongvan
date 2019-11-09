@@ -175,13 +175,13 @@
                                     <div class="clear"></div>
                                 </div>
                                 <div class="news-name">
-                                    <a href="viewer/congvantimkiem/chitiet/{{$congvantimkiem->id}}">
+                                    <a href="{{route('get-xemcvden',$congvantimkiem->id_send)}}">
                                         <h4>{{$congvantimkiem->name}}
                                         </h4>
                                     </a>
                                 </div>
                                 <div class="text-center mt-4">
-                                    <a href="{{route('get-xemcvden',$congvantimkiem->id_send)}}" class="chitiet">
+                                    <a href="viewer/congvantimkiem/chitiet/{{$congvantimkiem->id}}" class="chitiet">
                                         <i class="fas fa-eye"></i>
                                     </a>
                                 </div>

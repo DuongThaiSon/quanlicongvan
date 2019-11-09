@@ -50,12 +50,14 @@ class CongVanController extends Controller
 
         $this->validate($request,
         [
-			'tieude'=>'required|min:2|max:200',
+            'tieude'=>'required|min:2|max:200',
+            'teptin'=>'required',
 		],
 		[
 			'tieude.required'=>'Hãy nhập tiêu đề',
 			'tieude.min'=>'Tiêu đề từ 2 đến 200 ký tự',
-			'tieude.max'=>'Tiêu đề từ 2 đến 200 ký tự',
+            'tieude.max'=>'Tiêu đề từ 2 đến 200 ký tự',
+            'teptin.required'=>'Hãy nhập file'
 			
         ]);
         $congvan = new documentary;
@@ -67,6 +69,9 @@ class CongVanController extends Controller
         if($request->hasFile('teptin'))
         {
             $file = $request->file('teptin');
+            if($duoi != "jpg" && $duoi != "PNG" && $duoi != "docx" && $duoi != "pdf" && $duoi != "zip"){
+                return back()->with("saifile","File chỉ có thể có định dạng là jpg, png, docx, pdf, zip");
+            }
 			$hinh = $file->getClientOriginalName();
             $name = str_random(8)."_". $hinh;
             $congvan->storage = $file->getSize();

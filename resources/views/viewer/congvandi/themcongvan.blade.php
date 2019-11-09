@@ -25,6 +25,11 @@
         {{ session('thongbao') }}
     </div>
     @endif
+    @if(session('saifile'))
+    <div class="alert alert-danger">
+        {{session('saifile')}}
+    </div>
+    @endif
     <div class="container-fluid">
         <div class="back back-js d-none">
             <i class="fas fa-chevron-left"></i>

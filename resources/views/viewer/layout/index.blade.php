@@ -33,6 +33,7 @@
         @yield('content')
         
     </section>
+    @include('viewer.layout.footer')
 </body>
 
 </html>

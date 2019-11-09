@@ -1468,8 +1468,7 @@ input[name="pass"]:-webkit-autofill:focus {
     background-image: -ms-linear-gradient(90deg, #45b649 0%, #dce35b 100%);
 }
 .footer {
-    bottom: 0;
-    position: fixed;
+    position: absolute;
     color: #212529;
     left: 0px;
     padding: 17px 15px;

@@ -86,6 +86,8 @@ class CongVanDiController extends Controller
 		[
 			'tieude'=>'required|min:2|max:200',
 			'noidung'=>'required|min:2|max:500',
+			'teptin'=>'required',
+			'nguoinhan'=>'required'
 		],
 		[
 			'tieude.required'=>'Hãy nhập tiêu đề',
@@ -94,6 +96,8 @@ class CongVanDiController extends Controller
 			'noidung.required'=>'Hãy nhập nội dung',
 			'noidung.min'=>'Nội dung từ 2 đến 500 ký tự',
 			'noidung.max'=>'Nội dung từ 2 đến 500 ký tự',
+			'teptin.required'=>'Hãy nhập file',
+			'nguoinhan.required'=>'Hãy nhập người nhận'
 			
 		]);
 			$congvandi = new documentary_send;
@@ -110,6 +114,10 @@ class CongVanDiController extends Controller
 			if($request->hasFile('teptin'))
 			{
 				$file = $request->file('teptin');
+				$duoi = $file->getClientOriginalExtension('teptin');
+				if($duoi != "jpg" && $duoi != "PNG" && $duoi != "docx" && $duoi != "pdf" && $duoi != "zip"){
+					return back()->with("saifile","File chỉ có thể có định dạng là jpg, png, docx, pdf, zip");
+				}
 				$hinh = $file->getClientOriginalName();
 				$name = str_random(8)."_". $hinh;
 				$congvandi->storage = $file->getSize();
@@ -121,7 +129,7 @@ class CongVanDiController extends Controller
 				
 				$congvandi->file = $hinh;
 				$name_pdf = explode(".",$name);
-				$duoi = $file->getClientOriginalExtension('teptin');
+				
 				
 			
 				if($duoi == "docx"){

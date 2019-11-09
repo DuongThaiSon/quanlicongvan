@@ -184,13 +184,13 @@
                             <div class="clear"></div>
                         </div>
                         <div class="news-name">
-                            <a href="viewer/congvanden/chitiet/{{$congvanden->id}}">
+                            <a href="{{route('get-xemcvden',$congvanden->id_send)}}">
                                 <h4>{{$congvanden->documentary_send->name}}
                                 </h4>
                             </a>
                         </div>
                         <div class="text-center mt-4">
-                            <a href="{{route('get-xemcvden',$congvanden->id_send)}}" class="chitiet">
+                            <a href="viewer/congvanden/chitiet/{{$congvanden->id}}" class="chitiet">
                                 <i class="fas fa-eye"></i>
                             </a>
                         </div>

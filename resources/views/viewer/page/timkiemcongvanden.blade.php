@@ -158,7 +158,9 @@
                                                 <p class="m-0">
                                                     <span>{{$congvantimkiem->User->email}}</span>
                                                     <span>{{$congvantimkiem->documentary_send->User->role->name}}</span>
-                                                    <span>{{$congvantimkiem->documentary_send->User->major->name}}</span>
+                                                    @if($congvanden->documentary_send->User->id_major!=0)
+                                                        <span>{{$congvanden->documentary_send->User->major->name}}</span>
+                                                    @endif
                                                 </p>
                                             </div>
                                             

@@ -166,7 +166,9 @@
                                             <span>{{$congvanden->documentary_send->User->email}}</span>
                                             <span> · </span>
                                             <span>{{$congvanden->documentary_send->User->role->name}}</span>
+                                            @if($congvanden->documentary_send->User->id_major!=0)
                                             <span>{{$congvanden->documentary_send->User->major->name}}</span>
+                                            @endif
                                         </p>
                                     </div>
                                     

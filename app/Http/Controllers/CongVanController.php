@@ -118,7 +118,7 @@ class CongVanController extends Controller
                 $success = $img->writeImage('pmhdv/images/'.$name_pdf[0].".pdf");
                 $congvan->file_pdf = $name_pdf[0].".pdf";
             }
-                
+            $congvan->create_date = date('y-m-d');
             $congvan->file_code = $name;         
            
         }

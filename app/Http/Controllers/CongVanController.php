@@ -24,7 +24,7 @@ class CongVanController extends Controller
     public function getChiTiet($t){
         $id = auth()->user()->id;
         $congvans = documentary::orderBy('id', 'DESC')->where('id_user',$id)->where('id_type',$t)->where('status',1)->paginate(12,['*'], 'page'); 
-        return view('viewer.luutru.chitiet',['congvans'=>$congvans]);
+        return view('viewer.luutru.chitiet',['congvans'=>$congvans,'type'=>$t]);
     }
     public function getXem($cv){
         $congvan = documentary::find($cv);
@@ -40,13 +40,13 @@ class CongVanController extends Controller
         }
 
     }
-    public function getTaoMoi(){
+    public function getTaoMoi($type){
         $id = Auth::user()->id;
-        $type_documentarys = type_documentary::all();
-        return view('viewer.congvan.taomoi',['type_documentarys'=>$type_documentarys]);
+       
+        return view('viewer.congvan.taomoi',['type'=>$type]);
     }
 
-    public function postTaoMoi(Request $request){
+    public function postTaoMoi($type,Request $request){
 
         $this->validate($request,
         [
@@ -64,11 +64,13 @@ class CongVanController extends Controller
         $id = Auth::user()->id;
         $congvan->name = $request->tieude;
         $congvan->content = $request->noidung;
-        $congvan->id_type = $request->loaicongvan;
+        $congvan->id_type = $type;
         $congvan->id_user = $id;
         if($request->hasFile('teptin'))
         {
+            
             $file = $request->file('teptin');
+            $duoi = $file->getClientOriginalExtension('teptin');
             if($duoi != "jpg" && $duoi != "PNG" && $duoi != "docx" && $duoi != "pdf" && $duoi != "zip"){
                 return back()->with("saifile","File chỉ có thể có định dạng là jpg, png, docx, pdf, zip");
             }
@@ -83,7 +85,7 @@ class CongVanController extends Controller
             
             $congvan->file = $hinh;
             $name_pdf = explode(".",$name);
-            $duoi = $file->getClientOriginalExtension('teptin');
+            
             
             if($duoi == "docx"){
                 
@@ -129,29 +131,36 @@ class CongVanController extends Controller
         }
        
         $congvan->save();
-        return redirect('viewer/congvan/taomoi')->with('thongbao','Tạo mới thành công');
+        return redirect('viewer/congvan/taomoi/'.$type)->with('thongbao','Tạo mới thành công');
 
     }
 
     
-    public function getTimCongVan(Request $request){
+    public function getTimCongVan($type,Request $request){
         $id = Auth::user()->id;
         $tg = $request->thoigian;
         $tcv = $request->timcongvan;
         
         if($tg == "" && $tcv == "")
-            $congvantimkiems = documentary::orderBy('id', 'DESC')->where('id_user',$id)->where('status',1)->paginate(12,['*'], 'page');
+            $congvantimkiems = documentary::orderBy('id', 'DESC')->where('id_user',$id)->where('status',1)->where('id_type',$type)->paginate(12,['*'], 'page');
         
         else if($tg == "" && $tcv != "")
-            $congvantimkiems = documentary::orderBy('id', 'DESC')->where('name','like','%'.$tcv.'%')->where('id_user',$id)->where('status',1)->paginate(12,['*'], 'page');
+            $congvantimkiems = documentary::orderBy('id', 'DESC')->where('name','like','%'.$tcv.'%')->where('id_user',$id)->where('status',1)->where('id_type',$type)->paginate(12,['*'], 'page');
         
         else if($tg != "" && $tcv == "")
-            $congvantimkiems = documentary::orderBy('id', 'DESC')->whereDate('create_date',$tg)->where('id_user',$id)->where('status',1)->paginate(12,['*'], 'page');
+            $congvantimkiems = documentary::orderBy('id', 'DESC')->whereDate('create_date',$tg)->where('id_user',$id)->where('status',1)->where('id_type',$type)->paginate(12,['*'], 'page');
         
         else
-            $congvantimkiems = documentary::orderBy('id', 'DESC')->whereDate('create_date',$tg)->where('name','like','%'.$tcv.'%')->where('id_user',$id)->where('status',1)->paginate(12,['*'], 'page');
+            $congvantimkiems = documentary::orderBy('id', 'DESC')->whereDate('create_date',$tg)->where('name','like','%'.$tcv.'%')->where('id_user',$id)->where('status',1)->where('id_type',$type)->paginate(12,['*'], 'page');
        
 
-        return view('viewer.congvan.timkiemcongvan',['congvantimkiems'=>$congvantimkiems]);
-   }
+        return view('viewer.congvan.timkiemcongvan',['congvantimkiems'=>$congvantimkiems,'type'=>$type]);
+    }
+    public function getXoa($id){
+        $congvan = documentary::find($id);
+        $congvan->status = 0;
+        $congvan->save();
+        return redirect()->back();
+
+    }
 }

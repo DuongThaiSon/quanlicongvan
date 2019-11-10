@@ -18,21 +18,21 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="title">
-                                        {{$chitiet->documentary_send->name}}
+                                        {{$chitiet->name}}
                                     </div>
                                     <div class="subtitle">
-                                        <span>{{$chitiet->documentary_send->User->name}} - </span>
-                                        <span>{{$chitiet->documentary_send->User->email}} - </span>
+                                        <span>{{$chitiet->User->name}} - </span>
+                                        <span>{{$chitiet->User->email}} - </span>
                                         <span>lúc </span>
-                                        <span>{{ $chitiet->documentary_send['updated_at']->format('H:i') }} - </span>
-                                        <span>{{ $chitiet->documentary_send['updated_at']->format('d/m/Y') }}</span>
+                                        <span>{{ $chitiet['updated_at']->format('H:i') }} - </span>
+                                        <span>{{ $chitiet['updated_at']->format('d/m/Y') }}</span>
                                     </div>
 
                                 </div>
                             </div>
                         </div>
                         <div class="document-content">
-                            {{$chitiet->documentary_send->content}}
+                            {{$chitiet->content}}
                         </div>
                         <div class="files">
                             <div class="subheader">
@@ -43,15 +43,15 @@
                                     <div class="row">
                                         <div class="col-lg-10">
                                             <div class="file-name">
-                                                {{$chitiet->documentary_send->file}}
+                                                {{$chitiet->file}}
                                             </div>
                                             <div class="file-info">
-                                                {{number_format($chitiet->documentary_send->storage/1048576,2)}}KB
+                                                {{number_format($chitiet->storage/1048576,2)}}KB
                                             </div>
                                         </div>
                                         <div class="col-lg-2">
-                                            <a class="btn-download" href="pmhdv/images/{{$chitiet->documentary_send->file_code}}" title="Tải xuống"
-                                                download="{{$chitiet->documentary_send->file_code}}">
+                                            <a class="btn-download" href="pmhdv/images/{{$chitiet->file_code}}" title="Tải xuống"
+                                                download="{{$chitiet->file_code}}">
                                                 <i class="fas fa-file-download"></i>
                                             </a>
                                         </div>
@@ -59,21 +59,21 @@
                                 </div>
                                 <div class="file-display">
                                 <?php
-                                        $check_file = explode(".",trim($chitiet->documentary_send->file));
+                                        $check_file = explode(".",trim($chitiet->file));
                                     ?>
                                 @if($check_file[1] == "pdf")
-                                    <object data="pmhdv/images/{{$chitiet->documentary_send->file_code}}" type="application/pdf">                                   
-                                        <iframe src="pmhdv/images/{{$chitiet->documentary_send->file_code}}"></iframe>
+                                    <object data="pmhdv/images/{{$chitiet->file_code}}" type="application/pdf">                                   
+                                        <iframe src="pmhdv/images/{{$chitiet->file_code}}"></iframe>
                                     </object>
                                     @else
                                         @if($check_file[1] == "jpg" || $check_file == "PNG")
-                                            <object data="pmhdv/images/{{$chitiet->documentary_send->file_pdf}}" type="application/pdf">                                   
-                                                <iframe src="pmhdv/images/{{$chitiet->documentary_send->file_pdf}}"></iframe>
+                                            <object data="pmhdv/images/{{$chitiet->file_pdf}}" type="application/pdf">                                   
+                                                <iframe src="pmhdv/images/{{$chitiet->file_pdf}}"></iframe>
                                             </object>
                                             @else
                                                 @if($check_file[1] == "docx" )
-                                                    <object data="{{ storage_path($chitiet->documentary_send->file_pdf) }}" type="application/pdf">                                   
-                                                        <iframe src="{{ storage_path($chitiet->documentary_send->file_pdf) }}"></iframe>
+                                                    <object data="{{ storage_path($chitiet->file_pdf) }}" type="application/pdf">                                   
+                                                        <iframe src="{{ storage_path($chitiet->file_pdf) }}"></iframe>
                                                     </object>
                                                     
                                                 @endif
@@ -88,20 +88,21 @@
                 <div class="col-lg-3">
                     <div class="doc-side">
                        
-                        <!-- <div class="box-seen">
+                        <div class="box-seen">
                             <div class="title">
-                                <span>{{$chitiet->documentary_send->number_read}}</span>
+                                <span>{{$chitiet->number_read}}</span>
                                 <span> người đã xem.</span>
                             </div>
                             <div class="avatars">
+                            @foreach($chitiet->documentary_receive as $i)
                                 <div class="image">
-                                    <img src="pmhdv/images/1.jpg" alt="">
+                                    <img src="pmhdv/images/{{$i->User->avatar_code}}" alt="">
                                 </div>
-                                
+                            @endforeach
                                 
                             </div>
                             <div class="clear"></div>
-                        </div> -->
+                        </div>
                         <div class="comment">
                             <div class="box-post">
                                 <div class="user">

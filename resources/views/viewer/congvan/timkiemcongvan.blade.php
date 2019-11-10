@@ -8,12 +8,20 @@
 <div class="main-body">
             <div class="sub-header">
                 <div class="row">
-                    <div class="col-lg-6">
+                <div class="col-lg-2">
+                    <a href="{{route('get-tmcv',$type)}}" class="btn-them">
+                        <span class="icon-holder">
+                            <i class="fas fa-plus"></i>
+                        </span>
+                        <span class="sidebar-text">Lưu trữ</span>
+                    </a>
+                </div>
+                    <div class="col-lg-5">
                         <div class="title">Trường đại học công nghiệp Hà Nội</div>
                     </div>
-                    <div class="col-lg-6">
+                    <div class="col-lg-5">
                         <div class="search text-right position-relative">
-                            <form action="{{route('get-timcv')}}" method="get">
+                            <form action="{{route('get-timcv',$type)}}" method="get">
                                 <input type="text" placeholder="Nhập tên văn bản" name="timcongvantimkiem" class="input-search" autocomplete="off">
                                 <button type="submit" class="btn-search btn-info">
                                     <i class="fa fa-search"></i>

@@ -200,4 +200,16 @@ class CongVanDiController extends Controller
 			
 			return redirect('viewer/congvandi/themmoi')->with('thongbao','Gửi thành công');
 	}
+
+	public function getXoa($id){
+		$congvandi = documentary_send::find($id);
+		$congvandi->status = 0;
+		$congvandi->save();
+		return redirect()->back();
+
+	}
+	public function getChiTiet($id){
+		$congvandi = documentary_send::find($id);
+		return view('viewer.congvandi.chitiet',['chitiet'=>$congvandi]);
+	}
 }

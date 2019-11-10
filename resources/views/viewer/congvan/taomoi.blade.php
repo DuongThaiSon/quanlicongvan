@@ -34,7 +34,7 @@
                 <h3 class="form-create-title pt-4 mb-4">
                     Tạo mới công văn
                 </h3>
-                <form action="{{route('post-taocv')}}" method="POST" enctype="multipart/form-data">
+                <form action="{{route('post-taocv',$type)}}" method="POST" enctype="multipart/form-data">
                 @CSRF
                     <div class="row">
                         <div class="col-lg-6">
@@ -43,14 +43,7 @@
                                     <label for="">Tiêu đề<sup>*</sup></label>
                                     <input type="text" placeholder="Tiêu đề" name="tieude">
                                 </div>
-                                <div class="form-group">
-                                    <label for="" style="display:block;">Loại công văn<sup>*</sup></label>
-                                    <select name="loaicongvan" id="" style="width:40%;">
-                                        @foreach($type_documentarys as $type_documentary)
-                                        <option value="{{$type_documentary->id}}">{{$type_documentary->name}}</option>
-                                        @endforeach
-                                    </select>                                   
-                                </div>  
+                                
                                 <div class="form-group">
                                     <label for="">Tệp đính kèm</label>
                                     <input type="file" name="teptin">

@@ -82,7 +82,7 @@
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-left">
                                         <div class="news-icon-item">
-                                            <a href="" title="Xóa">
+                                            <a href="{{route('get-xoacvdi',$congvandi->id)}}" title="Xóa">
                                                 <i class="fas fa-trash"></i>
                                             </a>
                                         </div>
@@ -179,7 +179,7 @@
                                 <span>{{ $congvandi['created_at']->format('H:i') }} </span>
                                 <span> - </span>
                                 <span>{{ $congvandi['created_at']->format('d/m/Y') }}</span>
-                                
+                                <span style="margin-left:5px;"><i class="fas fa-eye"></i> {{$congvandi->number_read}}</span>
                             </div>
                             <div class="clear"></div>
                         </div>

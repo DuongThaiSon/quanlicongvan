@@ -12,11 +12,11 @@ use Carbon\Carbon;
 class CongVanDenController extends Controller
 {
      public function getDSCVDen(){
-     $id = Auth::user()->id;
-     $congvandens = documentary_receive::orderBy('id', 'DESC')->where('id_user',$id)->where('status',1)->paginate(12,['*'], 'page');
-     $loaicongvans = type_documentary::all();
-     return view('viewer.page.trangchu',['congvandens'=>$congvandens,'loaicongvans'=>$loaicongvans]);
- }
+        $id = Auth::user()->id;
+        $congvandens = documentary_receive::orderBy('id', 'DESC')->where('id_user',$id)->where('status',1)->paginate(12,['*'], 'page');
+        $loaicongvans = type_documentary::all();
+        return view('viewer.page.trangchu',['congvandens'=>$congvandens,'loaicongvans'=>$loaicongvans]);
+      }
 
  public function getXemCongVanDen($cvd){
   $congvandi = documentary_send::find($cvd);
@@ -49,7 +49,7 @@ class CongVanDenController extends Controller
       return view('viewer.congvanden.chitiet',['chitiet'=>$chitiet]);
  }
 
-  public function getTimCongVanDen(Request $request){
+    public function getTimCongVanDen(Request $request){
         $id = Auth::user()->id;
         $loaicongvans = type_documentary::all();
         $lcv = $request->loaicongvan;
@@ -84,7 +84,7 @@ class CongVanDenController extends Controller
       
 
         return view('viewer.page.timkiemcongvanden',['congvantimkiems'=>$congvantimkiems,'loaicongvans'=>$loaicongvans]);
-    }
+      }
     
 
     public function getXoa($id){

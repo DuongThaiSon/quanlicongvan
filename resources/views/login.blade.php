@@ -21,50 +21,47 @@
 </head>
 
 <body id="login-bg">
-    <div class="login">
-        <div class="login-title">
-            <img src="pmhdv/images/logo-icon.png" alt="">
-            <span>Trường đại học công nghiệp Hà Nội</span>
-        </div>
+    <div class="card">
+
         @if(count($errors) > 0)
         <div class="alert alert-danger">
             @foreach($errors->all() as $err)
-                {{ $err }}<br>
+            {{ $err }}<br>
             @endforeach
         </div>
-    @endif
+        @endif
 
-    @if(session('thongbao'))
+        @if(session('thongbao'))
         <div class="alert alert-success">
             {{ session('thongbao') }}
         </div>
-    @endif
-        <div class="form">
-            <form action="{{route('post-login')}}" class="login-form" method="post">
-                @CSRF
-                <div class="login-fields">
-                    <div class="login-user">
-                        <div class="login-user_icon">
-                            <img src="pmhdv/images/user-icon.png" alt="">
-                        </div>
-                        <input type="text" placeholder="Email" name="username">
+        @endif
+        <form action="{{route('post-login')}}" class="login-form" method="post">
+            @CSRF
+            <img src="pmhdv/images/logo-haui.png" class="logo-haui" alt="">
+            <h1 class="title-login">Đăng nhập</h1>
+            <div class="login-fields">
+                <div class="login-user d-flex">
+                    <div class="login-user_icon">
+                        <i class="fas fa-user"></i>
                     </div>
-                    <div class="login-password">
-                        <div class="login-user_icon">
-                            <img src="pmhdv/images/lock_icon.png" alt="">
-                        </div>
-                        <input type="password" placeholder="Mật khẩu" name="pass">
-                    </div>
-                    <div class="login-submit">
-                        <button type="submit" class="btn-login">
-                            Đăng nhập
-                        </button>
-                    </div>
-                    
+                    <input type="text" placeholder="Email" name="username" class="form-control">
                 </div>
-            </form>
-            
-        </div>
+                <div class="login-password d-flex">
+                    <div class="login-user_icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <input type="password" placeholder="Mật khẩu" name="pass" class="form-control">
+                </div>
+                <div class="login-submit">
+                    <button type="submit" class="btn-login btn btn-info">
+                        Đăng nhập
+                    </button>
+                </div>
+
+            </div>
+        </form>
+
     </div>
 </body>
 

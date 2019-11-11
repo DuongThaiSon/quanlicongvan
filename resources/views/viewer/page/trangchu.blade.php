@@ -3,9 +3,26 @@
 <title>Trang chủ</title>
 @endsection
 @section('content')
+<style>
+@media(max-width:1366px) {
+    .fix-height{
+        height: 149vh;
+    }
+    .menu{
+        height: 149vh;
+    }
+}
+@media(min-width:1367px) and (max-width: 1537px) {
+    .fix-height{
+        height: 149vh;
+    }
+    .menu{
+        height: 149vh;
+    }
+}
+</style>
 
-
-<div class="main-body">
+<div class="main-body fix-height">
     <div class="sub-header">
         <div class="row">
             <div class="col-lg-6">

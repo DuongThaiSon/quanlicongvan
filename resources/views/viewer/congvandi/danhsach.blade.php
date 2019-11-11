@@ -5,7 +5,7 @@
 @section('content')
 
 
-<div class="main-body">
+<div class="main-body" style="height: 100vh">
     <div class="sub-header">
         <div class="row">
             <div class="col-lg-6">

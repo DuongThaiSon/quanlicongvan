@@ -29,20 +29,20 @@ a {
     color: black;
 }
 
-.c-blue{
-    color: #2196f3!important;
+.c-blue {
+    color: #2196f3 !important;
 }
 
-.c-brown{
-    color: #795548!important;
+.c-brown {
+    color: #795548 !important;
 }
 
-.c-orange{
-    color: #ff5722!important;
+.c-orange {
+    color: #ff5722 !important;
 }
 
-.c-indigo{
-    color: #3f51b5!important;
+.c-indigo {
+    color: #3f51b5 !important;
 }
 
 a:hover {
@@ -897,16 +897,19 @@ pre.prettyprint {
     font-size: 24px;
     margin-left: 35px;
 }
+
 .word i {
     color: #2c5898;
     font-size: 24px;
     margin-left: 35px;
 }
+
 .excel i {
     color: #016e38;
     font-size: 24px;
     margin-left: 35px;
 }
+
 .jpg i {
     color: #6e1701;
     font-size: 24px;
@@ -936,9 +939,11 @@ pre.prettyprint {
 .chitiet:hover {
     color: #fff;
 }
-.news-item{
+
+.news-item {
     border: 1px solid #ddd;
 }
+
 .news-item--img {
     border-bottom: 1px solid #ddd;
 }
@@ -952,18 +957,39 @@ pre.prettyprint {
 }
 
 #login-bg {
-    background: linear-gradient(135deg, #EA5C54 0%, #bb6dec 100%);
+    width: 100%;
+    height: 100vh;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
 }
 
-.login {
-    background: linear-gradient(45deg, #35394a 0%, #1f222e 100%);
-    border-top: 2px solid #D8312A;
-    padding: 40px 0;
-    /* height: 40vh; */
-    width: 20vw;
-    margin: 17vh auto;
+.login-form {
+    width: 500px;
+    padding: 15px;
+    margin: 0 auto;
 }
 
+.logo-haui{
+    max-width: 100%;
+    margin: 30px auto;
+    width: 100px;
+    display: block;
+}
+.title-login{
+    text-align: center;
+    font-size: 30px;
+    margin-bottom: 30px;
+}
 .login-title {
     color: #afb1be;
     height: 60px;
@@ -971,34 +997,20 @@ pre.prettyprint {
     font-size: 25px;
     margin-bottom: 30px;
 }
-
-.login-fields input[type='text'],
-.login-fields input[type='password'] {
-    color: #afb1be;
-    width: 100%;
-    background: #32364a;
-    padding: 15px 65px;
-    border-top: 2px solid #393d52;
-    border-bottom: 2px solid #393d52;
-    border-right: none;
-    border-left: none;
-    outline: none;
-    box-shadow: none;
+.login-user{
+    margin-bottom: 25px;
 }
-
-.login-user_icon {
-    opacity: .5;
+.login-user input{
+    border-radius: unset;
+    padding: 11px;
+    height: auto;
+    font-size: unset;
 }
-
-.login-user_icon img {
-    position: absolute;
-    top: 18px;
-    left: 28px;
-}
-
-.login-user,
-.login-password {
-    position: relative;
+.login-password input{
+    border-radius: unset;
+    padding: 11px;
+    height: auto;
+    font-size: unset;
 }
 
 .login-submit {
@@ -1007,25 +1019,11 @@ pre.prettyprint {
 }
 
 .btn-login {
-    border-radius: 50px;
-    background: transparent;
-    padding: 10px 50px;
-    border: 2px solid #DC6180;
-    color: #DC6180;
-    text-transform: uppercase;
-    font-size: 14px;
-    transition-duration: .2s;
-    outline: 0;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 30px;
+    border-radius: unset;
 }
-
-.btn-login:hover {
-    background: #DC6180;
-    color: #fff;
-    cursor: pointer;
-    transition-property: background, color;
-    transition-duration: .2s;
-}
-
 
 .login-signup a:hover {
     color: #DC6180;
@@ -1035,49 +1033,33 @@ pre.prettyprint {
     color: #afb1be;
 }
 
-.register-form {
-    display: none;
-}
-
-.register-form input {
-    color: #afb1be;
-    width: 100%;
-    background: #32364a;
-    padding: 9px 20px;
-    border-top: 2px solid #393d52;
-    border-bottom: 2px solid #393d52;
-    border-right: none;
-    border-left: none;
-    outline: none;
-    box-shadow: none;
-}
-
 button:focus {
     outline: 0 !important;
 }
 
-input[name="username"]:-webkit-autofill,
-input[name="username"]:-webkit-autofill:focus {
-    border-top: 2px solid #393d52;
-    border-bottom: 2px solid #393d52;
-    -webkit-text-fill-color: #afb1be;
-    transition: background-color 5000s ease-in-out 0s;
+.login-user_icon{
+    padding: 0.75rem 2rem;
+    margin-bottom: 0;
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #55595c;
+    text-align: center;
+    background-color: #eceeef;
+    border: 1px solid #ced4da;
+    border-radius: 0;
 }
-input[name="pass"]:-webkit-autofill,
-input[name="pass"]:-webkit-autofill:focus {
-    border-top: 2px solid #393d52;
-    border-bottom: 2px solid #393d52;
-    -webkit-text-fill-color: #afb1be;
-    transition: background-color 5000s ease-in-out 0s;
-}
-.login-signup{
+
+.login-signup {
     color: #6c757d;
 }
-.mentiony-popover{
+
+.mentiony-popover {
     top: 42px !important;
     left: 0px !important;
 }
-.btn-search{
+
+.btn-search {
     color: #fff;
     background-color: #17a2b8;
     border-color: #17a2b8;
@@ -1087,11 +1069,13 @@ input[name="pass"]:-webkit-autofill:focus {
     padding: 8px 13px;
     cursor: pointer;
 }
-.master .col-lg-2{
+
+.master .col-lg-2 {
     background: #fff;
     text-align: right;
 }
-.btn-toggle{
+
+.btn-toggle {
     position: absolute;
     left: -40px;
     top: 5px;
@@ -1099,6 +1083,7 @@ input[name="pass"]:-webkit-autofill:focus {
     border-radius: 50%;
     padding: 2px 10px;
 }
+
 .menu {
     position: absolute;
     -webkit-box-sizing: border-box;
@@ -1110,48 +1095,59 @@ input[name="pass"]:-webkit-autofill:focus {
     z-index: 7999;
     background: #fff;
 }
-.main-body{
+
+.main-body {
     margin-left: 255px;
-    height: auto;
+    height: 100vh;
 }
-.menu-content li:nth-child(1){
+
+.menu-content li:nth-child(1) {
     padding: 0 0 35px 6px;
 }
-.is-collapsed .menu{
+
+.is-collapsed .menu {
     width: 65px;
 }
-.is-collapsed .main-body{
+
+.is-collapsed .main-body {
     margin-left: 85px;
 }
-.is-collapsed .menu .sidebar-text{
+
+.is-collapsed .menu .sidebar-text {
     display: none;
 }
-.is-collapsed .menu .icon-holder:nth-child(1){
+
+.is-collapsed .menu .icon-holder:nth-child(1) {
     margin: 0;
 }
-.url-logo:hover{
+
+.url-logo:hover {
     color: #111;
 }
-.box-user-info{
+
+.box-user-info {
     display: none;
     position: absolute;
     background: #fff;
     padding-top: 10px;
     top: 100px;
-    box-shadow: 0 2px 6px 0px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 6px 0px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
 }
-.box-user-info p:nth-child(1){
+
+.box-user-info p:nth-child(1) {
     font-size: 17px;
     text-align: center;
     margin: 0;
 }
-.box-user-info p:nth-child(2){
+
+.box-user-info p:nth-child(2) {
     font-weight: normal;
     font-size: 13px;
     color: #888;
     padding-bottom: 6px;
 }
+
 .box-user-info .item {
     padding: 10px 20px 10px 50px;
     position: relative;
@@ -1159,55 +1155,68 @@ input[name="pass"]:-webkit-autofill:focus {
     font-size: 13px;
     color: #333;
 }
+
 .box-user-info .item:hover {
     background-color: #f5f5f5;
 }
-.box-user-info .item a:hover{
+
+.box-user-info .item a:hover {
     color: #000;
 }
-.box-user-info--name{
+
+.box-user-info--name {
     padding: 0 5px;
 }
-.news-icon{
+
+.news-icon {
     position: absolute;
     top: 0;
     right: 0;
 }
-.news-icon-item i{
+
+.news-icon-item i {
     color: #61a5c6;
     font-size: 20px;
 }
-.news-icon-item:nth-child(1) i{
+
+.news-icon-item:nth-child(1) i {
     color: #f50b0b;
     font-size: 20px;
 }
-.news-icon-item:nth-child(2) i{
+
+.news-icon-item:nth-child(2) i {
     color: #945bdf;
     font-size: 20px;
 }
-.news-icon-item{
+
+.news-icon-item {
     padding: 8px 0 2px 0;
     border-bottom: 1px solid #ddd;
     text-align: center;
 }
-.news-item--img:hover .news-icon{
+
+.news-item--img:hover .news-icon {
     display: block !important;
 }
-.c-light{
+
+.c-light {
     color: #666;
     font-size: 12px;
     float: left;
 }
-.c-yellow{
+
+.c-yellow {
     color: #ffb100;
 }
-.news-caret{
+
+.news-caret {
     margin: 3px 3px 0 0;
     font-size: 19px;
     border: 1px solid #ddd;
     padding: 0 9px;
 }
-.news-caret .dropdown-menu{
+
+.news-caret .dropdown-menu {
     width: 22px;
     min-width: 32px;
     top: 1px !important;
@@ -1215,19 +1224,24 @@ input[name="pass"]:-webkit-autofill:focus {
     border-radius: unset;
     padding: 0;
 }
-.news-caret a:hover{
+
+.news-caret a:hover {
     color: #111;
 }
-.news-caret .news-icon-item:hover{
+
+.news-caret .news-icon-item:hover {
     background: #ddd;
 }
-.news-caret:hover{
+
+.news-caret:hover {
     background: #ddd;
 }
-.logo a:hover{
+
+.logo a:hover {
     color: #111;
 }
-.check-seen{
+
+.check-seen {
     position: absolute;
     left: 7px;
     top: 7px;
@@ -1236,54 +1250,88 @@ input[name="pass"]:-webkit-autofill:focus {
     padding: 3px 6px;
     color: #fff;
 }
-@media(max-width:1366px){
-    .news .col-lg-2{
+
+@media(max-width:1366px) {
+    .news .col-lg-2 {
         max-width: 24.666667%;
     }
-    .storage{
+
+    .storage {
         font-size: 12px;
         margin-top: 4px;
         margin-left: 6px;
         color: #6b6a6a;
     }
-    .file-fix i{
+
+    .file-fix i {
+        margin-left: 9px;
+    }
+    .fix-height{
+        height: auto;
+    }
+    
+}
+@media(min-width:1367px) and (max-width: 1537px) {
+    .news .col-lg-2 {
+        max-width: 20%;
+    }
+
+    .storage {
+        font-size: 12px;
+        margin-top: 3px;
+        margin-left: 6px !important;
+        color: #6b6a6a;
+    }
+
+    .file-fix i {
         margin-left: 9px;
     }
 }
-.file-fix i{
+
+.file-fix i {
     margin-left: 0;
 }
-.storage{
+
+.storage {
     margin-top: 2px;
     margin-left: 10px;
     color: #6b6a6a;
 }
-.save-box{
+
+.save-box {
     border: 1px solid #dadce0;
     border-radius: 6px;
     box-shadow: none;
     margin-bottom: 20px;
 }
-.save-box--icon,.save-box--text{
+
+.save-box--icon,
+.save-box--text {
     padding: 12px 16px;
 }
-.save-box--text{
+
+.save-box--text {
     padding: 15px 16px;
 }
-.save-box--icon i{
+
+.save-box--icon i {
     font-size: 24px;
     color: #8f8f8f;
 }
-.luutru-body a:hover{
+
+.luutru-body a:hover {
     color: #000;
 }
-.save-box:hover{
+
+.save-box:hover {
     background-color: #e8f0fe;
 }
-.luutru-body{
+
+/* .luutru-body {
     height: 100vh;
-}
-.avatar-wrapper{
+} */
+
+.avatar-wrapper {
     position: relative;
     height: 150px;
     width: 150px;
@@ -1294,20 +1342,24 @@ input[name="pass"]:-webkit-autofill:focus {
     cursor: pointer;
     box-shadow: 1px 1px 15px -5px black;
 }
+
 .choose-avatar {
     position: absolute;
     text-align: center;
     top: 25px;
     left: 25px;
 }
+
 .avatar-wrapper .profile-pic {
     width: 100%;
     height: 150px;
     transition: all 0.3s ease;
 }
+
 .choose-avatar>.avatar-pic {
     width: 64px;
 }
+
 .avatar-wrapper .upload-button {
     position: absolute;
     top: 0;
@@ -1315,34 +1367,40 @@ input[name="pass"]:-webkit-autofill:focus {
     height: 100%;
     width: 100%;
 }
-.ava-text .title{
+
+.ava-text .title {
     font-size: 26px;
     font-weight: normal;
     color: #111;
 }
-.ava-text .sub-title{
+
+.ava-text .sub-title {
     font-size: 16px;
     font-weight: 300;
     color: #aaa;
     padding-top: 8px;
     margin-bottom: 6px;
 }
-.ava-text .info{
+
+.ava-text .info {
     padding-top: 8px;
     font-size: 14px;
     position: relative;
 }
-.ava-text .info b{
+
+.ava-text .info b {
     color: #666;
     font-weight: 500;
     display: inline-block;
     width: 60px;
 }
-#profile .list{
+
+#profile .list {
     padding-top: 40px;
     padding-bottom: 20px;
 }
-.advance{
+
+.advance {
     width: 50%;
     text-align: left !important;
     padding: 0 20px 20px;
@@ -1353,12 +1411,13 @@ input[name="pass"]:-webkit-autofill:focus {
     border: 1px solid #ddd;
     border-top: none;
 }
-.advance .title{
+
+.advance .title {
     padding: 10px 0 20px 0;
     text-align: center;
 }
 
-.advance .title span{
+.advance .title span {
     color: #aaa;
     background-color: #fff;
     display: inline-block;
@@ -1366,44 +1425,54 @@ input[name="pass"]:-webkit-autofill:focus {
     font-size: 13px;
     padding-right: 10px;
 }
-.btn-search-advance{
+
+.btn-search-advance {
     width: 100%;
 }
-.btn-discard{
+
+.btn-discard {
     background: transparent;
     color: #999;
     margin: 0 auto;
     display: block;
 }
-.btn-discard:focus{
+
+.btn-discard:focus {
     outline: none !important;
     box-shadow: none;
 }
-.btn-download i{
+
+.btn-download i {
     font-size: 25px;
     color: #3b27e1;
 }
-.list-users input{
+
+.list-users input {
     width: unset;
 }
-.list-users div{
+
+.list-users div {
     margin-top: 2px;
     margin-right: 7px;
 }
-.list-users li{
+
+.list-users li {
     padding: 7px 14px;
     border: 1px solid #ddd;
     background: antiquewhite;
     margin-bottom: 4px;
 }
-.list-users li:hover{
+
+.list-users li:hover {
     background: #f24859;
     color: white;
 }
-.list-users{
+
+.list-users {
     overflow-y: scroll;
     height: 173px;
 }
+
 .overview-item--c1 {
     background-image: -moz-linear-gradient(90deg, #3f5efb 0%, #fc466b 100%);
     background-image: -webkit-linear-gradient(90deg, #3f5efb 0%, #fc466b 100%);
@@ -1421,19 +1490,23 @@ input[name="pass"]:-webkit-autofill:focus {
     box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.1);
     margin-bottom: 40px;
 }
+
 .overview-box .icon {
     display: inline-block;
     vertical-align: top;
     margin-right: 15px;
 }
+
 .overview-box .icon i {
     font-size: 60px;
     color: #fff;
 }
+
 .overview-box .text {
     font-weight: 300;
     display: inline-block;
 }
+
 .overview-box .text h2 {
     font-weight: 300;
     color: #fff;
@@ -1441,32 +1514,39 @@ input[name="pass"]:-webkit-autofill:focus {
     line-height: 1;
     margin-bottom: 5px;
 }
+
 .overview-box .text span {
     font-size: 18px;
     color: rgba(255, 255, 255, 0.6);
 }
+
 .overview-chart {
     height: 115px;
     position: relative;
 }
+
 .overview-chart canvas {
     width: 100%;
 }
+
 .overview-item--c2 {
     background-image: -moz-linear-gradient(90deg, #11998e 0%, #38ef7d 100%);
     background-image: -webkit-linear-gradient(90deg, #11998e 0%, #38ef7d 100%);
     background-image: -ms-linear-gradient(90deg, #11998e 0%, #38ef7d 100%);
 }
+
 .overview-item--c3 {
     background-image: -moz-linear-gradient(90deg, #ee0979 0%, #ff6a00 100%);
     background-image: -webkit-linear-gradient(90deg, #ee0979 0%, #ff6a00 100%);
     background-image: -ms-linear-gradient(90deg, #ee0979 0%, #ff6a00 100%);
 }
+
 .overview-item--c4 {
     background-image: -moz-linear-gradient(90deg, #45b649 0%, #dce35b 100%);
     background-image: -webkit-linear-gradient(90deg, #45b649 0%, #dce35b 100%);
     background-image: -ms-linear-gradient(90deg, #45b649 0%, #dce35b 100%);
 }
+
 .footer {
     position: absolute;
     color: #212529;
@@ -1477,6 +1557,7 @@ input[name="pass"]:-webkit-autofill:focus {
     background: #fff;
     z-index: 99999;
 }
-.pag-link .pagination{
+
+.pag-link .pagination {
     justify-content: center;
 }

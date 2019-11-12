@@ -3,24 +3,6 @@
 <title>Trang chủ</title>
 @endsection
 @section('content')
-<style>
-@media(max-width:1366px) {
-    .fix-height{
-        height: 149vh;
-    }
-    .menu{
-        height: 149vh;
-    }
-}
-@media(min-width:1367px) and (max-width: 1537px) {
-    .fix-height{
-        height: 149vh;
-    }
-    .menu{
-        height: 149vh;
-    }
-}
-</style>
 
 <div class="main-body fix-height">
     <div class="sub-header">
@@ -67,7 +49,7 @@
     <div class="news">
         <div class="row pl-3 pr-3">
             @foreach($congvandens as $congvanden)
-            <div class="col-lg-2 col-md-3">
+            <div class="col-lg-2 col-md-3 col-sm-4">
                 <div class="news-item">
                     <div class="news-item--img position-relative">
                         @if($congvanden->check_read==1)

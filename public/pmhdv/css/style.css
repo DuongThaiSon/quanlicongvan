@@ -864,18 +864,21 @@ pre.prettyprint {
 
 .news-name h4 {
     font-size: 14px;
-    line-height: 20px;
     color: #222;
     font-weight: 500;
     margin-bottom: 10px;
     -webkit-transition: all 300ms linear 0s;
     -o-transition: all 300ms linear 0s;
     transition: all 300ms linear 0s;
-    width: 217px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
+    /* width: 217px; */
     text-align: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    line-height: 16px;
+    max-height: 32px;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
 }
 
 .news-name h4:hover {
@@ -1271,7 +1274,7 @@ button:focus {
     }
     
 }
-@media(min-width:1367px) and (max-width: 1537px) {
+@media(min-width:1367px) and (max-width: 1645px) {
     .news .col-lg-2 {
         max-width: 20%;
     }
@@ -1287,7 +1290,30 @@ button:focus {
         margin-left: 9px;
     }
 }
-
+@media(max-width:1366px) {
+    .fix-height{
+        height: 149vh;
+    }
+    .menu{
+        height: 149vh;
+    }
+}
+@media(min-width:1367px) and (max-width: 1645px) {
+    .fix-height{
+        height: 149vh;
+    }
+    .menu{
+        height: 149vh;
+    }
+}
+@media(min-width:1646px) and (max-width: 1870px) {
+    .fix-height{
+        height: 106vh;
+    }
+    .menu{
+        height: 106vh;
+    }
+}
 .file-fix i {
     margin-left: 0;
 }

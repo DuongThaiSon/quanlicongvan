@@ -32,7 +32,7 @@
                             </div>
                         </div>
                         <div class="document-content">
-                            {{$chitiet->documentary_send->content}}
+                            {!! $chitiet->documentary_send->content !!}
                         </div>
                         <div class="files">
                             <div class="subheader">

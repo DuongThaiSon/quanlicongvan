@@ -11,7 +11,7 @@
 </style>
 
 
-<section class="main-body">
+<section class="main-body fix-height">
     @if(count($errors) > 0)
     <div class="alert alert-danger">
         @foreach($errors->all() as $err)

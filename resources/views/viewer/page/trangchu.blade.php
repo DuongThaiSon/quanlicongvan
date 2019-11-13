@@ -110,8 +110,9 @@
                         <div class="news-type">
                             <div class="row pl-0 mb-3">
                                 <div class="col-lg-7 text-left">
-                                    <div class="ban-hanh loai-congvan">
-                                        {{$congvanden->documentary_send->type_documentary->name}}
+                                    <div class="tag">
+                                        <i class="fas fa-tags"></i>
+                                        <span>{{$congvanden->documentary_send->type_documentary->name}}</span>
                                     </div>
                                 </div>
                                 <div class="col-lg-5">

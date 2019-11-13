@@ -4,7 +4,7 @@
 @endsection
 @section('content')
 
-<section class="main-body" style="height: 100vh;">
+<section class="main-body fix-height">
     <div class="luutru-head sub-header">
         <h3>Thư mục</h3>
     </div>

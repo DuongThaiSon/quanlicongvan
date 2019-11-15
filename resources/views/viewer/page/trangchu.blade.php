@@ -4,7 +4,7 @@
 @endsection
 @section('content')
 
-<div class="main-body fix-height">
+<div class="bg-white main-content">
     <div class="sub-header">
         <div class="row">
             <div class="col-lg-6">

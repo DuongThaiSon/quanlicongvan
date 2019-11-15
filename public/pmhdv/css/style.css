@@ -1088,14 +1088,7 @@ button:focus {
 }
 
 .menu {
-    position: absolute;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    width: 230px;
-    /* height: 100%; */
-    height: -webkit-fill-available;
-    z-index: 7999;
+    height: 100%;
     background: #fff;
 }
 
@@ -1295,10 +1288,7 @@ button:focus {
         margin-left: 9px;
     }
     .fix-height{
-        height: 149vh;
-    }
-    .menu{
-        height: 149vh;
+        height: 285vh;
     }
     
 }
@@ -1321,34 +1311,7 @@ button:focus {
     .fix-height{
         height: 149vh;
     }
-    .menu{
-        height: 149vh;
-    }
 }
-/* @media(max-width:1366px) {
-    .fix-height{
-        height: 149vh;
-    }
-    .menu{
-        height: 149vh;
-    }
-} */
-/* @media(min-width:1367px) and (max-width: 1645px) {
-    .fix-height{
-        height: 149vh;
-    }
-    .menu{
-        height: 149vh;
-    }
-} */
-/* @media(min-width:1646px) and (max-width: 1870px) {
-    .fix-height{
-        height: 106vh;
-    }
-    .menu{
-        height: 106vh;
-    }
-} */
 .file-fix i {
     margin-left: 0;
 }
@@ -1609,14 +1572,10 @@ button:focus {
 }
 
 .footer {
-    position: absolute;
     color: #212529;
-    left: 0px;
     padding: 17px 15px;
-    right: 0;
     border-top: 1px solid #e9ecef;
     background: #fff;
-    z-index: 99999;
 }
 
 .pag-link .pagination {
@@ -1628,4 +1587,8 @@ button:focus {
 .tag i{
     color: #333333;
     margin-right: 3px;
+}
+.main-content{
+    padding: 30px 0;
+    min-height: 100vh;
 }

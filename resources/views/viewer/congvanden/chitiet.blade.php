@@ -5,7 +5,7 @@
 @section('content')
 
 <body>
-    <div class="main-body" style="height: auto">
+    <div class="bg-white main-content">
         <ul class="breadcrumb">
             <li class="breadcrumb-item"><a href="viewer/congvanden/danhsach">Trang chủ</a></li>
             <li class="breadcrumb-item"><a href="#">Thông báo</a></li>
@@ -50,8 +50,8 @@
                                             </div>
                                         </div>
                                         <div class="col-lg-2">
-                                            <a class="btn-download" href="download/{{$chitiet->documentary_send->file}}" title="Tải xuống"
-                                                download="{{$chitiet->documentary_send->file}}">
+                                            <a class="btn-download" href="download/{{$chitiet->documentary_send->file}}"
+                                                title="Tải xuống" download="{{$chitiet->documentary_send->file}}">
                                                 <i class="fas fa-file-download"></i>
                                             </a>
                                         </div>

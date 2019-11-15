@@ -4,8 +4,7 @@
 @endsection
 @section('content')
 <section class="thongke">
-    <div class="main-body">
-    
+    <div class="bg-white main-content">
         <div class="sub-header">
             <div class="row">
                 <div class="col-lg-3">

@@ -37,8 +37,14 @@
 
     
     <section class="master">
-        @include('viewer.layout.menu')
-        @yield('content')
+        <div class="row">
+            <div class="col-lg-2 text-left">
+                @include('viewer.layout.menu')
+            </div>
+            <div class="col-lg-10">
+                @yield('content')
+            </div>
+        </div>
         
     </section>
     @yield('script')

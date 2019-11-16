@@ -30,7 +30,7 @@
 
     <section class="master pr-3">
         <div class="row">
-            <div class="col-lg-2 text-left">
+            <div class="col-lg-2 fix-col text-left">
                 @include('viewer.layout.menu')
             </div>
             <div class="col-lg-10">

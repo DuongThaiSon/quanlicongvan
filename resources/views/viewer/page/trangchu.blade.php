@@ -108,18 +108,18 @@
                     </div>
                     <div class="news-item-text">
                         <div class="news-type">
-                            <div class="row pl-0 mb-3">
+                            <div class="row pl-0 mb-2">
                                 <div class="col-lg-7 text-left">
                                     <div class="tag">
                                         <i class="fas fa-tags"></i>
                                         <span>{{$congvanden->documentary_send->type_documentary->name}}</span>
                                     </div>
                                 </div>
-                                <div class="col-lg-5">
-                                    <div class="news-info d-flex">
+                                <div class="col-lg-5 pl-0">
+                                    <div class="news-info d-flex justify-content-end">
                                         <?php
                                         $check_file = explode(".",trim($congvanden->documentary_send->file));
-                                    ?>
+                                        ?>
                                         @if($check_file[1] == "pdf")
 
                                         <div class="pdf file-fix">
@@ -136,7 +136,7 @@
                                             <i class="fas fa-file-excel"></i>
                                         </div>
                                         @else($check_file[1] =="jpg" || $check_file[1] =="png")
-                                        <span class="jpg">
+                                        <span class="jpg file-fix">
                                             <i class="fas fa-file-image"></i>
                                         </span>
                                         @if($check_file[1] =="zip")
@@ -189,11 +189,11 @@
                                 </h4>
                             </a>
                         </div>
-                        <div class="text-center mt-4">
+                        <!-- <div class="text-center mt-4">
                             <a href="{{route('get-xemcvden',$congvanden->id_send)}}" class="chitiet">
                                 <i class="fas fa-eye"></i>
                             </a>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>

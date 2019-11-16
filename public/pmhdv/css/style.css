@@ -855,28 +855,28 @@ pre.prettyprint {
     padding: 10px;
     border: 1px solid #eee;
     position: relative;
-    height: 190px;
+    height: 145px;
 }
 
 .loai-congvan {
     background: #ce1414cc;
 }
 
+
 .news-name h4 {
-    font-size: 14px;
+    font-size: 16px;
     color: #222;
     font-weight: 500;
     margin-bottom: 10px;
     -webkit-transition: all 300ms linear 0s;
     -o-transition: all 300ms linear 0s;
     transition: all 300ms linear 0s;
-    /* width: 217px; */
     text-align: left;
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
-    line-height: 16px;
-    height: 32px;
+    line-height: 18px;
+    height: 38px;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
 }
@@ -897,25 +897,18 @@ pre.prettyprint {
 
 .pdf i {
     color: brown;
-    font-size: 24px;
-    margin-left: 35px;
 }
 
 .word i {
     color: #2c5898;
-    font-size: 24px;
-    margin-left: 35px;
 }
 
 .excel i {
     color: #016e38;
-    font-size: 24px;
-    margin-left: 35px;
 }
 
 .jpg i {
     color: #6e1701;
-    font-size: 24px;
 
 }
 
@@ -1101,8 +1094,13 @@ button:focus {
     padding: 0 0 35px 6px;
 }
 
-.is-collapsed .menu {
-    width: 65px;
+.is-collapsed .fix-col {
+    max-width: 77px;
+}
+.is-collapsed .col-lg-10 {
+    flex: 0 0 100%;
+    max-width: 95%;
+    padding-right: 0;
 }
 
 .is-collapsed .main-body {
@@ -1209,16 +1207,20 @@ button:focus {
     margin: 3px 3px 0 0;
     font-size: 19px;
     border: 1px solid #ddd;
-    padding: 0 9px;
+    cursor: pointer;
 }
 
 .news-caret .dropdown-menu {
-    width: 22px;
+    width: 0px;
     min-width: 32px;
     top: 1px !important;
-    left: -10px !important;
+    left: -1px !important;
     border-radius: unset;
     padding: 0;
+}
+
+.news-caret .dropdown-toggle{
+    padding: 0 9px;
 }
 
 .news-caret a:hover {
@@ -1314,11 +1316,12 @@ button:focus {
 }
 .file-fix i {
     margin-left: 0;
+    font-size: 20px;
 }
 
 .storage {
     margin-top: 2px;
-    margin-left: 10px;
+    margin-left: 5px;
     color: #6b6a6a;
 }
 

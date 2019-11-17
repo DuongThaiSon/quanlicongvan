@@ -28,7 +28,7 @@ class CongVanDiController extends Controller
 		$congvandi = documentary_send::find($cvd);
 		$name = explode(".",$congvandi->file_code);
 		if($name[1] == "docx"){
-			return response()->file(storage_path($congvandi->file_pdf));
+			return response()->file(public_path('pmhdv/images/'.$congvandi->file_pdf));
 		}
 		if($name[1] == "pdf"){
 			return response()->file(public_path('pmhdv/images/'.$congvandi->file_code));
@@ -84,7 +84,7 @@ class CongVanDiController extends Controller
 		$id = Auth::user()->id;
 		$this->validate($request,
 		[
-			'tieude'=>'required|min:2|max:200',
+			'tieude'=>'required|min:2|max:300',
 			'noidung'=>'required|min:2|max:500',
 		],
 		[
@@ -111,10 +111,14 @@ class CongVanDiController extends Controller
 			{
 				$file = $request->file('teptin');
 				$hinh = $file->getClientOriginalName();
-				$name = str_random(8)."_". $hinh;
+				$ten = explode(".",$hinh);
+				// $name = str_random(8)."_". $hinh;
+				$name = $ten[0].str_random(3).".".$ten[1];
 				$congvandi->storage = $file->getSize();
 				while(file_exists("pmhdv/images".$name)){
-					$name =Str::random(8)."_". $hinh;
+					// $name =Str::random(8)."_". $hinh;
+					// $name = $hinh."_".Str::random(3);
+					$name = $ten[0].Str::random(3).".".$ten[1];
 				}
 				
 				$file->move('pmhdv/images',$name);
@@ -135,13 +139,13 @@ class CongVanDiController extends Controller
 					
 					$objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'HTML');
 					try {
-					$objWriter->save(storage_path($name_pdf[0].'.html'));
+					$objWriter->save(public_path('pmhdv/images/'.$name_pdf[0].'.html'));
 					}catch(Exception $e)
 					{}
 						
-					PDF::loadFile(storage_path($name_pdf[0].'.html'))->save(storage_path($name_pdf[0].".pdf"))->stream('download.pdf');
+					PDF::loadFile(public_path('pmhdv/images/'.$name_pdf[0].'.html'))->save(public_path('pmhdv/images/'.$name_pdf[0].".pdf"));
 					
-						$pdf = new \Spatie\PdfToImage\Pdf(storage_path($name_pdf[0].".pdf"));
+						$pdf = new \Spatie\PdfToImage\Pdf(public_path('pmhdv/images/'.$name_pdf[0].".pdf"));
 						
 						$pdf->setPage(1)->saveImage(public_path('pmhdv/images'));
 						

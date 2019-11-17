@@ -22,7 +22,7 @@ class CongVanDenController extends Controller
   $congvandi = documentary_send::find($cvd);
   $name = explode(".",$congvandi->file_code);
   if($name[1] == "docx"){
-      return response()->file(storage_path($congvandi->file_pdf));
+      return response()->file(public_path('pmhdv/images/'.$congvandi->file_pdf));
   }
   if($name[1] == "pdf"){
       return response()->file(public_path('pmhdv/images/'.$congvandi->file_code));

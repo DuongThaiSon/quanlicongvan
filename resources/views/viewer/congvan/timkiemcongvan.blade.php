@@ -67,11 +67,7 @@
             <div class="col-lg-2 col-md-3 col-sm-4">
                 <div class="news-item">
                     <div class="news-item--img position-relative">
-                        @if($congvantimkiem->check_read==1)
-                        <div class="check-seen">
-                            <i class="fas fa-check"></i>
-                        </div>
-                        @endif
+                        
                         <?php
                             $name = explode(".",$congvantimkiem->file_code);
                         ?>

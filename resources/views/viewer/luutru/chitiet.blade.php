@@ -7,61 +7,62 @@
 <div class="bg-white main-content">
     <div class="sub-header">
         <div class="row">
-            <div class="col-lg-4">
+            <div class="col-lg-6">
                 <!-- <div class="title">Trường đại học công nghiệp </div> -->
-                
-                <ul class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="viewer/congvan/luutru">Lưu trữ</a></li>
-                    
+
+                <ul class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a class="c-black" href="viewer/congvan/luutru">Lưu trữ</a></li>
+
                     @foreach($types as $tp)
-                        @if($tp == $type)
-                        
-                            <li class="breadcrumb-item"><a href="viewer/congvan/luutru/{{$type->id}}">{{$tp->name}}</a></li>
-                        @endif
+                    @if($tp == $type)
+
+                    <li class="breadcrumb-item"><a class="c-black" href="viewer/congvan/luutru/{{$type->id}}">{{$tp->name}}</a></li>
+                    @endif
                     @endforeach
                 </ul>
-            </div>
-            <div class="col-lg-2" style="padding-top:10px;">
-                <a href="{{route('get-taocv',$type->id)}}" class="btn-them" style="background-color:green;">
-                    <span class="icon-holder">
-                        <i class="fas fa-plus"></i>
-                    </span>
-                    <span class="sidebar-text">Tải lên</span>
-                </a>
             </div>
             <div class="col-lg-6">
                 <div class="search text-right position-relative">
                     <form action="{{route('get-timcv',$type->id)}}" method="get">
-                            <input type="text" placeholder="Nhập tên văn bản" name="timcongvan" class="input-search" autocomplete="off">
-                            <button type="submit" class="btn-search btn-info">
-                                <i class="fa fa-search"></i>
-                            </button>
-                            <div class="clear"></div>
-                            <div class="advance d-none">
-                                <div class="title position-relative">
-                                    <span class="text-uppercase">Bộ lọc nâng cao</span>
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Thời gian</label>
-                                    <input type="date" name="thoigian" id="" class="form-control">
-                                </div>
-                                <div>
-                                    <button type="submit" class="btn btn-info mt-2 btn-search-advance">Tìm kiếm</button>
-                                    <button type="button" class="btn btn-discard mt-2">Hủy bỏ</button>
-                                </div>
+                        <input type="text" placeholder="Nhập tên văn bản" name="timcongvan" class="input-search"
+                            autocomplete="off">
+                        <button type="submit" class="btn-search btn-info">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        <div class="clear"></div>
+                        <div class="advance d-none">
+                            <div class="title position-relative">
+                                <span class="text-uppercase">Bộ lọc nâng cao</span>
                             </div>
+                            <div class="form-group">
+                                <label for="">Thời gian</label>
+                                <input type="date" name="thoigian" id="" class="form-control">
+                            </div>
+                            <div>
+                                <button type="submit" class="btn btn-info mt-2 btn-search-advance">Tìm kiếm</button>
+                                <button type="button" class="btn btn-discard mt-2">Hủy bỏ</button>
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
     <div class="news">
+        <div class="them-luutru">
+            <a href="{{route('get-taocv',$type->id)}}" class="btn-them" style="background-color:green;">
+                <span class="icon-holder">
+                    <i class="fas fa-plus"></i>
+                </span>
+                <span class="sidebar-text">Tải lên</span>
+            </a>
+        </div>
         <div class="row pl-3 pr-3">
             @foreach($congvans as $congvan)
             <div class="col-lg-2 col-md-3 col-sm-4">
                 <div class="news-item">
                     <div class="news-item--img position-relative">
-                        
+
                         <?php
                             $name = explode(".",$congvan->file_code);
                             
@@ -69,14 +70,12 @@
 
                         <a href="{{route('get-xemcv',$congvan->id)}}">
                             @if($name[1] == "jpg" || $name[1] == "png" ||$name[1] == "PNG")
-                            
-                            <img class="img-fluid" src="pmhdv/images/{{$congvan->file_code}}"
-                                alt="">
+
+                            <img class="img-fluid" src="pmhdv/images/{{$congvan->file_code}}" alt="">
                             @else
                             @if($name[1] == "docx" || $name[1] == "pdf")
-                            
-                            <img class="img-fluid" src="pmhdv/images/{{$congvan->file_jpg}}"
-                                alt="">
+
+                            <img class="img-fluid" src="pmhdv/images/{{$congvan->file_jpg}}" alt="">
                             @else
                             @if($name[1] == "zip"||$name[1] == "jar")
                             <img class="img-fluid" src="pmhdv/images/winrar.jpg" alt="">
@@ -98,15 +97,14 @@
                                             </a>
                                         </div>
                                         <div class="news-icon-item">
-                                            <a href="pmhdv/images/{{$congvan->file_code}}"
-                                                title="Tải xuống"
+                                            <a href="pmhdv/images/{{$congvan->file_code}}" title="Tải xuống"
                                                 download="{{$congvan->file_code}}">
                                                 <i class="fas fa-file-download"></i>
                                             </a>
                                         </div>
                                         <div class="news-icon-item">
                                             <a href="" title="Sửa">
-                                            <i class="fas fa-edit"></i>
+                                                <i class="fas fa-edit"></i>
                                             </a>
                                         </div>
                                     </div>
@@ -187,7 +185,7 @@
                                 <span>{{ $congvan['created_at']->format('H:i') }} </span>
                                 <span> - </span>
                                 <span>{{ $congvan['created_at']->format('d/m/Y') }}</span>
-                                
+
                             </div>
                             <div class="clear"></div>
                         </div>
@@ -197,7 +195,7 @@
                                 </h4>
                             </a>
                         </div>
-                        
+
                     </div>
                 </div>
             </div>

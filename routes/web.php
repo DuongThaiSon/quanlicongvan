@@ -44,7 +44,7 @@ Route::group(['prefix'=>'viewer','middleware'=>'userLogin'],function(){
 
 		Route::get('timcongvanden','CongVanDenController@getTimCongVanDen')->name('get-timcvden');
 
-		Route::get('xemcongvanden/{cvd}','CongVanDenController@getXemCongVanDen')->name('get-xemcvden');
+		Route::get('xemcongvanden/{cvd}/{id}','CongVanDenController@getXemCongVanDen')->name('get-xemcvden');
 		
 
 		Route::get('xoa/{id}','CongVanDenController@getXoa')->name('get-xoacvden');

@@ -84,6 +84,8 @@ class CongVanDiController extends Controller
 		[
 			'tieude'=>'required|min:2|max:300',
 			'noidung'=>'required|min:2|max:500',
+			'nguoinhan'=>'required',
+			'teptin'=>'required'
 		],
 		[
 			'tieude.required'=>'Hãy nhập tiêu đề',
@@ -92,6 +94,8 @@ class CongVanDiController extends Controller
 			'noidung.required'=>'Hãy nhập nội dung',
 			'noidung.min'=>'Nội dung từ 2 đến 500 ký tự',
 			'noidung.max'=>'Nội dung từ 2 đến 500 ký tự',
+			'nguoinhan.required'=>'Hãy chọn người nhận',
+			'teptin.required'=>'Hãy chọn file',
 			
 		]);
 			$congvandi = new documentary_send;

@@ -50,13 +50,14 @@ class CongVanController extends Controller
 
         $this->validate($request,
         [
-			'tieude'=>'required|min:2|max:300',
+            'tieude'=>'required|min:2|max:300',
+            'teptin'=>'required',
 		],
 		[
 			'tieude.required'=>'Hãy nhập tiêu đề',
 			'tieude.min'=>'Tiêu đề từ 2 đến 300 ký tự',
 			'tieude.max'=>'Tiêu đề từ 2 đến 300 ký tự',
-			
+			'teptin.required'=>'Hãy chọn file',
         ]);
         $congvan = new documentary;
         $id = Auth::user()->id;

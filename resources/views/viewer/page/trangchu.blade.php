@@ -58,11 +58,11 @@
                         </div>
                         @endif
                         <?php
-                            $name = explode(".",$congvanden->documentary_send->file);
+                            $name = explode(".",$congvanden->documentary_send->file_code);
                         ?>
 
                         <a href="{{route('get-xemcvden',$congvanden->id_send)}}">
-                            @if($name[1] == "jpg" || $name[1] == "PNG")
+                            @if($name[1] == "jpg" || $name[1] == "png" || $name[1] == "PNG")
                             <img class="img-fluid" src="pmhdv/images/{{$congvanden->documentary_send->file_code}}"
                                 alt="">
                             @else
@@ -118,7 +118,7 @@
                                 <div class="col-lg-5 pl-0">
                                     <div class="news-info d-flex justify-content-end">
                                         <?php
-                                        $check_file = explode(".",trim($congvanden->documentary_send->file));
+                                        $check_file = explode(".",trim($congvanden->documentary_send->file_code));
                                         ?>
                                         @if($check_file[1] == "pdf")
 
@@ -189,11 +189,7 @@
                                 </h4>
                             </a>
                         </div>
-                        <!-- <div class="text-center mt-4">
-                            <a href="{{route('get-xemcvden',$congvanden->id_send)}}" class="chitiet">
-                                <i class="fas fa-eye"></i>
-                            </a>
-                        </div> -->
+                        
                     </div>
                 </div>
             </div>

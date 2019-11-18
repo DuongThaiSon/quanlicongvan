@@ -19,15 +19,23 @@
     </div>
     @endif
     <div class="container-fluid">
-        <div class="back back-js d-none">
-            <i class="fas fa-chevron-left"></i>
-            <span>Quay lại</span>
-        </div>
+        
         <div class="main-form">
-            <h3 class="form-create-title pt-4 mb-4">
-                Tạo mới công văn
-            </h3>
-            <form action="{{route('post-taocv')}}" method="POST" enctype="multipart/form-data">
+            <h5 class="form-create-title pt-4 mb-4">
+                <ul class="breadcrumb">
+                    
+                    <li class="breadcrumb-item"><a href="viewer/congvan/luutru">Lưu trữ</a></li>
+                    
+                    @foreach($types as $tp)
+                        @if($tp == $type)
+                        
+                            <li class="breadcrumb-item"><a href="viewer/congvan/luutru/{{$type->id}}">{{$tp->name}}</a></li>
+                        @endif
+                    @endforeach
+                    <li class="breadcrumb-item"><a href="{{route('get-taocv',$type)}}">Tải lên</a></li>
+                </ul>
+            </h5>
+            <form action="{{route('post-taocv',$type)}}" method="POST" enctype="multipart/form-data">
                 @CSRF
                 <div class="row">
                     <div class="col-lg-6">
@@ -36,31 +44,16 @@
                                 <label for="">Tiêu đề<sup>*</sup></label>
                                 <input type="text" placeholder="Tiêu đề" name="tieude">
                             </div>
+                            
                             <div class="form-group">
-                                <label for="" style="display:block;">Loại công văn<sup>*</sup></label>
-                                <select name="loaicongvan" id="" style="width:40%;">
-                                    @foreach($type_documentarys as $type_documentary)
-                                    <option value="{{$type_documentary->id}}">{{$type_documentary->name}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="">Tệp đính kèm</label>
+                                <label for="">Tệp đính kèm<sup>*</sup></label>
                                 <input type="file" name="teptin">
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-6">
-                        <div class="box-create-left create-section">
-                            <div class="form-group">
-                                <label for="">Nội dung</label>
-                                <textarea cols="30" rows="10" name="noidung"></textarea>
-                            </div>
-
-                        </div>
-                    </div>
+                    
                 </div>
-                <button type="submit" class="btn-add continue">Tạo mới</button>
+                <button type="submit" class="btn-add continue">Lưu trữ</button>
             </form>
         </div>
     </div>

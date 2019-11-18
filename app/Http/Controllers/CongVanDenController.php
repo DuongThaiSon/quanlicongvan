@@ -21,13 +21,10 @@ class CongVanDenController extends Controller
  public function getXemCongVanDen($cvd){
   $congvandi = documentary_send::find($cvd);
   $name = explode(".",$congvandi->file_code);
-  if($name[1] == "docx"){
-      return response()->file(public_path('pmhdv/images/'.$congvandi->file_pdf));
-  }
   if($name[1] == "pdf"){
       return response()->file(public_path('pmhdv/images/'.$congvandi->file_code));
   }
-  if($name[1] == "jpg" ||$name[1] =="png"){
+  if($name[1] == "jpg" ||$name[1] =="png" ||$name[1] =="PNG" ||$name[1] =="docx"){
       return response()->file(public_path('pmhdv/images/'.$congvandi->file_pdf));
   }
   
@@ -80,7 +77,7 @@ class CongVanDenController extends Controller
           $congvantimkiems = documentary_send::join('documentary_receive','documentary_send.id', '=', 'documentary_receive.id_send')->orderBy('documentary_send.id', 'DESC')->where('documentary_send.id_type',$lcv)->whereDate('documentary_send.send_date',$tg)->where('name','like','%'.$tcvd.'%')->where('documentary_receive.id_user',$id)->where('documentary_receive.status',1)->paginate(12,['*'], 'page');
         }
         
-      
+      // dd($congvantimkiems[0]->User);
       
 
         return view('viewer.page.timkiemcongvanden',['congvantimkiems'=>$congvantimkiems,'loaicongvans'=>$loaicongvans]);

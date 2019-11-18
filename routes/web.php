@@ -34,6 +34,8 @@ Route::group(['prefix'=>'viewer','middleware'=>'userLogin'],function(){
 
 		Route::get('timcongvandi','CongVanDiController@getTimCongVanDi')->name('get-timcvdi');
 
+		Route::get('xoa/{id}','CongVanDiController@getXoa')->name('get-xoacvdi');
+
 	});
 	Route::group(['prefix'=>'congvanden'],function(){
 		Route::get('danhsach','CongVanDenController@getDSCVDen');
@@ -52,17 +54,17 @@ Route::group(['prefix'=>'viewer','middleware'=>'userLogin'],function(){
 	Route::group(['prefix'=>'congvan'],function(){
 
 
-		Route::get('taomoi','CongVanController@getTaoMoi');
+		Route::get('taomoi/{t}','CongVanController@getTaoMoi')->name('get-taocv');
 
-		Route::post('taomoi','CongVanController@postTaoMoi')->name('post-taocv');
+		Route::post('taomoi/{t}','CongVanController@postTaoMoi')->name('post-taocv');
 
-		Route::get('timcongvan','CongVanController@getTimCongVan')->name('get-timcv');
+		Route::get('timcongvan/{t}','CongVanController@getTimCongVan')->name('get-timcv');
 
 		Route::get('luutru','CongVanController@getLuuTru');
 
 		Route::get('luutru/{t}','CongVanController@getChiTiet');
 
-		Route::get('xem/{cv}','CongVanController@getXem');
+		Route::get('xem/{cv}','CongVanController@getXem')->name('get-xemcv');
 
 		Route::get('xoa/{id}','CongVanController@getXoa')->name('get-xoacv');
 	});

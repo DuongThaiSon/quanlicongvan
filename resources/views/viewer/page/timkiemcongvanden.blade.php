@@ -62,12 +62,12 @@
                         </div>
                         @endif
                         <?php
-                                            $name = explode(".",$congvantimkiem->file);
+                                            $name = explode(".",$congvantimkiem->file_code);
                                             
                                             ?>
 
                         <a href="{{route('get-xemcvden',$congvantimkiem->id_send)}}">
-                            @if($name[1] == "jpg" || $name[1] == "png")
+                            @if($name[1] == "jpg" || $name[1] == "PNG" || $name[1] == "png")
                             <img class="img-fluid" src="pmhdv/images/{{$congvantimkiem->file_code}}" alt="">
                             @else
                             @if($name[1] == "docx" || $name[1] == "pdf")
@@ -109,16 +109,17 @@
                     </div>
                     <div class="news-item-text">
                         <div class="news-type">
-                            <div class="row pl-0 mb-3">
-                                <div class="col-lg-7">
-                                    <div class="ban-hanh loai-congvan">
-                                        {{$congvantimkiem->type_documentary->name}}
+                            <div class="row pl-0 mb-2">
+                                <div class="col-lg-7 text-left">
+                                    <div class="tag">
+                                        <i class="fas fa-tags"></i>
+                                        <span>{{$congvantimkiem->type_documentary->name}}</span>
                                     </div>
                                 </div>
-                                <div class="col-lg-5">
-                                    <div class="news-info d-flex">
+                                <div class="col-lg-5 pl-0">
+                                    <div class="news-info d-flex justify-content-end">
                                         <?php
-                                                $check_file = explode(".",trim($congvantimkiem->file));
+                                                $check_file = explode(".",trim($congvantimkiem->file_code));
                                             ?>
                                         @if($check_file[1] == "pdf")
 
@@ -135,6 +136,13 @@
                                         <div class="excel file-fix">
                                             <i class="fas fa-file-excel"></i>
                                         </div>
+                                        @else($check_file[1] =="jpg" || $check_file[1] =="PNG")
+                                        <span class="jpg file-fix">
+                                            <i class="fas fa-file-image"></i>
+                                        </span>
+                                        @if($check_file[1] =="zip")
+                                        <span>Zip</span>
+                                        @endif
                                         @endif
                                         @endif
 
@@ -158,9 +166,9 @@
                                         <p>{{$congvantimkiem->User->name}}</p>
                                         <p class="m-0">
                                             <span>{{$congvantimkiem->User->email}}</span>
-                                            <span>{{$congvantimkiem->documentary_send->User->role->name}}</span>
-                                            @if($congvanden->documentary_send->User->id_major!=0)
-                                            <span>{{$congvanden->documentary_send->User->major->name}}</span>
+                                            <span>{{$congvantimkiem->User->role->name}}</span>
+                                            @if($congvantimkiem->User->id_major!=0)
+                                            <span>{{$congvantimkiem->User->major->name}}</span>
                                             @endif
                                         </p>
                                     </div>
@@ -181,11 +189,7 @@
                                 </h4>
                             </a>
                         </div>
-                        <div class="text-center mt-4">
-                            <a href="{{route('get-xemcvden',$congvantimkiem->id_send)}}" class="chitiet">
-                                <i class="fas fa-eye"></i>
-                            </a>
-                        </div>
+                        
                     </div>
                 </div>
             </div>

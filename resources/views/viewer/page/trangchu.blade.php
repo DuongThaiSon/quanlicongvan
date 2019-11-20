@@ -184,7 +184,7 @@
                             <div class="clear"></div>
                         </div>
                         <div class="news-name">
-                            <a href="viewer/congvanden/chitiet/{{$congvanden->id}}">
+                            <a href="{{route('get-xemcvden',$congvanden->id_send)}}">
                                 <h4>{{$congvanden->documentary_send->name}}
                                 </h4>
                             </a>

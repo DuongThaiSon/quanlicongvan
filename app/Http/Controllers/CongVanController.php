@@ -30,7 +30,7 @@ class CongVanController extends Controller
         $congvan = documentary::find($cv);
         $name = explode(".",$congvan->file_code);
         if($name[1] == "docx"){
-            return response()->file(storage_path($congvan->file_pdf));
+            return response()->file(public_path($congvan->file_pdf));
         }
         if($name[1] == "pdf"){
             return response()->file(public_path('pmhdv/images/'.$congvan->file_code));
@@ -65,64 +65,76 @@ class CongVanController extends Controller
         $congvan->id_type = $request->loaicongvan;
         $congvan->id_user = $id;
         if($request->hasFile('teptin'))
-        {
-            $file = $request->file('teptin');
-			$hinh = $file->getClientOriginalName();
-            $name = str_random(8)."_". $hinh;
-            $congvan->storage = $file->getSize();
-			while(file_exists("pmhdv/images".$name)){
-				$name =Str::random(8)."_". $hinh;
-            }
-            
-            $file->move('pmhdv/images',$name);
-            
-            $congvan->file = $hinh;
-            $name_pdf = explode(".",$name);
-            $duoi = $file->getClientOriginalExtension('teptin');
-            
-            if($duoi == "docx"){
-                
-                
-                $phpWord = new \PhpOffice\PhpWord\PhpWord();
-                
-                $objReader = \PhpOffice\PhpWord\IOFactory::createReader("Word2007");
-                
-                $phpWord = $objReader->load(public_path('pmhdv/images/'.$name));
-                
-                $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'HTML');
-                try {
-                $objWriter->save(storage_path($name_pdf[0].'.html'));
-                }catch(Exception $e)
-                {}
-                PDF::loadFile(storage_path($name_pdf[0].'.html'))->save(storage_path($name_pdf[0].".pdf"))->stream('download.pdf');
-                    $pdf = new \Spatie\PdfToImage\Pdf(storage_path($name_pdf[0].".pdf"));
-                    $pdf->setPage(1)->saveImage(public_path('pmhdv/images'));
-                
-                rename(public_path('pmhdv/images/1.jpg'), public_path('pmhdv/images/'.$name_pdf[0].".jpg"));
-                $congvan->file_pdf = $name_pdf[0].".pdf";
-                $congvan->file_jpg = $name_pdf[0].".jpg";
-             
-               
-            }
-            if($duoi == "pdf"){
-                $pdf = new \Spatie\PdfToImage\Pdf(public_path('pmhdv/images/'.$name_pdf[0].".pdf"));
-                $pdf->setPage(1)->saveImage(public_path('pmhdv/images'));
-                rename(public_path('pmhdv/images/1.jpg'), public_path('pmhdv/images/'.$name_pdf[0].".jpg"));
-                $congvan->file_jpg = $name_pdf[0].".jpg";
-            }
-            if($duoi == "jpg" ){
-                
-                $img = new \Imagick(public_path('pmhdv/images/'.$name));
-                $img->setImageFormat('pdf');
-         
-                $success = $img->writeImage('pmhdv/images/'.$name_pdf[0].".pdf");
-                $congvan->file_pdf = $name_pdf[0].".pdf";
-            }
-            $congvan->create_date = date('y-m-d');
-            $congvan->file_code = $name;         
-           
-        }
-       
+			{
+				$file = $request->file('teptin');
+				$hinh = $file->getClientOriginalName();
+				$ten = explode(".",$hinh);
+				// $name = str_random(8)."_". $hinh;
+				$name = $ten[0].str_random(3).".".$ten[1];
+				$congvandi->storage = $file->getSize();
+				while(file_exists("pmhdv/images".$name)){
+					// $name =Str::random(8)."_". $hinh;
+					// $name = $hinh."_".Str::random(3);
+					$name = $ten[0].Str::random(3).".".$ten[1];
+				}
+				
+				$file->move('pmhdv/images',$name);
+				
+				$congvandi->file = $hinh;
+				$name_pdf = explode(".",$name);
+				$duoi = $file->getClientOriginalExtension('teptin');
+				
+			
+				if($duoi == "docx"){
+					
+					
+					$phpWord = new \PhpOffice\PhpWord\PhpWord();
+					
+					$objReader = \PhpOffice\PhpWord\IOFactory::createReader("Word2007");
+					
+					$phpWord = $objReader->load(public_path('pmhdv/images/'.$name));
+					
+					$objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'HTML');
+					try {
+					$objWriter->save(public_path($name_pdf[0].'.html'));
+					}catch(Exception $e)
+					{}
+						
+					PDF::loadFile(public_path($name_pdf[0].'.html'))->save(public_path($name_pdf[0].".pdf"));
+					
+						$pdf = new \Spatie\PdfToImage\Pdf(public_path($name_pdf[0].".pdf"));
+						
+						$pdf->setPage(1)->saveImage(public_path('pmhdv/images'));
+						
+					rename(public_path('pmhdv/images/1.jpg'), public_path('pmhdv/images/'.$name_pdf[0].".jpg"));
+					$congvandi->file_pdf = $name_pdf[0].".pdf";
+					$congvandi->file_jpg = $name_pdf[0].".jpg";
+					
+					
+				}
+				if($duoi == "pdf"){
+					$pdf = new \Spatie\PdfToImage\Pdf(public_path('pmhdv/images/'.$name_pdf[0].".pdf"));
+					$pdf->setPage(1)->saveImage(public_path('pmhdv/images'));
+					rename(public_path('pmhdv/images/1.jpg'), public_path('pmhdv/images/'.$name_pdf[0].".jpg"));
+					$congvandi->file_jpg = $name_pdf[0].".jpg";
+					
+				}
+				if($duoi == "jpg" ||$duoi == "PNG"){
+					
+					
+					$img = new \Imagick(public_path('pmhdv/images/'.$name));
+					$img->setImageFormat('pdf');
+			 
+					$success = $img->writeImage('pmhdv/images/'.$name_pdf[0].".pdf");
+					$congvandi->file_pdf = $name_pdf[0].".pdf";
+					
+				}
+				
+				$congvandi->file_code = $name;   
+				     
+			   
+			}
+        $congvan->create_date = date('y-m-d');
         $congvan->save();
         return redirect('viewer/congvan/taomoi')->with('thongbao','Tạo mới thành công');
 

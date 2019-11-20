@@ -6,12 +6,12 @@
 
 <section class="bg-white main-content">
     <div class="luutru-head sub-header">
-        <h3>Thư mục</h3>
+        <h3 class="title">Thư mục</h3>
     </div>
     <div class="luutru-body news">
         <div class="row pl-3 pr-3">
         @foreach($types as $type)
-            <div class="col-lg-3">
+            <div class="col-lg-3 col-md-6">
                 <a href="viewer/congvan/luutru/{{$type->id}}">
                     <div class="save-box d-flex">
                         <div class="save-box--icon">

@@ -6,30 +6,26 @@
 <section class="thongke">
     <div class="bg-white main-content">
         <div class="sub-header">
-            <div class="row">
-                <div class="col-lg-3">
-                    <div class="title">Thống kê</div>
-                </div>
-                <div class="col-lg-9">
-                    <form action="{{route('get-tkcv')}}" method="get"> 
-                    <div class="row">
+            <div class="title">Thống kê</div>
+        </div>
+        <div class="container mt-5">
+            <form action="{{route('get-tkcv')}}" method="get">
+                <div class="row">
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label for="">Thời gian bắt đầu</label>
-                            <input type="date" name="thoigianbatdau" id="" class="form-control" style="width:200px">
+                            <input type="date" name="thoigianbatdau" id="" class="form-control">
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label for="">Thời gian kết thúc</label>
-                            <input type="date" name="thoigianketthuc" id="" class="form-control" style="width:200px">
+                            <input type="date" name="thoigianketthuc" id="" class="form-control">
                         </div>
-                    </div>    
-                    </div>    
-                        <button type="submit" class="btn btn-info mt-2 btn-search-advance" style="width:200px; margin-left:200px">Tìm kiếm</button>
-                    </form>
+                    </div>
+                    <button type="submit" class="btn btn-info mt-2 m0-auto">Tìm kiếm</button>
                 </div>
-            </div>
+            </form>
         </div>
         <div class="row mt-5 pl-5 pr-5">
             <div class="col-sm-6 col-lg-3">
@@ -39,12 +35,12 @@
                             <div class="icon">
                                 <i class="fa fa-reply"></i>
                             </div>
-                            
+
                             <div class="text">
                                 <h2>{{count($congvandens)}}</h2>
                                 <span>Công văn đến</span>
                             </div>
-                            
+
                         </div>
                         <div class="overview-chart">
                             <canvas id="widgetChart1"></canvas>

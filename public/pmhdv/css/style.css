@@ -870,9 +870,6 @@ pre.prettyprint {
     color: #222;
     font-weight: 500;
     margin-bottom: 10px;
-    -webkit-transition: all 300ms linear 0s;
-    -o-transition: all 300ms linear 0s;
-    transition: all 300ms linear 0s;
     text-align: left;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -884,7 +881,7 @@ pre.prettyprint {
 }
 
 .news-name h4:hover {
-    color: #ff1857;
+    color: #2c5898;
 }
 
 .author-figure img {
@@ -1076,7 +1073,6 @@ button:focus {
 
 .master .col-lg-2 {
     background: #fff;
-    /* text-align: right; */
 }
 
 .menu {

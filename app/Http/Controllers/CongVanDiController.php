@@ -20,20 +20,18 @@ class CongVanDiController extends Controller
 		$id = Auth::user()->id;
 		$congvandis = documentary_send::orderBy('id', 'DESC')->where('id_usersend',$id)->where('status',1)->paginate(12,['*'], 'page');
 		$loaicongvans = type_documentary::all();
-
+		
 		return view("viewer.congvandi.danhsach",['congvandis'=>$congvandis,'loaicongvans'=>$loaicongvans]);
 	}
 
 	public function getXemCongVanDi($cvd){
+		
 		$congvandi = documentary_send::find($cvd);
 		$name = explode(".",$congvandi->file_code);
-		if($name[1] == "docx"){
-			return response()->file(public_path('pmhdv/images/'.$congvandi->file_pdf));
-		}
 		if($name[1] == "pdf"){
 			return response()->file(public_path('pmhdv/images/'.$congvandi->file_code));
 		}
-		if($name[1] == "jpg" ||$name[1] =="png"){
+		if($name[1] == "jpg" ||$name[1] =="PNG"||$name[1] == "docx" ||$name[1] =="png"){
 			return response()->file(public_path('pmhdv/images/'.$congvandi->file_pdf));
 		}
 		
@@ -86,6 +84,8 @@ class CongVanDiController extends Controller
 		[
 			'tieude'=>'required|min:2|max:300',
 			'noidung'=>'required|min:2|max:500',
+			'nguoinhan'=>'required',
+			'teptin'=>'required'
 		],
 		[
 			'tieude.required'=>'Hãy nhập tiêu đề',
@@ -94,13 +94,14 @@ class CongVanDiController extends Controller
 			'noidung.required'=>'Hãy nhập nội dung',
 			'noidung.min'=>'Nội dung từ 2 đến 500 ký tự',
 			'noidung.max'=>'Nội dung từ 2 đến 500 ký tự',
+			'nguoinhan.required'=>'Hãy chọn người nhận',
+			'teptin.required'=>'Hãy chọn file',
 			
 		]);
 			$congvandi = new documentary_send;
 			$congvandi->name = $request->tieude;
 			$congvandi->content = $request->noidung;
 			$congvandi->id_type = $request->loaicongvan;
-			$congvandi->id_category = 2;
 			$congvandi->id_usersend=$id;
 			$congvandi->status = 1;
 			$congvandi->number_read = 0;
@@ -110,20 +111,19 @@ class CongVanDiController extends Controller
 			if($request->hasFile('teptin'))
 			{
 				$file = $request->file('teptin');
-				$hinh = $file->getClientOriginalName();
-				$ten = explode(".",$hinh);
-				// $name = str_random(8)."_". $hinh;
-				$name = $ten[0].str_random(3).".".$ten[1];
+				$name = $file->getClientOriginalName();
+				$ten = explode(".",$name);
+				
 				$congvandi->storage = $file->getSize();
-				while(file_exists("pmhdv/images".$name)){
-					// $name =Str::random(8)."_". $hinh;
-					// $name = $hinh."_".Str::random(3);
-					$name = $ten[0].Str::random(3).".".$ten[1];
+				while(file_exists( public_path() . '/pmhdv/images/'.$name)){
+					
+                    $name = $ten[0].str_random(3).".".$ten[1];
+                    
 				}
 				
 				$file->move('pmhdv/images',$name);
 				
-				$congvandi->file = $hinh;
+				
 				$name_pdf = explode(".",$name);
 				$duoi = $file->getClientOriginalExtension('teptin');
 				
@@ -162,7 +162,7 @@ class CongVanDiController extends Controller
 					$congvandi->file_jpg = $name_pdf[0].".jpg";
 					
 				}
-				if($duoi == "jpg" ||$duoi == "PNG"){
+				if($duoi == "jpg" ||$duoi == "PNG" || $duoi == "png"){
 					
 					
 					$img = new \Imagick(public_path('pmhdv/images/'.$name));
@@ -195,5 +195,12 @@ class CongVanDiController extends Controller
 			}
 			
 			return redirect('viewer/congvandi/themmoi')->with('thongbao','Gửi thành công');
+	}
+
+	public function getXoa($id){
+		$congvandi = documentary_send::find($id);
+		$congvandi->status = 0;
+		$congvandi->save();
+		return back();
 	}
 }

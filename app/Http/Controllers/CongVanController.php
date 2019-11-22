@@ -23,64 +23,65 @@ class CongVanController extends Controller
 
     public function getChiTiet($t){
         $id = auth()->user()->id;
+        $type= type_documentary::find($t);
+        $types = type_documentary::all();
         $congvans = documentary::orderBy('id', 'DESC')->where('id_user',$id)->where('id_type',$t)->where('status',1)->paginate(12,['*'], 'page'); 
-        return view('viewer.luutru.chitiet',['congvans'=>$congvans]);
+        return view('viewer.luutru.chitiet',['congvans'=>$congvans,'type'=>$type,'types'=>$types]);
     }
     public function getXem($cv){
         $congvan = documentary::find($cv);
         $name = explode(".",$congvan->file_code);
-        if($name[1] == "docx"){
-            return response()->file(public_path($congvan->file_pdf));
-        }
         if($name[1] == "pdf"){
             return response()->file(public_path('pmhdv/images/'.$congvan->file_code));
         }
-        if($name[1] == "jpg" ||$name[1] =="png"){
+        if($name[1] == "jpg" ||$name[1] =="PNG" ||$name[1] == "docx" ||$name[1] =="png"){
             return response()->file(public_path('pmhdv/images/'.$congvan->file_pdf));
         }
 
     }
-    public function getTaoMoi(){
+    public function getTaoMoi($t){
         $id = Auth::user()->id;
-        $type_documentarys = type_documentary::all();
-        return view('viewer.congvan.taomoi',['type_documentarys'=>$type_documentarys]);
+        $type = type_documentary::find($t);
+        $types = type_documentary::all();
+        return view('viewer.congvan.taomoi',['type'=>$type,'types'=>$types]);
     }
 
-    public function postTaoMoi(Request $request){
+    public function postTaoMoi($t,Request $request){
 
         $this->validate($request,
         [
-			'tieude'=>'required|min:2|max:200',
+            'tieude'=>'required|min:2|max:300',
+            'teptin'=>'required',
 		],
 		[
 			'tieude.required'=>'Hãy nhập tiêu đề',
-			'tieude.min'=>'Tiêu đề từ 2 đến 200 ký tự',
-			'tieude.max'=>'Tiêu đề từ 2 đến 200 ký tự',
-			
+			'tieude.min'=>'Tiêu đề từ 2 đến 300 ký tự',
+			'tieude.max'=>'Tiêu đề từ 2 đến 300 ký tự',
+			'teptin.required'=>'Hãy chọn file',
         ]);
         $congvan = new documentary;
         $id = Auth::user()->id;
         $congvan->name = $request->tieude;
-        $congvan->content = $request->noidung;
-        $congvan->id_type = $request->loaicongvan;
+        $congvan->id_type = $t;
         $congvan->id_user = $id;
         if($request->hasFile('teptin'))
 			{
+                
 				$file = $request->file('teptin');
-				$hinh = $file->getClientOriginalName();
-				$ten = explode(".",$hinh);
-				// $name = str_random(8)."_". $hinh;
-				$name = $ten[0].str_random(3).".".$ten[1];
-				$congvandi->storage = $file->getSize();
-				while(file_exists("pmhdv/images".$name)){
-					// $name =Str::random(8)."_". $hinh;
-					// $name = $hinh."_".Str::random(3);
-					$name = $ten[0].Str::random(3).".".$ten[1];
+				$name = $file->getClientOriginalName();
+				$ten = explode(".",$name);
+                
+                $congvan->storage = $file->getSize();
+                
+				while(file_exists( public_path() . '/pmhdv/images/'.$name)){
+					
+                    $name = $ten[0].str_random(3).".".$ten[1];
+                    
 				}
 				
 				$file->move('pmhdv/images',$name);
 				
-				$congvandi->file = $hinh;
+				
 				$name_pdf = explode(".",$name);
 				$duoi = $file->getClientOriginalExtension('teptin');
 				
@@ -96,19 +97,19 @@ class CongVanController extends Controller
 					
 					$objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'HTML');
 					try {
-					$objWriter->save(public_path($name_pdf[0].'.html'));
+					$objWriter->save(public_path('pmhdv/images/'.$name_pdf[0].'.html'));
 					}catch(Exception $e)
 					{}
 						
-					PDF::loadFile(public_path($name_pdf[0].'.html'))->save(public_path($name_pdf[0].".pdf"));
+					PDF::loadFile(public_path('pmhdv/images/'.$name_pdf[0].'.html'))->save(public_path('pmhdv/images/'.$name_pdf[0].".pdf"));
 					
-						$pdf = new \Spatie\PdfToImage\Pdf(public_path($name_pdf[0].".pdf"));
+						$pdf = new \Spatie\PdfToImage\Pdf(public_path('pmhdv/images/'.$name_pdf[0].".pdf"));
 						
 						$pdf->setPage(1)->saveImage(public_path('pmhdv/images'));
 						
 					rename(public_path('pmhdv/images/1.jpg'), public_path('pmhdv/images/'.$name_pdf[0].".jpg"));
-					$congvandi->file_pdf = $name_pdf[0].".pdf";
-					$congvandi->file_jpg = $name_pdf[0].".jpg";
+					$congvan->file_pdf = $name_pdf[0].".pdf";
+					$congvan->file_jpg = $name_pdf[0].".jpg";
 					
 					
 				}
@@ -116,49 +117,52 @@ class CongVanController extends Controller
 					$pdf = new \Spatie\PdfToImage\Pdf(public_path('pmhdv/images/'.$name_pdf[0].".pdf"));
 					$pdf->setPage(1)->saveImage(public_path('pmhdv/images'));
 					rename(public_path('pmhdv/images/1.jpg'), public_path('pmhdv/images/'.$name_pdf[0].".jpg"));
-					$congvandi->file_jpg = $name_pdf[0].".jpg";
+					$congvan->file_jpg = $name_pdf[0].".jpg";
 					
 				}
-				if($duoi == "jpg" ||$duoi == "PNG"){
+				if($duoi == "jpg" ||$duoi == "PNG" || $duoi == "png"){
 					
 					
 					$img = new \Imagick(public_path('pmhdv/images/'.$name));
 					$img->setImageFormat('pdf');
 			 
 					$success = $img->writeImage('pmhdv/images/'.$name_pdf[0].".pdf");
-					$congvandi->file_pdf = $name_pdf[0].".pdf";
+					$congvan->file_pdf = $name_pdf[0].".pdf";
 					
 				}
 				
-				$congvandi->file_code = $name;   
+				$congvan->file_code = $name;   
 				     
 			   
 			}
         $congvan->create_date = date('y-m-d');
+        
         $congvan->save();
-        return redirect('viewer/congvan/taomoi')->with('thongbao','Tạo mới thành công');
+        return redirect('viewer/congvan/taomoi/'.$t)->with('thongbao','Lưu trữ thành công');
 
     }
 
     
-    public function getTimCongVan(Request $request){
+    public function getTimCongVan($t,Request $request){
         $id = Auth::user()->id;
         $tg = $request->thoigian;
         $tcv = $request->timcongvan;
-        
+        $type= type_documentary::find($t);
+        $types = type_documentary::all();
         if($tg == "" && $tcv == "")
-            $congvantimkiems = documentary::orderBy('id', 'DESC')->where('id_user',$id)->where('status',1)->paginate(12,['*'], 'page');
+            $congvantimkiems = documentary::orderBy('id', 'DESC')->where('id_user',$id)->where('status',1)->where('id_type',$t)->paginate(12,['*'], 'page');
         
         else if($tg == "" && $tcv != "")
-            $congvantimkiems = documentary::orderBy('id', 'DESC')->where('name','like','%'.$tcv.'%')->where('id_user',$id)->where('status',1)->paginate(12,['*'], 'page');
+            $congvantimkiems = documentary::orderBy('id', 'DESC')->where('name','like','%'.$tcv.'%')->where('id_user',$id)->where('status',1)->where('id_type',$t)->paginate(12,['*'], 'page');
         
         else if($tg != "" && $tcv == "")
-            $congvantimkiems = documentary::orderBy('id', 'DESC')->whereDate('create_date',$tg)->where('id_user',$id)->where('status',1)->paginate(12,['*'], 'page');
+            $congvantimkiems = documentary::orderBy('id', 'DESC')->whereDate('create_date',$tg)->where('id_user',$id)->where('status',1)->where('id_type',$t)->paginate(12,['*'], 'page');
         
         else
-            $congvantimkiems = documentary::orderBy('id', 'DESC')->whereDate('create_date',$tg)->where('name','like','%'.$tcv.'%')->where('id_user',$id)->where('status',1)->paginate(12,['*'], 'page');
-       
+            $congvantimkiems = documentary::orderBy('id', 'DESC')->whereDate('create_date',$tg)->where('name','like','%'.$tcv.'%')->where('id_user',$id)->where('status',1)->where('id_type',$t)->paginate(12,['*'], 'page');
+        
+            
 
-        return view('viewer.congvan.timkiemcongvan',['congvantimkiems'=>$congvantimkiems]);
+        return view('viewer.congvan.timkiemcongvan',['congvantimkiems'=>$congvantimkiems,'type'=>$type,'types'=>$types]);
    }
 }

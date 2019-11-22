@@ -308,6 +308,7 @@ a:hover {
 
 .breadcrumb a {
     color: #aaa;
+    font-size: 18px;
 }
 
 .breadcrumb a:hover {
@@ -870,6 +871,12 @@ pre.prettyprint {
     color: #222;
     font-weight: 500;
     margin-bottom: 10px;
+<<<<<<< HEAD
+=======
+    /* -webkit-transition: all 300ms linear 0s;
+    -o-transition: all 300ms linear 0s;
+    transition: all 300ms linear 0s; */
+>>>>>>> tuan
     text-align: left;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -1247,6 +1254,76 @@ button:focus {
     color: #fff;
 }
 
+<<<<<<< HEAD
+=======
+@media(max-width:1270px) {
+    .news .col-lg-2 {
+        max-width: 33.666667%;
+        flex: 0 0 33%;
+    }
+
+    .storage {
+        font-size: 12px;
+        margin-top: 4px;
+        margin-left: 6px;
+        color: #6b6a6a;
+    }
+
+    .file-fix i {
+        margin-left: 9px;
+    }
+    .fix-height{
+        height: 198vh;
+    }
+    .menu{
+        height: 198vh;
+    }
+    
+}
+@media(min-width:1271px) and (max-width:1490px) {
+    .news .col-lg-2 {
+        max-width: 24.666667%;
+        flex: 0 0 25%;
+    }
+    .is-collapsed .col-lg-10{
+        max-width: 94%;
+    }
+    .storage {
+        font-size: 12px;
+        margin-top: 4px;
+        margin-left: 6px;
+        color: #6b6a6a;
+    }
+
+    .file-fix i {
+        margin-left: 9px;
+    }
+    .fix-height{
+        height: 285vh;
+    }
+    
+}
+@media(min-width:1491px) and (max-width: 1800px) {
+    .news .col-lg-2 {
+        max-width: 25%;
+        flex: 0 0 19.666667%;
+    }
+
+    .storage {
+        font-size: 12px;
+        margin-top: 3px;
+        margin-left: 6px !important;
+        color: #6b6a6a;
+    }
+
+    .file-fix i {
+        margin-left: 9px;
+    }
+    .fix-height{
+        height: 149vh;
+    }
+}
+>>>>>>> tuan
 .file-fix i {
     margin-left: 0;
     font-size: 20px;
@@ -1526,6 +1603,7 @@ button:focus {
     color: #333333;
     margin-right: 3px;
 }
+<<<<<<< HEAD
 
 .main-content {
     padding: 0 0 30px 0;
@@ -1899,3 +1977,19 @@ button:focus {
         height: 149vh;
     }
 }
+=======
+.main-content{
+    padding: 0 0 30px 0;
+    min-height: 100vh;
+}
+.bg-white{
+    background: #fff !important;
+}
+.them-luutru a{
+    display: inline-block;
+    margin-bottom: 20px;
+    margin-left: 15px;
+}
+.c-black{
+    color: #000 !important;
+>>>>>>> tuan

@@ -37,7 +37,7 @@
                 @yield('content')
             </div>
         </div>
-        
+        @yield('script')
     </section>
     @include('viewer.layout.footer')
 </body>

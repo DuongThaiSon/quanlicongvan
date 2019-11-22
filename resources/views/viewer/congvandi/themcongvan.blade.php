@@ -1,6 +1,6 @@
 @extends('viewer.layout.master')
 @section('title')
-<title>Thêm công văn</title>
+<title>Gửi công văn</title>
 @endsection
 @section('content')
 <style type="text/css">

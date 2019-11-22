@@ -8,6 +8,7 @@ use App\documentary_send;
 use App\type_documentary;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
+use App\documentary;
 
 class CongVanDenController extends Controller
 {
@@ -104,5 +105,22 @@ class CongVanDenController extends Controller
       
       $congvanden->save();
       return redirect()->back();
+    }
+
+    public function getLuuTru($id){
+      $congvanden = documentary_receive::find($id);
+      $congvan = new documentary;
+      $congvan->name = $congvanden->documentary_send->name;
+      $congvan->id_type = $congvanden->documentary_send->id_type;
+      $congvan->id_user = $congvanden->id_user;
+      $congvan->create_date = $congvanden->documentary_send->send_date;
+      $congvan->file_code = $congvanden->documentary_send->file_code;
+      $congvan->file_pdf = $congvanden->documentary_send->file_pdf;
+      $congvan->file_jpg = $congvanden->documentary_send->file_jpg;
+      $congvan->storage =  $congvanden->documentary_send->storage;
+      
+      $congvan->save();
+
+      return back()->with('thongbao','Lưu trữ thành công');
     }
 }

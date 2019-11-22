@@ -93,7 +93,7 @@
                                             </a>
                                         </div>
                                         <div class="news-icon-item">
-                                            <a href="" title="Lưu trữ">
+                                            <a href="{{route('get-luucvden',$congvanden->id)}}" title="Lưu trữ">
                                                 <i class="fas fa-bookmark"></i>
                                             </a>
                                         </div>
@@ -286,5 +286,11 @@
 @endsection
 @section('script')
 
-
+<script>
+  var msg = '{{Session::get('thongbao')}}';
+  var exist = '{{Session::has('thongbao')}}';
+  if(exist){
+    alert(msg);
+  }
+</script>
 @endsection

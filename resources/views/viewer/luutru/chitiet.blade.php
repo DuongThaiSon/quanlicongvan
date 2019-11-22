@@ -103,7 +103,7 @@
                                             </a>
                                         </div>
                                         <div class="news-icon-item">
-                                            <a href="" title="Sửa">
+                                            <a href="#" title="Sửa" title="Sửa">
                                                 <i class="fas fa-edit"></i>
                                             </a>
                                         </div>

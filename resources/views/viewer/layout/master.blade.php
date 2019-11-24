@@ -33,7 +33,6 @@
 <body>
     @include('viewer.layout.header')
     <section class="master">
-
         <div class="row">
             <div class="col-lg-2 fix-col text-left">
                 @include('viewer.layout.menu')
@@ -42,11 +41,6 @@
                 @yield('content')
             </div>
         </div>
-
-        @include('viewer.layout.menu')
-        @yield('content')
-        
-
     </section>
     @yield('script')
 </body>

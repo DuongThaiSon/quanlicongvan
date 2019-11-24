@@ -43,6 +43,7 @@
         </div>
     </section>
     @yield('script')
+    @include('viewer.layout.footer')
 </body>
 
 </html>

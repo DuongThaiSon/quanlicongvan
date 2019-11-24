@@ -36,6 +36,7 @@ Route::group(['prefix'=>'viewer','middleware'=>'userLogin'],function(){
 
 		Route::get('xoa/{id}','CongVanDiController@getXoa')->name('get-xoacvdi');
 
+
 	});
 	Route::group(['prefix'=>'congvanden'],function(){
 		Route::get('danhsach','CongVanDenController@getDSCVDen');
@@ -48,6 +49,8 @@ Route::group(['prefix'=>'viewer','middleware'=>'userLogin'],function(){
 		
 
 		Route::get('xoa/{id}','CongVanDenController@getXoa')->name('get-xoacvden');
+
+		Route::get('luutru/{id}','CongVanDenController@getLuuTru')->name('get-luucvden');
 	
 	});
 
@@ -87,6 +90,8 @@ Route::group(['prefix'=>'viewer','middleware'=>'userLogin'],function(){
 		Route::get('congvan','ThongKeController@getThongKeCongVan')->name('get-tkcv');
 	});
 });
+
+Route::get('testthem','CongVanDiController@getTest');
 
 
 

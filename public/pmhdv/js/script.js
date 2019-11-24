@@ -54,6 +54,7 @@ $(document).ready(function () {
     $("#checkAll").click(function () {
         $('input:checkbox').not(this).prop('checked', this.checked);
     });
+    
 
     //WidgetChart 1
     var ctx = document.getElementById("widgetChart1");

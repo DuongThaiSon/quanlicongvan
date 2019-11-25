@@ -9,6 +9,7 @@ use App\type_documentary;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use App\documentary;
+use App\comment;
 
 class CongVanDenController extends Controller
 {
@@ -45,17 +46,22 @@ class CongVanDenController extends Controller
 
  public function getChiTiet($id){
       $chitiet = documentary_receive::find($id);
+      $comment = comment::orderBy('id', 'ASC')->where('id_receive',$id)->get();
+     
       $id_user = Auth::user()->id;
        $cvgui = documentary_send::find($chitiet->id_send);
       if($chitiet->check_read == 0){
           $cvgui->number_read+=1;
           $chitiet->check_read = 1;
+          $chitiet->check_time = date('y-m-d');
           $cvgui->save();
       }
       else
              $chitiet->check_read = 1;
         $chitiet->save();
-      return view('viewer.congvanden.chitiet',['chitiet'=>$chitiet]);
+
+      
+      return view('viewer.congvanden.chitiet',['chitiet'=>$chitiet,'comment'=>$comment]);
  }
 
   public function getTimCongVanDen(Request $request){
@@ -122,5 +128,25 @@ class CongVanDenController extends Controller
       $congvan->save();
 
       return back()->with('thongbao','Lưu trữ thành công');
+    }
+
+    public function postBinhLuan($id,Request $request){
+      $congvanden = documentary_send::find($id);
+      $congvanden->check_comment = 1;
+      $congvanden->save();
+      $this->validate($request,
+        [
+            'binhluan'=>'required|max:300',            
+        ],
+        [
+        'binhluan.required'=>'Hãy nhập bình luận',
+        'binhluan.max'=>'Tiêu đề từ 2 đến 300 ký tự',
+        ]);
+      $comment = new comment;
+      $comment->content = $request->binhluan;
+      $comment->id_receive = $id;
+      $comment->id_user = Auth::user()->id;
+      $comment->save();
+      return back();
     }
 }

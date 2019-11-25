@@ -184,7 +184,7 @@
                                 <div class="clear"></div>
                             </div>
                             <div class="news-name" >
-                                <a href="{{route('get-xemcvden',[$congvantimkiem->id_send, $congvantimkiem->id])}}" >
+                                <a href="{{route('chitiet-cvden',$congvantimkiem->id)}}" >
                                     <h4 id="{{$congvantimkiem->id}}">{{$congvantimkiem->documentary_send->name}}
                                     </h4>
                                 </a>
@@ -270,7 +270,7 @@
                             <div class="clear"></div>
                         </div>
                         <div class="news-name" >
-                            <a href="{{route('get-xemcvden',[$congvantimkiem->id_send, $congvantimkiem->id])}}" >
+                            <a href="{{route('chitiet-cvden',$congvanden->id)}}" >
                                 <h4>{{$congvantimkiem->documentary_send->name}}
                                 </h4>
                             </a>

@@ -12,6 +12,7 @@ use App\type_documentary;
 use PDF;
 use PhpOffice\PhpWord\IOFactory;
 use PhpOffice\PhpWord\Settings;
+use App\comment;
 class CongVanDiController extends Controller
 {
 	//
@@ -208,5 +209,24 @@ class CongVanDiController extends Controller
 		$type_documentarys = type_documentary::all();
 		$users = User::all();
 		return view('viewer.congvandi.testthem',['majors'=>$majors,'type_documentarys'=>$type_documentarys,'users'=>$users]);
+	}
+
+	public function getChiTiet($id){		
+		$congvandi = documentary_send::find($id);
+		$congvanden = documentary_receive::where('id_send',$id)->where('status',1)->where('check_comment',1)->get();
+		$songuoibinhluan = $congvanden->count();
+		$congvandenxem = documentary_receive::where('id_send',$id)->where('status',1)->where('check_read',1)->get();
+		$songuoixem = $congvandenxem->count();
+		return view('viewer.congvandi.chitiet',['congvandi'=>$congvandi,'snbl'=>$songuoibinhluan,'congvanden'=>$congvanden,'congvandenxem'=>$congvandenxem,'snx'=>$songuoixem]);
+	}
+	
+	public function getXemBinhLuan($id,$ids){
+		$comment = comment::orderBy('id', 'ASC')->where('id_receive',$id)->get();
+		$congvandi = documentary_send::find($ids);
+		$congvanden = documentary_receive::where('id_send',$ids)->where('status',1)->where('check_comment',1)->get();
+		$songuoibinhluan = $congvanden->count();
+		$congvandenxem = documentary_receive::where('id_send',$ids)->where('status',1)->where('check_read',1)->get();
+		$songuoixem = $congvandenxem->count();
+		return view('viewer.congvandi.xembinhluan',['congvandi'=>$congvandi,'snbl'=>$songuoibinhluan,'congvanden'=>$congvanden,'congvandenxem'=>$congvandenxem,'snx'=>$songuoixem,'comment'=>$comment]);
 	}
 }

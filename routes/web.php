@@ -36,12 +36,15 @@ Route::group(['prefix'=>'viewer','middleware'=>'userLogin'],function(){
 
 		Route::get('xoa/{id}','CongVanDiController@getXoa')->name('get-xoacvdi');
 
+		Route::get('chitiet/{id}','CongVanDiController@getChiTiet')->name('chitiet-cvdi');
+
+		Route::get('xembinhluan/{id}/{ids}','CongVanDiController@getXemBinhLuan')->name('get-xemblcvdi');
 
 	});
 	Route::group(['prefix'=>'congvanden'],function(){
 		Route::get('danhsach','CongVanDenController@getDSCVDen');
 
-		Route::get('chitiet/{id}','CongVanDenController@getChiTiet');
+		Route::get('chitiet/{id}','CongVanDenController@getChiTiet')->name('chitiet-cvden');
 
 		Route::get('timcongvanden','CongVanDenController@getTimCongVanDen')->name('get-timcvden');
 
@@ -51,6 +54,8 @@ Route::group(['prefix'=>'viewer','middleware'=>'userLogin'],function(){
 		Route::get('xoa/{id}','CongVanDenController@getXoa')->name('get-xoacvden');
 
 		Route::get('luutru/{id}','CongVanDenController@getLuuTru')->name('get-luucvden');
+
+		Route::post('binhluan/{id}','CongVanDenController@postBinhLuan')->name('binh-luan');
 	
 	});
 

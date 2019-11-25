@@ -18,4 +18,9 @@ class documentary_receive extends Model
     {
     	return $this->belongsTo('App\User','id_user','id');
     }
+    public function comment()
+    {
+    	return $this->hasMany('App\comment','id_receive','id');
+    }
+
 }

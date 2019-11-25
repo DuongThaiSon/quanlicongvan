@@ -185,7 +185,7 @@
                             <div class="clear"></div>
                         </div>
                         <div class="news-name">
-                            <a href="{{route('get-xemcvdi',$congvandi->id)}}">
+                            <a href="{{route('chitiet-cvdi',$congvandi->id)}}">
                                 <h4>{{$congvandi->name}}
                                 </h4>
                             </a>

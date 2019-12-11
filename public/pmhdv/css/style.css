@@ -797,7 +797,7 @@ textarea {
 .btn-add {
     margin: 0 auto;
     display: block;
-    padding: 13px 80px;
+    padding: 13px 50px;
 }
 
 .mentiony-container,
@@ -871,12 +871,6 @@ pre.prettyprint {
     color: #222;
     font-weight: 500;
     margin-bottom: 10px;
-<<<<<<< HEAD
-=======
-    /* -webkit-transition: all 300ms linear 0s;
-    -o-transition: all 300ms linear 0s;
-    transition: all 300ms linear 0s; */
->>>>>>> tuan
     text-align: left;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -893,6 +887,7 @@ pre.prettyprint {
 
 .author-figure img {
     width: 30px;
+    height: 30px;
     border-radius: 50%;
 }
 
@@ -1254,76 +1249,6 @@ button:focus {
     color: #fff;
 }
 
-<<<<<<< HEAD
-=======
-@media(max-width:1270px) {
-    .news .col-lg-2 {
-        max-width: 33.666667%;
-        flex: 0 0 33%;
-    }
-
-    .storage {
-        font-size: 12px;
-        margin-top: 4px;
-        margin-left: 6px;
-        color: #6b6a6a;
-    }
-
-    .file-fix i {
-        margin-left: 9px;
-    }
-    .fix-height{
-        height: 198vh;
-    }
-    .menu{
-        height: 198vh;
-    }
-    
-}
-@media(min-width:1271px) and (max-width:1490px) {
-    .news .col-lg-2 {
-        max-width: 24.666667%;
-        flex: 0 0 25%;
-    }
-    .is-collapsed .col-lg-10{
-        max-width: 94%;
-    }
-    .storage {
-        font-size: 12px;
-        margin-top: 4px;
-        margin-left: 6px;
-        color: #6b6a6a;
-    }
-
-    .file-fix i {
-        margin-left: 9px;
-    }
-    .fix-height{
-        height: 285vh;
-    }
-    
-}
-@media(min-width:1491px) and (max-width: 1800px) {
-    .news .col-lg-2 {
-        max-width: 25%;
-        flex: 0 0 19.666667%;
-    }
-
-    .storage {
-        font-size: 12px;
-        margin-top: 3px;
-        margin-left: 6px !important;
-        color: #6b6a6a;
-    }
-
-    .file-fix i {
-        margin-left: 9px;
-    }
-    .fix-height{
-        height: 149vh;
-    }
-}
->>>>>>> tuan
 .file-fix i {
     margin-left: 0;
     font-size: 20px;
@@ -1603,7 +1528,6 @@ button:focus {
     color: #333333;
     margin-right: 3px;
 }
-<<<<<<< HEAD
 
 .main-content {
     padding: 0 0 30px 0;
@@ -1730,10 +1654,19 @@ button:focus {
     display: inline-block;
     position: relative;
 }
-
-
-
-
+.save-breadcrumb{
+    padding: 4px 0;
+    font-size: 24px;
+}
+.them-luutru{
+    padding-left: 16px;
+}
+.save-breadcrumb a{
+    color: #000;
+}
+.select2-container{
+    width: 100% !important;
+}
 
 
 
@@ -1797,6 +1730,14 @@ button:focus {
 
     .btn-mobile-toggle {
         left: 18px;
+    }
+
+    .login-form {
+        width: 350px;
+    }
+
+    .login-user_icon {
+        padding: 0.75rem 1rem;
     }
 }
 
@@ -1902,6 +1843,10 @@ button:focus {
     .menu-mobile {
         display: block !important;
     }
+    .news-item--img img {
+        height: 300px !important;
+        width: 100% !important;
+    }
 }
 
 @media(max-width:1270px) {
@@ -1977,19 +1922,3 @@ button:focus {
         height: 149vh;
     }
 }
-=======
-.main-content{
-    padding: 0 0 30px 0;
-    min-height: 100vh;
-}
-.bg-white{
-    background: #fff !important;
-}
-.them-luutru a{
-    display: inline-block;
-    margin-bottom: 20px;
-    margin-left: 15px;
-}
-.c-black{
-    color: #000 !important;
->>>>>>> tuan

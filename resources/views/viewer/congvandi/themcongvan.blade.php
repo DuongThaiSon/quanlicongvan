@@ -41,27 +41,33 @@
                         <div class="box-create-left create-section">
                             <div class="form-group">
                                 <label for="">Tiêu đề công văn<sup>*</sup></label>
-                                <input type="text" placeholder="Tiêu đề" name="tieude">
+                                <input type="text" placeholder="Tiêu đề" name="tieude" class="form-control">
                             </div>
-                            <div class="form-group">
-                                <label for="" style="display:block;">Loại công văn<sup>*</sup></label>
-                                <select name="loaicongvan" id="" style="width:40%;">
-                                    @foreach($type_documentarys as $type_documentary)
-                                    <option value="{{$type_documentary->id}}">{{$type_documentary->name}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="" style="display:block;">Bộ phận nhận<sup>*</sup></label>
-                                <select name="bophannhan" id="bophannhan" style="width:40%;">
-                                    @foreach($majors as $major)
-                                    <option value="{{$major->id}}">{{$major->name}}</option>
-                                    @endforeach
-                                </select>
+                            <div class="row">
+                                <div class="col-lg-6 col-md-12">
+                                    <div class="form-group">
+                                        <label for="">Loại công văn<sup>*</sup></label>
+                                        <select name="loaicongvan" id="" class="form-control">
+                                            @foreach($type_documentarys as $type_documentary)
+                                            <option value="{{$type_documentary->id}}">{{$type_documentary->name}}</option>
+                                        @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-12">
+                                    <div class="form-group">
+                                        <label for="">Bộ phận nhận<sup>*</sup></label>
+                                        <select name="bophannhan" id="bophannhan" class="form-control">
+                                            @foreach($majors as $major)
+                                            <option value="{{$major->id}}">{{$major->name}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label for="">Người nhận<sup>*</sup></label>
-                                <select name="nguoinhan[]" id="nguoinhan" multiple>
+                                <select name="nguoinhan[]" id="nguoinhan" multiple class="form-control">
                                 </select>
                             </div>
                         </div>
@@ -70,11 +76,11 @@
                         <div class="box-create-left create-section">
                             <div class="form-group">
                                 <label for="">Nội dung văn bản<sup>*</sup></label>
-                                <textarea cols="30" rows="10" name="noidung" id="editor"></textarea>
+                                <textarea cols="30" rows="10" name="noidung" id="editor" class="form-control"></textarea>
                             </div>
                             <div class="form-group">
                                 <label for="">Tệp đính kèm<sup>*</sup></label>
-                                <input type="file" name="teptin">
+                                <input type="file" name="teptin" style="padding: 3px 10px" class="form-control">
                             </div>
                         </div>
                     </div>

@@ -8,15 +8,13 @@
     <div class="sub-header">
         <div class="row">
             <div class="col-lg-6">
-                <!-- <div class="title">Trường đại học công nghiệp </div> -->
-
-                <ul class="breadcrumb mb-0">
-                    <li class="breadcrumb-item"><a class="c-black" href="viewer/congvan/luutru">Lưu trữ</a></li>
+                <ul class="breadcrumb save-breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a class="text-dark" href="viewer/congvan/luutru">Lưu trữ</a></li>
 
                     @foreach($types as $tp)
                     @if($tp == $type)
 
-                    <li class="breadcrumb-item"><a class="c-black" href="viewer/congvan/luutru/{{$type->id}}">{{$tp->name}}</a></li>
+                    <li class="breadcrumb-item"><a class="text-dark" href="viewer/congvan/luutru/{{$type->id}}">{{$tp->name}}</a></li>
                     @endif
                     @endforeach
                 </ul>
@@ -49,12 +47,12 @@
         </div>
     </div>
     <div class="news">
-        <div class="them-luutru">
+        <div class="them-luutru mb-3">
             <a href="{{route('get-taocv',$type->id)}}" class="btn-them" style="background-color:green;">
-                <span class="icon-holder">
+                <span class="icon-holder m-0">
                     <i class="fas fa-plus"></i>
                 </span>
-                <span class="sidebar-text">Tải lên</span>
+                <!-- <span class="sidebar-text">Tải lên</span> -->
             </a>
         </div>
         <div class="row pl-3 pr-3">

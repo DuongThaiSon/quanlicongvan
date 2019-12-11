@@ -6,11 +6,7 @@
 
 <section class="bg-white main-content">
     <div class="luutru-head sub-header">
-<<<<<<< HEAD
-        <h3 class="title">Thư mục</h3>
-=======
-        <h3>Thư mục lưu trữ</h3>
->>>>>>> tuan
+        <h3 class="title">Thư mục lưu trữ</h3>
     </div>
     <div class="luutru-body news">
         <div class="row pl-3 pr-3">

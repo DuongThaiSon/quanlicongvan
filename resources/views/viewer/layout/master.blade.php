@@ -2,8 +2,8 @@
 <html lang="en">
 
 <head>
-    <base href="{{asset('')}}">
-    <meta charset="UTF-8">
+<base href="{{asset('')}}">
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="pmhdv/css/bootstrap.min.css">
@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
         integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <link rel="stylesheet" href="pmhdv/css/themify-icons.css">
+
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css" rel="stylesheet">
     <link rel="stylesheet" href="pmhdv/css/style.css">
     <script src="pmhdv/js/jquery.min.js"></script>
@@ -25,6 +26,7 @@
     <script src="pmhdv/js/Chart.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/js/select2.min.js"></script>
     <script src="pmhdv/js/script.js"></script>
+
     @yield('title')
 </head>
 
@@ -41,6 +43,7 @@
         </div>
     </section>
     @yield('script')
+    @include('viewer.layout.footer')
 </body>
 
 </html>

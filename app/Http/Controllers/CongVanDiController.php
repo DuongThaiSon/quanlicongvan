@@ -66,8 +66,6 @@ class CongVanDiController extends Controller
 		else
 			$congvantimkiems = documentary_send::orderBy('id', 'DESC')->where('id_usersend',$id)->where('status',1)->where('name','like','%'.$tcvd.'%')->where('id_type',$lcv)->whereDate('send_date',$tg)->paginate(12,['*'], 'page');
 		
-        
-
         return view('viewer.congvandi.timkiemcongvandi',['congvantimkiems'=>$congvantimkiems,'loaicongvans'=>$loaicongvans]);
 	}
 	public function getThemCongVan(){
@@ -202,5 +200,13 @@ class CongVanDiController extends Controller
 		$congvandi->status = 0;
 		$congvandi->save();
 		return back();
+	}
+
+	public function getTest(){
+		$id = Auth::user()->id;
+		$majors = major::all();
+		$type_documentarys = type_documentary::all();
+		$users = User::all();
+		return view('viewer.congvandi.testthem',['majors'=>$majors,'type_documentarys'=>$type_documentarys,'users'=>$users]);
 	}
 }
